@@ -4,12 +4,15 @@ title: About me
 subtitle: Some more information about the author
 ---
 
+<p style='text-align: justify;'> 
 I have been always fascinated by technology and computers, since I was child. I studied my Bachelor’s Degree and Master’s Degree in Telecommunications Engineering, focusing myself mainly on telematics, network architecture and systems architecture. In the meantime I destroyed several OSs by playing with the linux kernel (the bright side is that I learned how to restore and fix them😅). I also maintained some services on top of several hosting and server providers as well as AWS, just for the very sake of it (and to earn a little bit of money).
+</p>
 
 <p align="center">
   <img src="/assets/img/about_me.png">
 </p>
 
+<p style='text-align: justify;'> 
 Some other projects include an IDS with several Raspberri Pis and routers with OpenWRT, and a “micro-datacenter” using intel NUCs as a playground for VMWare and k8s (shared with a friend). Furthermore, I have programmed in many different languages from simple scripting and automation with bash and python, to remote drone controlling or .pcap captures processing with C. The common point of all these activities has been always the same: learning new stuff.
 
 Curiosity is what keeps me moving forward, trying new technologies, architectures and paradigms as well as understanding the current and upcoming trends in the IT world.
@@ -25,3 +28,4 @@ Prior to that, I was a member of the 5G Mobile Laboratory of the CTU in Prague, 
 ⎈☁️👨🏽‍💻Stay curious, never stop learning!👨🏽‍💻☁️⎈
 
 If you want to know a little bit more about my background check my <a href="https://www.linkedin.com/in/miguel-fontanilla-14114710b/" target="_blank" rel="noopener">LinkedIn profile</a>
+</p>

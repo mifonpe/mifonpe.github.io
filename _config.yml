@@ -20,9 +20,9 @@ author: Miguel Fontanilla
 ###############################################
 
 navbar-links:
-  About: "aboutme"
   Posts:
   Talks & webinars: "talks"
+  About: "aboutme"
   Language:
     - 🇬🇧: 
     - 🇪🇸: 
@@ -41,7 +41,6 @@ round-avatar: false
 # then specify the following parameter
 #title-img: /path/to/image
 
-
 #####################################
 # --- Footer social media links --- #
 #####################################
@@ -56,25 +55,20 @@ social-network-links:
 #  twitter: mifonpe
 # patreon: mifonpe
   youtube: c/mifonpe
-#  medium: yourname
-#  reddit: yourname
+#  medium: 
+#  reddit: 
   linkedin: miguel-fontanilla-14114710b/
-#  xing: yourname
-#  stackoverflow: "3943160/daattali"
-#  snapchat: deanat78
-#  instagram: deanat78
-#  spotify: yourname
-#  telephone: +14159998888
-#  steam: deanat78
-#  twitch: yourname
-#  yelp: yourname
-#  telegram: yourname
-#  calendly: yourname
-#  mastodon: instance.url/@username
-#  ORCID: your ORCID ID
-#  google-scholar: your google scholar
-#  discord: invite/invite_code or users/userid 
-
+#  xing: 
+#  stackoverflow: 
+#  snapchat: 
+#  instagram: 
+#  spotify: 
+#  telephone: 
+#  steam: 
+#  twitch: 
+#  yelp: 
+#  telegram:
+#  calendly: 
 
 # If you want your website to generate an RSS feed, provide a description
 # The URL for the feed will be https://<your_website>/feed.xml
