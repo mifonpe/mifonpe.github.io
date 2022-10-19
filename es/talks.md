@@ -1,7 +1,9 @@
 ---
 layout: page
 title: Talks & Webinars
-subtitle: Information about talks & webinars I have participated on
+subtitle: Conferencias y webinars en los que he participado
+lang: es
+lang-ref: talks
 ---
 
 ## GitOps & Progressive Delivery
