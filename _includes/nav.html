@@ -19,14 +19,14 @@
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
               {%- for childlink in link[1] -%}
                 {%- for linkparts in childlink %}
-                  <a class="dropdown-item" href="{{page.lang}}{{ linkparts[1] }}">{{ linkparts[0] }}</a>
+                  <a class="dropdown-item" href="{{page.lang}}/{{ linkparts[1] }}">{{ linkparts[0] }}</a>
                 {%- endfor -%}
               {%- endfor %}
             </div>
           </li>
         {% else %}
           <li class="nav-item">
-            <a class="nav-link" href="{{page.lang}}{{ link[1] }}">{{ link[0] }}</a>
+            <a class="nav-link" href="{{page.lang}}/{{ link[1] }}">{{ link[0] }}</a>
           </li>
         {%- endif -%}
       {%- endfor -%}
