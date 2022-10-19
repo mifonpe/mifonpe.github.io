@@ -71,6 +71,7 @@
             {% endif %}
           {% endif %}
           
+          {% if page.layout != 'index' %}  
             {% assign posts=site.posts | where:"lang-ref", page.lang-ref | sort: 'lang' %}
             {% if posts.size == 0 %}
                 {% assign posts=site.pages | where:"lang-ref", page.lang-ref | sort: 'lang' %}
@@ -102,8 +103,6 @@
   </div>
 </div>
 </header>
-
-
 {% else %}
 <div class="intro-header"></div>
 {% endif %}
