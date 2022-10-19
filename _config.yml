@@ -49,12 +49,12 @@ round-avatar: false
 # Uncomment the links you want to show and add your information to each one.
 social-network-links:
   email: "mifonpe@gmail.com"
-  rss: true  # remove this line if you don't want to show an RSS link at the bottom
+  rss: false  # remove this line if you don't want to show an RSS link at the bottom
 # facebook: mifonpe
   github: mifonpe
 #  twitter: mifonpe
 # patreon: mifonpe
-  youtube: c/mifonpe
+#  youtube: c/mifonpe
 #  medium: 
 #  reddit: 
   linkedin: miguel-fontanilla-14114710b/
