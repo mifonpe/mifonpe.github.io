@@ -2,7 +2,7 @@
 layout: page
 title: About me
 subtitle: Some more information about the author
-lang: es
+lang: en
 lang-ref: aboutme
 ---
 
