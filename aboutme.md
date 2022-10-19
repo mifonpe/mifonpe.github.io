@@ -7,7 +7,7 @@ subtitle: Some more information about the author
 I have been always fascinated by technology and computers, since I was child. I studied my Bachelor’s Degree and Master’s Degree in Telecommunications Engineering, focusing myself mainly on telematics, network architecture and systems architecture. In the meantime I destroyed several OSs by playing with the linux kernel (the bright side is that I learned how to restore and fix them😅). I also maintained some services on top of several hosting and server providers as well as AWS, just for the very sake of it (and to earn a little bit of money).
 
 <p align="center">
-  <img src="./assets/img/about_me.png">
+  <img src="/assets/img/about_me.png">
 </p>
 
 Some other projects include an IDS with several Raspberri Pis and routers with OpenWRT, and a “micro-datacenter” using intel NUCs as a playground for VMWare and k8s (shared with a friend). Furthermore, I have programmed in many different languages from simple scripting and automation with bash and python, to remote drone controlling or .pcap captures processing with C. The common point of all these activities has been always the same: learning new stuff.

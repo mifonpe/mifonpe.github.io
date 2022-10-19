@@ -1,13 +1,13 @@
 ---
 layout: page
-title: Sobre mí
-subtitle: Some more information about the author
+title: A cerca de mí
+subtitle: Más información sobre el autor
 ---
 
 Siempre me han fascinado la tecnología y los ordenadores, desde pequeño. Estudié el grado y el máster en Ingeniería de Telecomunicaciones, especializándome principalmente en telemática, arquitectura de redes y sistemas. Mientras tanto, me cargué varios ordenadores y máquinas virtuales por jugar con el kernel de Linux (lo bueno es que también aprendí a arreglarlo 😅). También me dediqué a mantener algunos servidores webs y servicios tanto utilizando hosting tradicional como AWS, para aprender y sacar algo de dinero.
 
 <p align="center">
-  <img src="assets/img/about_me.png">
+  <img src="/assets/img/about_me.png">
 </p>
 
 Entre algunos de los proyectos que he desarrollado, puedo destacar un IDS casero con varias raspberry pi y un router con OpenWRT, así como un "micro datacenter" montado con intel NUCs y VMWare (junto con un amigo). Además, he programado utilizando diferentes lenguajes: bash y python para automatización, control remoto de drones y procesado de capturas .pcap con C y aplicaciones móviles con Android Studio. El punto en común de todas estas actividades fue siempre el mismo, aprender cosas nuevas.
