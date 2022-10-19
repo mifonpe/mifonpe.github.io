@@ -2,6 +2,13 @@
 layout: page
 ---
 
+<ul class="languages">
+  {% for lang in site.data.languages %}
+  {% assign language = lang[1] %}
+  <li><a href="{{site.baseurl}}{{lang[0]}}">{{language.icon}} {{ language.label }} ({{ language.code }})</a></li>
+  {% endfor %}
+  </ul>
+
 {{ content }}
 
 {% assign posts = paginator.posts | default: site.posts | where:"lang", page.lang%}
