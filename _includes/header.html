@@ -77,7 +77,7 @@
             {% endif %}
             {% if posts.size > 1 %}
                 {% for post in posts %}
-                <h2 class="{{ include.type }}-subheading">{% if page.layout != 'index' %}
+                <h2 class="{{ include.type }}-subheading">
                   <a href="{{ site.base-url }}{{ post.url }}" class="{{ post.lang }}" title="View in {{post.lang}}">{{ site.data.languages[post.lang].icon }}</a>
                 </h2>
                 {% endfor %}
