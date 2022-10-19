@@ -1,26 +1,27 @@
 ---
 layout: page
-title: About me
+title: Sobre mí
 subtitle: Some more information about the author
 ---
-# About Me
 
-I have been always fascinated by technology and computers, since I was child. I studied my Bachelor’s Degree and Master’s Degree in Telecommunications Engineering, focusing myself mainly on telematics, network architecture and systems architecture. In the meantime I destroyed several OSs by playing with the linux kernel (the bright side is that I learned how to restore and fix them😅). I also maintained some services on top of several hosting and server providers as well as AWS, just for the very sake of it (and to earn a little bit of money).
+Siempre me han fascinado la tecnología y los ordenadores, desde pequeño. Estudié el grado y el máster en Ingeniería de Telecomunicaciones, especializándome principalmente en telemática, arquitectura de redes y sistemas. Mientras tanto, me cargué varios ordenadores y máquinas virtuales por jugar con el kernel de Linux (lo bueno es que también aprendí a arreglarlo 😅). También me dediqué a mantener algunos servidores webs y servicios tanto utilizando hosting tradicional como AWS, para aprender y sacar algo de dinero.
 
-![image](assets/img/about_me.png)
+<p align="center">
+  <img src="assets/img/about_me.png">
+</p>
 
-Some other projects include an IDS with several Raspberri Pis and routers with OpenWRT, and a “micro-datacenter” using intel NUCs as a playground for VMWare and k8s (shared with a friend). Furthermore, I have programmed in many different languages from simple scripting and automation with bash and python, to remote drone controlling or .pcap captures processing with C. The common point of all these activities has been always the same: learning new stuff.
+Entre algunos de los proyectos que he desarrollado, puedo destacar un IDS casero con varias raspberry pi y un router con OpenWRT, así como un "micro datacenter" montado con intel NUCs y VMWare (junto con un amigo). Además, he programado utilizando diferentes lenguajes: bash y python para automatización, control remoto de drones y procesado de capturas .pcap con C y aplicaciones móviles con Android Studio. El punto en común de todas estas actividades fue siempre el mismo, aprender cosas nuevas.
 
-Curiosity is what keeps me moving forward, trying new technologies, architectures and paradigms as well as understanding the current and upcoming trends in the IT world.
+Esta curiosidad es lo que me permite seguir moviéndome hacia adelante y creciendo, probando nuevas tecnologías, arquitecturas y paradigmas, así como intentando entender el mundo IT actual y sus tendencias futuras.
 
-Currently, I am a member of the Platform team at Sennder, a German freight-forwarder startup whose main focus is logistics optimization, and which has grown exponentially during the last year. The platform team provides the CI/CD infrastructure for the developers as well guidance for them to bootstrap their own cloud-native infrastructure.
+Actualmente, formo parte del Equipo de Plataforma de Sennder, una startup alemana que opera como 'freight-forwarder' digital, y cuyo objetivo es la optimización de los procesos logísticos mediante la digitalización. Esta empresa ha crecido exponencialmente durante el último año, y el software y la infraestructura tienen que ser capaces de soportar dicho crecimiento. El Equipo de Plataforma se encarga de provisionar la infraestructura de CI/CD para los desarrolladores, así como de instruir a los equipos de desarrollo para que puedan desplegar y gestionar su propia infraestructura.
 
-Before joining Sennder, I was in charge of the architecture, maintenance and evolution of a cloud native (kubernetes-based) CI/CD platform as well as its integration with external services, alongside the colleagues of the DevOps Excellence Center at Orange Spain.
+Antes de unirme a Sennder, estuve a cargo de la arquitectura, mantenimiento y evolución de una plataforma de CI/CD cloud-native (en Kubernetes), así como de su integración con servicios externos, junto con los compañeros del Centro de Excelencia de DevOps, en Orange Spain.
 
-Before that, I was part of the PaaS team in a joint venture between Santander Globaltech and IBM, which was in focused on implementing and managing the On Premises and public cloud infrastructure to support hybrid applications.
+Anteriormente, formé parte del equipo de PaaS en un proyecto de Santander Globaltech a través de IBM. Dicho proyecto estaba orientado a la implementación y gestión de la infraestructura de cloud híbrida, y el ciclo de vida de las aplicaciones que corrían sobre la misma.
 
-Prior to that, I was a member of the 5G Mobile Laboratory of the CTU in Prague, where I worked while I was developing my Master Thesis. During this time I focused myself on mobile network virtualization by using edge computing, virtual machines and container based solutions. By breaking down network functions into smaller units and offloading computational load, we end up with an operational flying 4G antenna (a drone).
+Antes, formé parte del 5G Mobile Laboratory en Praga, donde trabajé mientras hacía mi Master Thesis. Durante este tiempo, mi trabajo se centró en la virtualización de redes móviles utilizando edge computing, arquitecturas cloud, máquinas virtuales y soluciones basadas en contenedores. Al dividir las funciones de red en unidades más pequeñas y derivar la carga computacional pudimos implementar una antena de 4G voladora utilizando un dron con un mini-ordenador que corría las funciones de red correspondientes.
 
-⎈☁️👨🏽‍💻Stay curious, never stop learning!👨🏽‍💻☁️⎈
+⎈☁️👨🏽‍💻Mantente curioso, nunca pares de aprender!👨🏽‍💻☁️⎈
 
-If you want to know a little bit more about my background check my <a href="https://www.linkedin.com/in/miguel-fontanilla-14114710b/" target="_blank" rel="noopener">LinkedIn profile</a>
+Si quieres conocer un poco más acerca de mi, puedes echarle un ojo a mi <a href="https://www.linkedin.com/in/miguel-fontanilla-14114710b/" target="_blank" rel="noopener">perfil de LinkedIn </a>
