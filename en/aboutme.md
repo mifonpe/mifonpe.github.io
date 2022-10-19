@@ -2,6 +2,8 @@
 layout: page
 title: About me
 subtitle: Some more information about the author
+lang: es
+lang-ref: aboutme
 ---
 
 <p style='text-align: justify;'> 

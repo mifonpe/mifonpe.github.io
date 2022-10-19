@@ -2,6 +2,8 @@
 layout: page
 title: A cerca de mí
 subtitle: Más información sobre el autor
+lang: es
+lang-ref: aboutme
 ---
 
 <p style='text-align: justify;'> 

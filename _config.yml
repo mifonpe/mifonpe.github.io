@@ -20,7 +20,7 @@ author: Miguel Fontanilla
 ###############################################
 
 navbar-links:
-  Posts:
+  Posts: "index"
   Talks & webinars: "talks"
   About: "aboutme"
 
