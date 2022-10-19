@@ -70,6 +70,19 @@
               <h2 class="{{ include.type }}-subheading">{{ page.subtitle | strip_html }}</h2>
             {% endif %}
           {% endif %}
+          
+            {% assign posts=site.posts | where:"lang-ref", page.lang-ref | sort: 'lang' %}
+            {% if posts.size == 0 %}
+                {% assign posts=site.pages | where:"lang-ref", page.lang-ref | sort: 'lang' %}
+            {% endif %}
+            {% if posts.size > 1 %}
+                {% for post in posts %}
+                <h2 class="{{ include.type }}-subheading">{% if page.layout != 'index' %}
+                  <a href="{{ site.base-url }}{{ post.url }}" class="{{ post.lang }}" title="View in {{post.lang}}">{{ site.data.languages[post.lang].icon }}</a>
+                </h2>
+                {% endfor %}
+            {% endif %}
+          {% endif %}
 
           {% if include.type == "post" %}
             <span class="post-meta">Posted on {{ page.date | date: date_format }}</span>

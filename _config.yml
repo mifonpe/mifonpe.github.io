@@ -23,14 +23,10 @@ navbar-links:
   Posts:
   Talks & webinars: "talks"
   About: "aboutme"
-  Language:
-    - 🇬🇧: 
-    - 🇪🇸: 
 
 ################
 # --- Logo --- #
 ################
-
 
 avatar: "/assets/img/kyc.png"
 
@@ -80,9 +76,9 @@ rss-description: Tech blog focused on containers and cloud computing
 
 # Select which social network share links to show in posts
 share-links-active:
-  twitter: true
+  twitter: false
   facebook: false
-  linkedin: true
+  linkedin: false
   vk: false
 
 # How to display the link to your website in the footer
