@@ -70,8 +70,8 @@
               <h2 class="{{ include.type }}-subheading">{{ page.subtitle | strip_html }}</h2>
             {% endif %}
           {% endif %}
-          
-          {% if page.layout != 'index' %}  
+
+          {% if include.type == "post" %} 
             {% assign posts=site.posts | where:"lang-ref", page.lang-ref | sort: 'lang' %}
             {% if posts.size == 0 %}
                 {% assign posts=site.pages | where:"lang-ref", page.lang-ref | sort: 'lang' %}
@@ -83,9 +83,6 @@
                 </h2>
                 {% endfor %}
             {% endif %}
-          {% endif %}
-
-          {% if include.type == "post" %}
             <span class="post-meta">Posted on {{ page.date | date: date_format }}</span>
             {% if page.last-updated %}
               <span class="post-meta">
