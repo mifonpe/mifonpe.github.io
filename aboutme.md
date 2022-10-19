@@ -37,13 +37,13 @@ Prior to that, I was a member of the 5G Mobile Laboratory of the CTU in Prague, 
 </p>
 
 <p style='text-align: justify;'> 
-⎈☁️👨🏽‍💻Stay curious, never stop learning!👨🏽‍💻☁️⎈
-</p>
-
-<p style='text-align: justify;'> 
 If you want to know a little bit more about my background check my <a href="https://www.linkedin.com/in/miguel-fontanilla-14114710b/" target="_blank" rel="noopener">LinkedIn profile</a>
 </p>
 
 <p style='text-align: justify;'> 
-You can also get my CV <a href="https://github.com/mifonpe/mifonpe.github.io/raw/main/assets/cv/cv.pdf" target="_blank" rel="noopener"here</a> 
+You can also get my CV <a href="https://github.com/mifonpe/mifonpe.github.io/raw/main/assets/cv/cv.pdf" target="_blank" rel="noopener">here</a> 
+</p>
+
+<p style='text-align: center;'> 
+⎈☁️👨🏽‍💻Stay curious, never stop learning!👨🏽‍💻☁️⎈
 </p>
