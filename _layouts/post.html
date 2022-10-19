@@ -39,6 +39,18 @@ layout: base
         </div>
       {% endif %}
 
+      {% assign posts=site.posts | where:"lang-ref", page.lang-ref | sort: 'lang' %}
+      {% if posts.size == 0 %}
+          {% assign posts=site.pages | where:"lang-ref", page.lang-ref | sort: 'lang' %}
+      {% endif %}
+      {% if posts.size > 1 %}
+        <div class="before-content">
+          {% for post in posts %}
+            <a href="{{ site.base-url }}{{ post.url }}" class="{{ post.lang }}" title="View in {{post.lang}}">{{ site.data.languages[post.lang].icon }}</a>
+          {% endfor %}
+        </div>
+      {% endif %}
+
       <article role="main" class="blog-post">
         {{ content }}
       </article>
