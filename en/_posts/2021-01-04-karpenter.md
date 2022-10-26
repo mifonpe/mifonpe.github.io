@@ -3,6 +3,8 @@ layout: post
 title: Karpenter vs Cluster Autoscaler ☸️
 subtitle: 
 tags: [kubernetes, cloud, autoscaler]
+#gh-repo: daattali/beautiful-jekyll
+#gh-badge: [star, fork, follow]
 comments: true
 lang: en
 lang-ref: karpenter
