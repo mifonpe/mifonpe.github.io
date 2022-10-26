@@ -22,7 +22,7 @@ lang-ref: karpenter
 <p style='text-align: justify;'>This is also the <strong>first collaborative article</strong> in <a href="https://kubesandclouds.com/" class="rank-math-link">Kubes&amp;Clouds</a>, where the main contributor is my colleague at <a href="https://www.sennder.com/" class="rank-math-link" target="_blank" rel="noopener">sennder</a> and friend <a href="https://www.linkedin.com/in/bhalothia/" class="rank-math-link" target="_blank" rel="noopener">Virendra Bhalothia</a>. He is a seasoned professional, who shares my passion for technology and knowledge sharing. You can check his own blog <a href="https://blog.bhalothia.io/" class="rank-math-link" target="_blank" rel="noopener">here</a>!</p>
 
 
-<div class="wp-block-image" align="center"><figure class="aligncenter size-large is-resized"><img src= alt="/assets/img/vi.jpeg" width="512" height="383" sizes="(max-width: 512px) 100vw, 512px" /><figcaption>Virendra and I saving the world</figcaption></figure></div>
+<div class="wp-block-image" align="center"><figure class="aligncenter size-large is-resized"><img src="/assets/img/vi.jpeg" width="512" height="383" sizes="(max-width: 512px) 100vw, 512px" /><figcaption>Virendra and I saving the world</figcaption></figure></div>
 
 <h2>AWS Announcement at re:Invent 2021 🟠☁️</h2>
 
