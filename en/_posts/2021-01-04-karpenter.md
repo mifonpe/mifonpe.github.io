@@ -143,12 +143,14 @@ resource "aws_iam_instance_profile" "karpenter" {
 
 <p style='text-align: justify;'><span class="has-inline-color has-very-dark-gray-color">Now, Karpenter can use this instance profile to launch new EC2 instances and those instances will be able to connect to your cluster.</span></p>
 
+<hr/>
+
 <h3>Configure the KarpenterController IAM Role</h3>
 
 <p style='text-align: justify;'>Karpenter requires permissions for launching instances, which means it needs an IAM role that is granted that access. The config below will create an AWS IAM Role, attach a policy, and authorize the Service Account to assume the role using IRSA using an <a href="https://github.com/terraform-aws-modules/terraform-aws-iam/tree/v4.8.0/modules/iam-assumable-role-with-oidc" class="rank-math-link" target="_blank" rel="noopener">AWS terraform module</a>. We will create the ServiceAccount and connect it to this role during the Helm chart installation.</p>
 
 
-```json
+```hcl
 module "iam_assumable_role_karpenter" {
   source                        = "terraform-aws-modules/iam/aws//modules/iam-assumable-role-with-oidc"
   version                       = "4.7.0"
@@ -189,6 +191,8 @@ resource "aws_iam_role_policy" "karpenter_contoller" {
   })
 }
 ```
+
+<hr/>
 
 <h3><strong>Install Karpenter Helm Chart</strong></h3>
 
@@ -239,6 +243,7 @@ Mountable secrets:   karpenter-token-dwwrs
 Tokens:              karpenter-token-dwwrs
 Events:              &lt;none>
 ```
+<hr/>
 
 <h3><strong>Configure a Karpenter Provisioner</strong></h3>
 
@@ -272,6 +277,7 @@ EOF
 
 <p style='text-align: justify;'>Alright, so now we have a Karpenter provisioner that supports Spot <a href="https://karpenter.sh/docs/provisioner/#capacity-type" class="rank-math-link" target="_blank" rel="noopener">capacity type</a>. <strong>In a real-world scenario, you might have to manage a variety of Karpenter provisioners that can support your workloads</strong>. </p>
 
+<hr/>
 
 <h2><strong>Testing it</strong> 🧪🔥</h2>
 
@@ -287,6 +293,7 @@ kubectl create deployment inflate --image=public.ecr.aws/eks-distro/kubernetes/p
 ```bash
 kubectl set resources deployment inflate --requests=cpu=100m,memory=256Mi
 ```
+<hr/>
 
 <h3>Cluster Autoscaler</h3>
 
@@ -337,6 +344,8 @@ kubectl scale deployment inflate --replicas 1</code></pre>
 
 
 <div class="wp-block-image"><figure class="aligncenter size-large"><img src="/assets/img/karpenter/Screenshot-2022-01-04-at-12.54.22-1.png" alt="" class="wp-image-2639" sizes="(max-width: 644px) 100vw, 644px" /></figure></div>
+
+<hr/>
 
 <h3>Karpenter</h3>
 
@@ -416,7 +425,7 @@ kubectl scale deployment inflate --replicas 0
 <p style='text-align: justify;'>If you are running Kubernetes then I’m sure you will enjoy spinning it up and playing around with it. Good luck!</p>
 
 
-<hr class="wp-block-separator"/>
+<hr/>
 
 
 
