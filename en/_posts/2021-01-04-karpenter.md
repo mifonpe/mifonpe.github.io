@@ -17,14 +17,14 @@ lang-ref: karpenter
 <p style='text-align: justify;'>Around 4 years after the introduction of the Cluster Autoscaler, AWS started working on a new-generation Cluster Autoscaler: <a href="https://karpenter.sh/" class="rank-math-link" target="_blank" rel="noopener">Karpenter</a>. This article covers the fundamental differences between Cluster Autoscaler and Karpenter, followed by a demo that scales up an identical production-like cluster for a sample workload with 100 replicas.</p>
 
 <p align="center">
-<figure class="wp-block-image size-large"><img src="/assets/img/karpenter_intro.jpeg" alt="Karpenter vs Cluster Autoscaler" sizes="(max-width: 1024px) 100vw, 1024px" /><figcaption>Karpenter vs Cluster Autoscaler</figcaption></figure>
+<figure class="wp-block-image size-large"><img src="/assets/img/karpenter/karpenter_intro.jpeg" alt="Karpenter vs Cluster Autoscaler" sizes="(max-width: 1024px) 100vw, 1024px" /><figcaption>Karpenter vs Cluster Autoscaler</figcaption></figure>
 </p>
 
 
 <p style='text-align: justify;'>This is also the <strong>first collaborative article</strong> in <a href="https://kubesandclouds.com/" class="rank-math-link">Kubes&amp;Clouds</a>, where the main contributor is my colleague at <a href="https://www.sennder.com/" class="rank-math-link" target="_blank" rel="noopener">sennder</a> and friend <a href="https://www.linkedin.com/in/bhalothia/" class="rank-math-link" target="_blank" rel="noopener">Virendra Bhalothia</a>. He is a seasoned professional, who shares my passion for technology and knowledge sharing. You can check his own blog <a href="https://blog.bhalothia.io/" class="rank-math-link" target="_blank" rel="noopener">here</a>!</p>
 
 
-<div class="wp-block-image" align="center"><figure class="aligncenter size-large is-resized"><img src="/assets/img/vi.jpeg" width="512" height="383" sizes="(max-width: 512px) 100vw, 512px" /><figcaption>Virendra and I saving the world</figcaption></figure></div>
+<div class="wp-block-image" align="center"><figure class="aligncenter size-large is-resized"><img src="/assets/img/karpenter/vi.jpg" width="512" height="383" sizes="(max-width: 512px) 100vw, 512px" /><figcaption>Virendra and I saving the world</figcaption></figure></div>
 
 <h2>AWS Announcement at re:Invent 2021 🟠☁️</h2>
 
@@ -50,11 +50,7 @@ lang-ref: karpenter
 
 <h2><strong>Cluster Autoscaler vs Karpenter</strong> ⚒️🤖</h2>
 
-
-
 <p style='text-align: justify;'><a href="https://github.com/kubernetes/autoscaler/tree/master/cluster-autoscaler#introduction" class="rank-math-link" target="_blank" rel="noopener">Cluster Autoscaler</a> is a Kubernetes tool that increases or decreases the size of a Kubernetes cluster (by adding or removing nodes), based on the presence of pending pods and node utilization metrics.</p>
-
-
 
 <p style='text-align: justify;'>It automatically adjusts the size of the Kubernetes cluster when one of the following conditions is true:</p>
 
@@ -78,7 +74,7 @@ lang-ref: karpenter
 
 
 <p align="center">
-<div class="wp-block-image"><figure class="aligncenter size-large"><img src="https://kubesandclouds.com/wp-content/uploads/2021/12/cluster_autoscaler.png" alt="" class="wp-image-2497" srcset="https://kubesandclouds.com/wp-content/uploads/2021/12/cluster_autoscaler.png 741w, https://kubesandclouds.com/wp-content/uploads/2021/12/cluster_autoscaler-300x157.png 300w" sizes="(max-width: 741px) 100vw, 741px" /><figcaption>Cluster Autoscaler</figcaption></figure></div>
+<div class="wp-block-image"><figure class="aligncenter size-large"><img src="/assets/img/karpenter/cluster_autoscaler.png" alt=""  sizes="(max-width: 741px) 100vw, 741px" /><figcaption>Cluster Autoscaler</figcaption></figure></div>
 </p>
 
 
@@ -88,7 +84,7 @@ lang-ref: karpenter
 
 
 
-<div class="wp-block-image"><figure class="aligncenter size-large"><img src="https://kubesandclouds.com/wp-content/uploads/2021/12/karpenter-1024x457.png" alt="" class="wp-image-2500" srcset="https://kubesandclouds.com/wp-content/uploads/2021/12/karpenter-1024x457.png 1024w, https://kubesandclouds.com/wp-content/uploads/2021/12/karpenter-300x134.png 300w, https://kubesandclouds.com/wp-content/uploads/2021/12/karpenter-768x343.png 768w, https://kubesandclouds.com/wp-content/uploads/2021/12/karpenter.png 1052w" sizes="(max-width: 1024px) 100vw, 1024px" /><figcaption>Karpenter</figcaption></figure></div>
+<div class="wp-block-image"><figure class="aligncenter size-large"><img src="/assets/img/karpenter/karpenter-1024x457.png" alt="" /><figcaption>Karpenter</figcaption></figure></div>
 
 <p style='text-align: justify;'>Detailed Kubernetes Autoscaling guidelines from AWS can be found <a class="rank-math-link" href="https://docs.aws.amazon.com/eks/latest/userguide/autoscaling.html" target="_blank" rel="noopener">here</a>.</p>
 
@@ -313,23 +309,23 @@ kubectl scale deployment inflate --replicas 100
 <p style='text-align: justify;'>Cluster Autoscaler works with node groups in order to scale out or in as per the dynamic workloads. In order to get efficient autoscaling with Cluster Autoscaler, there are a lot of considerations that need to be reviewed and applied accordingly to the requirements. You can find more details about this topic <a href="https://docs.aws.amazon.com/eks/latest/userguide/autoscaling.html" class="rank-math-link" target="_blank" rel="noopener">here</a>. This demo was run on a test cluster that had an ASG with identical instance specifications with the instance type <em>c5.large</em>.</p>
 
 
-<figure class="wp-block-image size-large"><img src="https://kubesandclouds.com/wp-content/uploads/2021/12/Screenshot-2021-12-28-at-14.28.33-1024x525.png" alt="" class="wp-image-2514" /><figcaption>Inflate workload with Cluster autoscaler</figcaption></figure>
+<figure class="wp-block-image size-large"><img src="/assets/img/karpenter/Screenshot-2021-12-28-at-14.28.33-1024x525.png" alt="" class="wp-image-2514" /><figcaption>Inflate workload with Cluster autoscaler</figcaption></figure>
 
 <p style='text-align: justify;'>The <em>inflate</em> deployment kept on waiting for the Cluster Autoscaler to schedule all the pods for around 4 minutes. If you execute<em> kubectl get nodes </em>during the scaling process, you will see the new nodes kicking in.</p>
 
 
-<div class="wp-block-image"><figure class="aligncenter size-large"><img src="https://kubesandclouds.com/wp-content/uploads/2022/01/Screenshot-2022-01-04-at-12.40.24-1.png" alt="" class="wp-image-2641" sizes="(max-width: 629px) 100vw, 629px" /></figure></div>
+<div class="wp-block-image"><figure class="aligncenter size-large"><img src="/assets/img/karpenter/Screenshot-2022-01-04-at-12.40.24-1.png" alt="" class="wp-image-2641" sizes="(max-width: 629px) 100vw, 629px" /></figure></div>
 
 
 <p style='text-align: justify;'>As commented before, Cluster Autoscaler operates on the autoscaling groups. You can see how the number of instances of the targeted autoscaling group is increased using the AWS console.</p>
 
 
-<figure class="wp-block-image size-large"><img src="https://kubesandclouds.com/wp-content/uploads/2022/01/Screenshot-2022-01-04-at-12.42.42-1024x161.png" alt="" class="wp-image-2611" sizes="(max-width: 1024px) 100vw, 1024px" /></figure>
+<figure class="wp-block-image size-large"><img src="/assets/img/karpenter/Screenshot-2022-01-04-at-12.42.42-1024x161.png" alt="" class="wp-image-2611" sizes="(max-width: 1024px) 100vw, 1024px" /></figure>
 
 <p style='text-align: justify;'>It&#8217;s also possible to check the autoscaling events in the console. These events were triggered by the Cluster Autoscaler, calling the EC2 API.</p>
 
 
-<figure class="wp-block-image size-large"><img src="https://kubesandclouds.com/wp-content/uploads/2022/01/Screenshot-2022-01-04-at-12.50.24-1024x283.png" alt="" class="wp-image-2612" sizes="(max-width: 1024px) 100vw, 1024px" /></figure>
+<figure class="wp-block-image size-large"><img src="/assets/img/karpenter/Screenshot-2022-01-04-at-12.50.24-1024x283.png" alt="" class="wp-image-2612" sizes="(max-width: 1024px) 100vw, 1024px" /></figure>
 
 <p style='text-align: justify;'>Finally, let&#8217;s scale down the inflate deployment back to one replica. </p>
 
@@ -340,7 +336,7 @@ kubectl scale deployment inflate --replicas 1</code></pre>
 <p style='text-align: justify;'>In my case, it took the Cluster Autoscaler 6 minutes to trigger a downscaling event and start reducing the cluster size. You can check the logs of the Cluster Autoscaler to see how the autoscaling process happens.</p>
 
 
-<div class="wp-block-image"><figure class="aligncenter size-large"><img src="https://kubesandclouds.com/wp-content/uploads/2022/01/Screenshot-2022-01-04-at-12.54.22-1.png" alt="" class="wp-image-2639" sizes="(max-width: 644px) 100vw, 644px" /></figure></div>
+<div class="wp-block-image"><figure class="aligncenter size-large"><img src="/assets/img/karpenter/Screenshot-2022-01-04-at-12.54.22-1.png" alt="" class="wp-image-2639" sizes="(max-width: 644px) 100vw, 644px" /></figure></div>
 
 <h3>Karpenter</h3>
 
@@ -376,16 +372,16 @@ kubectl scale deployment inflate --replicas 100
 
 <p style='text-align: justify;'>As you can see in the log above, Karpenter binds the pods to the newly provisoned node, but how is it done? If you check any of the pod&#8217;s definition for the <em>inflate</em> deployment, you will notice that the <a href="https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#nodename" class="rank-math-link" target="_blank" rel="noopener">nodeName</a> field points to the new node.</p>
 
-<div class="wp-block-image"><figure class="aligncenter size-large"><img src="https://kubesandclouds.com/wp-content/uploads/2022/01/Screenshot-2022-01-04-at-13.24.03-1.png" alt="" class="wp-image-2638"  sizes="(max-width: 680px) 100vw, 680px" /></figure></div>
+<div class="wp-block-image"><figure class="aligncenter size-large"><img src="/assets/img/karpenter/Screenshot-2022-01-04-at-13.24.03-1.png" alt=""  sizes="(max-width: 680px) 100vw, 680px" /></figure></div>
 
 <p style='text-align: justify;'>The instance provisioned is not a part of an autoscaling group, and in this case it&#8217;s a spot c5.4xlarge instance. The instance type was selected by Karpenter internal algorithm, but you can customize the provisioner to use the instance types that better suit your needs with the <strong>n<em>ode.kubernetes.io/instance-type</em></strong><em> </em>directive<em> . </em>Check the<a href="https://karpenter.sh/docs/provisioner/"  target="_blank" rel="noopener"> provisioner API</a> to<em> </em>get more information about how to customize your provisioners.</p>
 
-<div class="wp-block-image"><figure class="aligncenter size-large"><img src="https://kubesandclouds.com/wp-content/uploads/2022/01/Screenshot-2022-01-04-at-13.08.34-1024x149.png" alt="" class="wp-image-2623" sizes="(max-width: 1024px) 100vw, 1024px" /></figure></div>
+<div class="wp-block-image"><figure class="aligncenter size-large"><img src="/assets/img/karpenter/Screenshot-2022-01-04-at-13.08.34-1024x149.png" alt="" class="wp-image-2623" sizes="(max-width: 1024px) 100vw, 1024px" /></figure></div>
 
 <p style='text-align: justify;'>So, basically, Karpenter detects there are some unschedulable pods in the cluster. It does the math and provisions the best-suited spot instance from the available options.  It took around 2 minutes for the <em>inflate</em> deployment with 100 replicas to be fully deployed.</p>
 
 
-<figure class="wp-block-image size-large"><img src="https://kubesandclouds.com/wp-content/uploads/2021/12/Screenshot-2021-12-28-at-14.51.45-1024x493.png" alt="" class="wp-image-2515" sizes="(max-width: 1024px) 100vw, 1024px" /><figcaption>Inflate Workload with Karpenter</figcaption></figure>
+<figure class="wp-block-image size-large"><img src="/assets/img/karpenter/Screenshot-2021-12-28-at-14.51.45-1024x493.png" alt="" class="wp-image-2515" sizes="(max-width: 1024px) 100vw, 1024px" /><figcaption>Inflate Workload with Karpenter</figcaption></figure>
 
 <p style='text-align: justify;'>Finally, let&#8217;s wrap it up by scaling down the deployment to 0 replicas.</p>
 
@@ -406,6 +402,8 @@ kubectl scale deployment inflate --replicas 0
 ```
 
 <p style='text-align: justify;'>It took 30 seconds for Karpenter to terminate the node once there was no pod scheduled on it.</p>
+
+<hr/>
 
 <h2>Conclusion 📖🧑‍🏫</h2>
 
