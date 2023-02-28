@@ -1,0 +1,916 @@
+<!doctype html>
+<html lang="es" prefix="og: https://ogp.me/ns#">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="profile" href="http://gmpg.org/xfn/11">
+
+	<meta name='robots' content='max-image-preview:large' />
+
+<!-- Optimización para motores de búsqueda de Rank Math - https://s.rankmath.com/home -->
+<title>GitOps: ArgoCD and Helm🤖☸️ - Kubes&amp;Clouds</title>
+<meta name="description" content="This is the first post of a collection of GitOps tools articles. In this post, a continuous deployment tool for Kubernetes is reviewed: ArgoCD. If you missed"/>
+<meta name="robots" content="follow, index, max-snippet:-1, max-video-preview:-1, max-image-preview:large"/>
+<link rel="canonical" href="https://kubesandclouds.com/index.php/2020/05/13/gitops/?lang=es_es" />
+<meta property="og:locale" content="es_ES">
+<meta property="og:type" content="article">
+<meta property="og:title" content="GitOps: ArgoCD and Helm🤖☸️ - Kubes&amp;Clouds">
+<meta property="og:description" content="This is the first post of a collection of GitOps tools articles. In this post, a continuous deployment tool for Kubernetes is reviewed: ArgoCD. If you missed">
+<meta property="og:url" content="https://kubesandclouds.com/index.php/2020/05/13/gitops/?lang=es_es">
+<meta property="og:site_name" content="Kubes&amp;Clouds">
+<meta property="article:tag" content="DevOps">
+<meta property="article:tag" content="gitops">
+<meta property="article:tag" content="kubernetes">
+<meta property="article:section" content="devops">
+<meta property="og:updated_time" content="2020-10-06T22:17:32+00:00">
+<meta property="og:image" content="https://kubesandclouds.com/wp-content/uploads/2020/05/arg.png">
+<meta property="og:image:secure_url" content="https://kubesandclouds.com/wp-content/uploads/2020/05/arg.png">
+<meta property="og:image:width" content="1609">
+<meta property="og:image:height" content="885">
+<meta property="og:image:alt" content="GitOps: ArgoCD and Helm🤖☸️">
+<meta property="og:image:type" content="image/png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="GitOps: ArgoCD and Helm🤖☸️ - Kubes&amp;Clouds">
+<meta name="twitter:description" content="This is the first post of a collection of GitOps tools articles. In this post, a continuous deployment tool for Kubernetes is reviewed: ArgoCD. If you missed">
+<meta name="twitter:image" content="https://kubesandclouds.com/wp-content/uploads/2020/05/arg.png">
+<script type="application/ld+json" class="rank-math-schema">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://kubesandclouds.com/?lang=es_es#organization","name":"Kubes&Clouds","url":"https://kubesandclouds.com","logo":{"@type":"ImageObject","url":"https://kubesandclouds.com/wp-content/uploads/2020/06/cropped-kc2-e1591690394408-4.png"}},{"@type":"WebSite","@id":"https://kubesandclouds.com/?lang=es_es#website","url":"https://kubesandclouds.com?lang=es_es","name":"Kubes&Clouds","publisher":{"@id":"https://kubesandclouds.com/?lang=es_es#organization"},"inLanguage":"es","potentialAction":{"@type":"SearchAction","target":"https://kubesandclouds.com/?s=%7Bsearch_term_string%7D&lang=es_es","query-input":"required name=search_term_string"}},{"@type":"ImageObject","@id":"https://kubesandclouds.com/index.php/2020/05/13/gitops/?lang=es_es#primaryImage","url":"https://kubesandclouds.com/wp-content/uploads/2020/05/arg.png","width":1609,"height":885},{"@type":"WebPage","@id":"https://kubesandclouds.com/index.php/2020/05/13/gitops/?lang=es_es#webpage","url":"https://kubesandclouds.com/index.php/2020/05/13/gitops/?lang=es_es","name":"GitOps: ArgoCD and Helm\ud83e\udd16\u2638\ufe0f - Kubes&amp;Clouds","datePublished":"2020-05-13T08:03:05+00:00","dateModified":"2020-10-06T22:17:32+00:00","isPartOf":{"@id":"https://kubesandclouds.com/?lang=es_es#website"},"primaryImageOfPage":{"@id":"https://kubesandclouds.com/index.php/2020/05/13/gitops/?lang=es_es#primaryImage"},"inLanguage":"es"},{"@type":"BlogPosting","headline":"GitOps: ArgoCD and Helm\ud83e\udd16\u2638\ufe0f - Kubes&amp;Clouds","datePublished":"2020-05-13T08:03:05+00:00","dateModified":"2020-10-06T22:17:32+00:00","author":{"@type":"Person","name":"Miguel Fontanilla"},"publisher":{"@id":"https://kubesandclouds.com/?lang=es_es#organization"},"description":"This is the first post of a collection of GitOps tools articles. In this post, a continuous deployment tool for Kubernetes is reviewed: ArgoCD. If you missed","@id":"https://kubesandclouds.com/index.php/2020/05/13/gitops/?lang=es_es#richSnippet","isPartOf":{"@id":"https://kubesandclouds.com/index.php/2020/05/13/gitops/?lang=es_es#webpage"},"image":{"@id":"https://kubesandclouds.com/index.php/2020/05/13/gitops/?lang=es_es#primaryImage"},"inLanguage":"es","mainEntityOfPage":{"@id":"https://kubesandclouds.com/index.php/2020/05/13/gitops/?lang=es_es#webpage"}}]}</script>
+<!-- /Plugin Rank Math WordPress SEO -->
+
+<link rel='dns-prefetch' href='//fonts.googleapis.com' />
+<link rel="alternate" type="application/rss+xml" title="Kubes&amp;Clouds &raquo; Feed" href="https://kubesandclouds.com/index.php/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Kubes&amp;Clouds &raquo; Feed de los comentarios" href="https://kubesandclouds.com/index.php/comments/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Kubes&amp;Clouds &raquo; Comentario GitOps: ArgoCD and Helm🤖☸️ del feed" href="https://kubesandclouds.com/index.php/2020/05/13/gitops/?lang=es_es/feed/" />
+<script type="text/javascript">
+window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/14.0.0\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/14.0.0\/svg\/","svgExt":".svg","source":{"concatemoji":"https:\/\/kubesandclouds.com\/wp-includes\/js\/wp-emoji-release.min.js?ver=6.1.1"}};
+/*! This file is auto-generated */
+!function(e,a,t){var n,r,o,i=a.createElement("canvas"),p=i.getContext&&i.getContext("2d");function s(e,t){var a=String.fromCharCode,e=(p.clearRect(0,0,i.width,i.height),p.fillText(a.apply(this,e),0,0),i.toDataURL());return p.clearRect(0,0,i.width,i.height),p.fillText(a.apply(this,t),0,0),e===i.toDataURL()}function c(e){var t=a.createElement("script");t.src=e,t.defer=t.type="text/javascript",a.getElementsByTagName("head")[0].appendChild(t)}for(o=Array("flag","emoji"),t.supports={everything:!0,everythingExceptFlag:!0},r=0;r<o.length;r++)t.supports[o[r]]=function(e){if(p&&p.fillText)switch(p.textBaseline="top",p.font="600 32px Arial",e){case"flag":return s([127987,65039,8205,9895,65039],[127987,65039,8203,9895,65039])?!1:!s([55356,56826,55356,56819],[55356,56826,8203,55356,56819])&&!s([55356,57332,56128,56423,56128,56418,56128,56421,56128,56430,56128,56423,56128,56447],[55356,57332,8203,56128,56423,8203,56128,56418,8203,56128,56421,8203,56128,56430,8203,56128,56423,8203,56128,56447]);case"emoji":return!s([129777,127995,8205,129778,127999],[129777,127995,8203,129778,127999])}return!1}(o[r]),t.supports.everything=t.supports.everything&&t.supports[o[r]],"flag"!==o[r]&&(t.supports.everythingExceptFlag=t.supports.everythingExceptFlag&&t.supports[o[r]]);t.supports.everythingExceptFlag=t.supports.everythingExceptFlag&&!t.supports.flag,t.DOMReady=!1,t.readyCallback=function(){t.DOMReady=!0},t.supports.everything||(n=function(){t.readyCallback()},a.addEventListener?(a.addEventListener("DOMContentLoaded",n,!1),e.addEventListener("load",n,!1)):(e.attachEvent("onload",n),a.attachEvent("onreadystatechange",function(){"complete"===a.readyState&&t.readyCallback()})),(e=t.source||{}).concatemoji?c(e.concatemoji):e.wpemoji&&e.twemoji&&(c(e.twemoji),c(e.wpemoji)))}(window,document,window._wpemojiSettings);
+</script>
+<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 0.07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+	<link rel='stylesheet' id='wp-block-library-css' href='https://kubesandclouds.com/wp-includes/css/dist/block-library/style.min.css?ver=6.1.1' type='text/css' media='all' />
+<style id='wp-block-library-theme-inline-css' type='text/css'>
+.wp-block-audio figcaption{color:#555;font-size:13px;text-align:center}.is-dark-theme .wp-block-audio figcaption{color:hsla(0,0%,100%,.65)}.wp-block-audio{margin:0 0 1em}.wp-block-code{border:1px solid #ccc;border-radius:4px;font-family:Menlo,Consolas,monaco,monospace;padding:.8em 1em}.wp-block-embed figcaption{color:#555;font-size:13px;text-align:center}.is-dark-theme .wp-block-embed figcaption{color:hsla(0,0%,100%,.65)}.wp-block-embed{margin:0 0 1em}.blocks-gallery-caption{color:#555;font-size:13px;text-align:center}.is-dark-theme .blocks-gallery-caption{color:hsla(0,0%,100%,.65)}.wp-block-image figcaption{color:#555;font-size:13px;text-align:center}.is-dark-theme .wp-block-image figcaption{color:hsla(0,0%,100%,.65)}.wp-block-image{margin:0 0 1em}.wp-block-pullquote{border-top:4px solid;border-bottom:4px solid;margin-bottom:1.75em;color:currentColor}.wp-block-pullquote__citation,.wp-block-pullquote cite,.wp-block-pullquote footer{color:currentColor;text-transform:uppercase;font-size:.8125em;font-style:normal}.wp-block-quote{border-left:.25em solid;margin:0 0 1.75em;padding-left:1em}.wp-block-quote cite,.wp-block-quote footer{color:currentColor;font-size:.8125em;position:relative;font-style:normal}.wp-block-quote.has-text-align-right{border-left:none;border-right:.25em solid;padding-left:0;padding-right:1em}.wp-block-quote.has-text-align-center{border:none;padding-left:0}.wp-block-quote.is-large,.wp-block-quote.is-style-large,.wp-block-quote.is-style-plain{border:none}.wp-block-search .wp-block-search__label{font-weight:700}.wp-block-search__button{border:1px solid #ccc;padding:.375em .625em}:where(.wp-block-group.has-background){padding:1.25em 2.375em}.wp-block-separator.has-css-opacity{opacity:.4}.wp-block-separator{border:none;border-bottom:2px solid;margin-left:auto;margin-right:auto}.wp-block-separator.has-alpha-channel-opacity{opacity:1}.wp-block-separator:not(.is-style-wide):not(.is-style-dots){width:100px}.wp-block-separator.has-background:not(.is-style-dots){border-bottom:none;height:1px}.wp-block-separator.has-background:not(.is-style-wide):not(.is-style-dots){height:2px}.wp-block-table{margin:"0 0 1em 0"}.wp-block-table thead{border-bottom:3px solid}.wp-block-table tfoot{border-top:3px solid}.wp-block-table td,.wp-block-table th{word-break:normal}.wp-block-table figcaption{color:#555;font-size:13px;text-align:center}.is-dark-theme .wp-block-table figcaption{color:hsla(0,0%,100%,.65)}.wp-block-video figcaption{color:#555;font-size:13px;text-align:center}.is-dark-theme .wp-block-video figcaption{color:hsla(0,0%,100%,.65)}.wp-block-video{margin:0 0 1em}.wp-block-template-part.has-background{padding:1.25em 2.375em;margin-top:0;margin-bottom:0}
+</style>
+<link rel='stylesheet' id='prismatic-blocks-css' href='https://kubesandclouds.com/wp-content/plugins/prismatic/css/styles-blocks.css?ver=6.1.1' type='text/css' media='all' />
+<link rel='stylesheet' id='venobox.min-css' href='https://kubesandclouds.com/wp-content/plugins/magical-posts-display/assets/css/venobox.min.css?ver=1.0.0' type='text/css' media='all' />
+<link rel='stylesheet' id='bootstrap-css' href='https://kubesandclouds.com/wp-content/plugins/magical-posts-display/assets/css/bootstrap.min.css?ver=5.1.1' type='text/css' media='all' />
+<link rel='stylesheet' id='mpd-fonts-css' href='https://kubesandclouds.com/wp-content/plugins/magical-posts-display/assets/css/fontello.css?ver=1.2.16' type='text/css' media='all' />
+<link rel='stylesheet' id='swiper.min-css' href='https://kubesandclouds.com/wp-content/plugins/magical-posts-display/assets/css/swiper.min.css?ver=5.3.8' type='text/css' media='all' />
+<link rel='stylesheet' id='mpd-style-css' href='https://kubesandclouds.com/wp-content/plugins/magical-posts-display/assets/css/mp-style.css?ver=1.2.16' type='text/css' media='all' />
+<link rel='stylesheet' id='xblog-gb-block-css' href='https://kubesandclouds.com/wp-content/themes/x-blog/assets/css/admin-block.css?ver=1.0' type='text/css' media='all' />
+<link rel='stylesheet' id='xblog-admin-google-font-css' href='https://fonts.googleapis.com/css?family=PT+Serif%3A400%2C400i%2C700%2C700i%7CCrete+Round%3A400%2C400i&#038;subset=latin%2Clatin-ext' type='text/css' media='all' />
+<link rel='stylesheet' id='classic-theme-styles-css' href='https://kubesandclouds.com/wp-includes/css/classic-themes.min.css?ver=1' type='text/css' media='all' />
+<style id='global-styles-inline-css' type='text/css'>
+body{--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: #abb8c3;--wp--preset--color--white: #ffffff;--wp--preset--color--pale-pink: #f78da7;--wp--preset--color--vivid-red: #cf2e2e;--wp--preset--color--luminous-vivid-orange: #ff6900;--wp--preset--color--luminous-vivid-amber: #fcb900;--wp--preset--color--light-green-cyan: #7bdcb5;--wp--preset--color--vivid-green-cyan: #00d084;--wp--preset--color--pale-cyan-blue: #8ed1fc;--wp--preset--color--vivid-cyan-blue: #0693e3;--wp--preset--color--vivid-purple: #9b51e0;--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple: linear-gradient(135deg,rgba(6,147,227,1) 0%,rgb(155,81,224) 100%);--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan: linear-gradient(135deg,rgb(122,220,180) 0%,rgb(0,208,130) 100%);--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange: linear-gradient(135deg,rgba(252,185,0,1) 0%,rgba(255,105,0,1) 100%);--wp--preset--gradient--luminous-vivid-orange-to-vivid-red: linear-gradient(135deg,rgba(255,105,0,1) 0%,rgb(207,46,46) 100%);--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray: linear-gradient(135deg,rgb(238,238,238) 0%,rgb(169,184,195) 100%);--wp--preset--gradient--cool-to-warm-spectrum: linear-gradient(135deg,rgb(74,234,220) 0%,rgb(151,120,209) 20%,rgb(207,42,186) 40%,rgb(238,44,130) 60%,rgb(251,105,98) 80%,rgb(254,248,76) 100%);--wp--preset--gradient--blush-light-purple: linear-gradient(135deg,rgb(255,206,236) 0%,rgb(152,150,240) 100%);--wp--preset--gradient--blush-bordeaux: linear-gradient(135deg,rgb(254,205,165) 0%,rgb(254,45,45) 50%,rgb(107,0,62) 100%);--wp--preset--gradient--luminous-dusk: linear-gradient(135deg,rgb(255,203,112) 0%,rgb(199,81,192) 50%,rgb(65,88,208) 100%);--wp--preset--gradient--pale-ocean: linear-gradient(135deg,rgb(255,245,203) 0%,rgb(182,227,212) 50%,rgb(51,167,181) 100%);--wp--preset--gradient--electric-grass: linear-gradient(135deg,rgb(202,248,128) 0%,rgb(113,206,126) 100%);--wp--preset--gradient--midnight: linear-gradient(135deg,rgb(2,3,129) 0%,rgb(40,116,252) 100%);--wp--preset--duotone--dark-grayscale: url('#wp-duotone-dark-grayscale');--wp--preset--duotone--grayscale: url('#wp-duotone-grayscale');--wp--preset--duotone--purple-yellow: url('#wp-duotone-purple-yellow');--wp--preset--duotone--blue-red: url('#wp-duotone-blue-red');--wp--preset--duotone--midnight: url('#wp-duotone-midnight');--wp--preset--duotone--magenta-yellow: url('#wp-duotone-magenta-yellow');--wp--preset--duotone--purple-green: url('#wp-duotone-purple-green');--wp--preset--duotone--blue-orange: url('#wp-duotone-blue-orange');--wp--preset--font-size--small: 13px;--wp--preset--font-size--medium: 20px;--wp--preset--font-size--large: 36px;--wp--preset--font-size--x-large: 42px;--wp--preset--spacing--20: 0.44rem;--wp--preset--spacing--30: 0.67rem;--wp--preset--spacing--40: 1rem;--wp--preset--spacing--50: 1.5rem;--wp--preset--spacing--60: 2.25rem;--wp--preset--spacing--70: 3.38rem;--wp--preset--spacing--80: 5.06rem;}:where(.is-layout-flex){gap: 0.5em;}body .is-layout-flow > .alignleft{float: left;margin-inline-start: 0;margin-inline-end: 2em;}body .is-layout-flow > .alignright{float: right;margin-inline-start: 2em;margin-inline-end: 0;}body .is-layout-flow > .aligncenter{margin-left: auto !important;margin-right: auto !important;}body .is-layout-constrained > .alignleft{float: left;margin-inline-start: 0;margin-inline-end: 2em;}body .is-layout-constrained > .alignright{float: right;margin-inline-start: 2em;margin-inline-end: 0;}body .is-layout-constrained > .aligncenter{margin-left: auto !important;margin-right: auto !important;}body .is-layout-constrained > :where(:not(.alignleft):not(.alignright):not(.alignfull)){max-width: var(--wp--style--global--content-size);margin-left: auto !important;margin-right: auto !important;}body .is-layout-constrained > .alignwide{max-width: var(--wp--style--global--wide-size);}body .is-layout-flex{display: flex;}body .is-layout-flex{flex-wrap: wrap;align-items: center;}body .is-layout-flex > *{margin: 0;}:where(.wp-block-columns.is-layout-flex){gap: 2em;}.has-black-color{color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-color{color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-color{color: var(--wp--preset--color--white) !important;}.has-pale-pink-color{color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-color{color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-color{color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-color{color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-color{color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-color{color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-color{color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-color{color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-color{color: var(--wp--preset--color--vivid-purple) !important;}.has-black-background-color{background-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-background-color{background-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-background-color{background-color: var(--wp--preset--color--white) !important;}.has-pale-pink-background-color{background-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-background-color{background-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-background-color{background-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-background-color{background-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-background-color{background-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-background-color{background-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-background-color{background-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-background-color{background-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-background-color{background-color: var(--wp--preset--color--vivid-purple) !important;}.has-black-border-color{border-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-border-color{border-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-border-color{border-color: var(--wp--preset--color--white) !important;}.has-pale-pink-border-color{border-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-border-color{border-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-border-color{border-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-border-color{border-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-border-color{border-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-border-color{border-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-border-color{border-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-border-color{border-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-border-color{border-color: var(--wp--preset--color--vivid-purple) !important;}.has-vivid-cyan-blue-to-vivid-purple-gradient-background{background: var(--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple) !important;}.has-light-green-cyan-to-vivid-green-cyan-gradient-background{background: var(--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan) !important;}.has-luminous-vivid-amber-to-luminous-vivid-orange-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange) !important;}.has-luminous-vivid-orange-to-vivid-red-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-orange-to-vivid-red) !important;}.has-very-light-gray-to-cyan-bluish-gray-gradient-background{background: var(--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray) !important;}.has-cool-to-warm-spectrum-gradient-background{background: var(--wp--preset--gradient--cool-to-warm-spectrum) !important;}.has-blush-light-purple-gradient-background{background: var(--wp--preset--gradient--blush-light-purple) !important;}.has-blush-bordeaux-gradient-background{background: var(--wp--preset--gradient--blush-bordeaux) !important;}.has-luminous-dusk-gradient-background{background: var(--wp--preset--gradient--luminous-dusk) !important;}.has-pale-ocean-gradient-background{background: var(--wp--preset--gradient--pale-ocean) !important;}.has-electric-grass-gradient-background{background: var(--wp--preset--gradient--electric-grass) !important;}.has-midnight-gradient-background{background: var(--wp--preset--gradient--midnight) !important;}.has-small-font-size{font-size: var(--wp--preset--font-size--small) !important;}.has-medium-font-size{font-size: var(--wp--preset--font-size--medium) !important;}.has-large-font-size{font-size: var(--wp--preset--font-size--large) !important;}.has-x-large-font-size{font-size: var(--wp--preset--font-size--x-large) !important;}
+.wp-block-navigation a:where(:not(.wp-element-button)){color: inherit;}
+:where(.wp-block-columns.is-layout-flex){gap: 2em;}
+.wp-block-pullquote{font-size: 1.5em;line-height: 1.6;}
+</style>
+<link rel='stylesheet' id='cookie-law-info-css' href='https://kubesandclouds.com/wp-content/plugins/cookie-law-info/legacy/public/css/cookie-law-info-public.css?ver=3.0.7' type='text/css' media='all' />
+<link rel='stylesheet' id='cookie-law-info-gdpr-css' href='https://kubesandclouds.com/wp-content/plugins/cookie-law-info/legacy/public/css/cookie-law-info-gdpr.css?ver=3.0.7' type='text/css' media='all' />
+<link rel='stylesheet' id='preloader-plus-css' href='https://kubesandclouds.com/wp-content/plugins/preloader-plus/assets/css/preloader-plus.min.css?ver=2.2.1' type='text/css' media='all' />
+<style id='preloader-plus-inline-css' type='text/css'>
+.preloader-plus {background-color: #108fd4; }body.complete > *:not(.preloader-plus),.preloader-plus {transition-duration: 1000ms,1000ms,0s; }.preloader-plus * {color: #65615F; }.preloader-plus.complete {opacity: 0; transform:  scale(1); transition-delay: 0s,0s,1000ms; }.preloader-plus .preloader-site-title {font-weight: bold; font-size: 50px; text-transform: none; }.preloader-plus #preloader-counter {font-weight: bold; font-size: 24px; }.preloader-plus .preloader-plus-custom-content {font-weight: bold; font-size: 24px; text-transform: none; }.preloader-plus-default-icons {width: 80px; height: 80px; }.preloader-plus .preloader-custom-img {animation: preloader-rotation 1500ms linear infinite; width: 250px; }.preloader-plus .prog-bar {height: 5px; background-color: #ffffff; }.preloader-plus .prog-bar-bg {height: 5px; background-color: #919191; }.preloader-plus .prog-bar-wrapper {top: 0; padding-top: 0; width: 100%; }
+</style>
+<link rel='stylesheet' id='prismatic-prism-css' href='https://kubesandclouds.com/wp-content/plugins/prismatic/lib/prism/css/theme-okaidia.css?ver=3.2.2' type='text/css' media='all' />
+<link rel='stylesheet' id='prismatic-plugin-styles-css' href='https://kubesandclouds.com/wp-content/plugins/prismatic/lib/prism/css/plugin-styles.css?ver=3.2.2' type='text/css' media='all' />
+<link rel='stylesheet' id='trp-language-switcher-style-css' href='https://kubesandclouds.com/wp-content/plugins/translatepress-multilingual/assets/css/trp-language-switcher.css?ver=2.4.3' type='text/css' media='all' />
+<link rel='stylesheet' id='xblog-google-font-css' href='https://fonts.googleapis.com/css?family=PT+Serif%3A400%2C400i%2C700%2C700i%7CCrete+Round%3A400%2C400i&#038;subset=latin%2Clatin-ext' type='text/css' media='all' />
+<link rel='stylesheet' id='font-awesome-five-all-css' href='https://kubesandclouds.com/wp-content/themes/x-blog/assets/css/all.css?ver=5.13.0' type='text/css' media='all' />
+<link rel='stylesheet' id='slicknav-css' href='https://kubesandclouds.com/wp-content/themes/x-blog/assets/css/slicknav.css?ver=1' type='text/css' media='all' />
+<link rel='stylesheet' id='block-style-css' href='https://kubesandclouds.com/wp-content/themes/x-blog/assets/css/block.css?ver=1.3.11' type='text/css' media='all' />
+<link rel='stylesheet' id='xblog-style-css' href='https://kubesandclouds.com/wp-content/themes/x-blog/style.css?ver=6.1.1' type='text/css' media='all' />
+<link rel='stylesheet' id='xblog-responsive-css' href='https://kubesandclouds.com/wp-content/themes/x-blog/assets/css/responsive.css?ver=1.3.11' type='text/css' media='all' />
+<link rel='stylesheet' id='x-blog-custom-style-css' href='https://kubesandclouds.com/wp-content/themes/x-blog/assets/css/custom_script.css?ver=6.1.1' type='text/css' media='all' />
+<style id='x-blog-custom-style-inline-css' type='text/css'>
+.site-title,
+			.site-description {
+				position: absolute;
+				clip: rect(1px, 1px, 1px, 1px);
+			}header.site-header{
+                    background: #309bdd;
+                }
+</style>
+<link rel='stylesheet' id='mm-compiled-options-mobmenu-css' href='https://kubesandclouds.com/wp-content/uploads/dynamic-mobmenu.css?ver=2.8.3-775' type='text/css' media='all' />
+<link rel='stylesheet' id='mm-google-webfont-dosis-css' href='//fonts.googleapis.com/css?family=Dosis%3Ainherit%2C400&#038;subset=latin%2Clatin-ext&#038;ver=6.1.1' type='text/css' media='all' />
+<link rel='stylesheet' id='cssmobmenu-icons-css' href='https://kubesandclouds.com/wp-content/plugins/mobile-menu/includes/css/mobmenu-icons.css?ver=6.1.1' type='text/css' media='all' />
+<link rel='stylesheet' id='cssmobmenu-css' href='https://kubesandclouds.com/wp-content/plugins/mobile-menu/includes/css/mobmenu.css?ver=2.8.3' type='text/css' media='all' />
+<script type='text/javascript' src='https://kubesandclouds.com/wp-includes/js/jquery/jquery.min.js?ver=3.6.1' id='jquery-core-js'></script>
+<script type='text/javascript' src='https://kubesandclouds.com/wp-includes/js/jquery/jquery-migrate.min.js?ver=3.3.2' id='jquery-migrate-js'></script>
+<script type='text/javascript' src='https://kubesandclouds.com/wp-content/plugins/magical-posts-display/assets/js/bootstrap.bundle.min.js?ver=5.1.1' id='bootstrap.bundle.min-js'></script>
+<script type='text/javascript' src='https://kubesandclouds.com/wp-content/plugins/magical-posts-display/assets/js/swiper.min.js?ver=5.3.8' id='swiper.min-js'></script>
+<script type='text/javascript' src='https://kubesandclouds.com/wp-content/plugins/magical-posts-display/assets/js/jquery.easy-ticker.min.js?ver=3.1.0' id='jquery.easy-ticker-js'></script>
+<script type='text/javascript' id='cookie-law-info-js-extra'>
+/* <![CDATA[ */
+var Cli_Data = {"nn_cookie_ids":[],"cookielist":[],"non_necessary_cookies":[],"ccpaEnabled":"","ccpaRegionBased":"","ccpaBarEnabled":"","strictlyEnabled":["necessary","obligatoire"],"ccpaType":"gdpr","js_blocking":"","custom_integration":"","triggerDomRefresh":"","secure_cookies":""};
+var cli_cookiebar_settings = {"animate_speed_hide":"500","animate_speed_show":"500","background":"#108fd4","border":"#b1a6a6c2","border_on":"","button_1_button_colour":"#ffffff","button_1_button_hover":"#cccccc","button_1_link_colour":"#0c2a7c","button_1_as_button":"1","button_1_new_win":"","button_2_button_colour":"#333","button_2_button_hover":"#292929","button_2_link_colour":"#444","button_2_as_button":"","button_2_hidebar":"","button_3_button_colour":"#3566bb","button_3_button_hover":"#2a5296","button_3_link_colour":"#fff","button_3_as_button":"1","button_3_new_win":"","button_4_button_colour":"#000","button_4_button_hover":"#000000","button_4_link_colour":"#333333","button_4_as_button":"","button_7_button_colour":"#61a229","button_7_button_hover":"#4e8221","button_7_link_colour":"#fff","button_7_as_button":"1","button_7_new_win":"","font_family":"inherit","header_fix":"","notify_animate_hide":"1","notify_animate_show":"1","notify_div_id":"#cookie-law-info-bar","notify_position_horizontal":"right","notify_position_vertical":"bottom","scroll_close":"","scroll_close_reload":"","accept_close_reload":"","reject_close_reload":"","showagain_tab":"1","showagain_background":"#fff","showagain_border":"#000","showagain_div_id":"#cookie-law-info-again","showagain_x_position":"100px","text":"#ffffff","show_once_yn":"","show_once":"10000","logging_on":"","as_popup":"","popup_overlay":"","bar_heading_text":"Want some cookies? \ud83c\udf6a","cookie_bar_as":"banner","popup_showagain_position":"bottom-right","widget_position":"left"};
+var log_object = {"ajax_url":"https:\/\/kubesandclouds.com\/wp-admin\/admin-ajax.php"};
+/* ]]> */
+</script>
+<script type='text/javascript' src='https://kubesandclouds.com/wp-content/plugins/cookie-law-info/legacy/public/js/cookie-law-info-public.js?ver=3.0.7' id='cookie-law-info-js'></script>
+<script type='text/javascript' id='preloader-plus-js-extra'>
+/* <![CDATA[ */
+var preloader_plus = {"animation_delay":"500","animation_duration":"1000"};
+/* ]]> */
+</script>
+<script type='text/javascript' src='https://kubesandclouds.com/wp-content/plugins/preloader-plus//assets/js/preloader-plus.min.js?ver=2.2.1' id='preloader-plus-js'></script>
+<script type='text/javascript' src='https://kubesandclouds.com/wp-content/themes/x-blog/assets/js/modernizr.js?ver=6.1.1' id='modernizr-js'></script>
+<script type='text/javascript' src='https://kubesandclouds.com/wp-content/plugins/mobile-menu/includes/js/mobmenu.js?ver=2.8.3' id='mobmenujs-js'></script>
+<link rel="https://api.w.org/" href="https://kubesandclouds.com/index.php/wp-json/" /><link rel="alternate" type="application/json" href="https://kubesandclouds.com/index.php/wp-json/wp/v2/posts/431" /><link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://kubesandclouds.com/xmlrpc.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="https://kubesandclouds.com/wp-includes/wlwmanifest.xml" />
+<meta name="generator" content="WordPress 6.1.1" />
+<link rel='shortlink' href='https://kubesandclouds.com/?p=431&#038;lang=es_es' />
+<link rel="alternate" type="application/json+oembed" href="https://kubesandclouds.com/index.php/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fkubesandclouds.com%2Findex.php%2F2020%2F05%2F13%2Fgitops%2F%3Flang%3Des_es" />
+<link rel="alternate" type="text/xml+oembed" href="https://kubesandclouds.com/index.php/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fkubesandclouds.com%2Findex.php%2F2020%2F05%2F13%2Fgitops%2F%3Flang%3Des_es&#038;format=xml" />
+<link rel="alternate" hreflang="en-GB" href="https://kubesandclouds.com/index.php/2020/05/13/gitops/?lang=es_es"/>
+<link rel="alternate" hreflang="es-ES" href="https://kubesandclouds.com/index.php/2020/05/13/gitops/?lang=es_es"/>
+<link rel="alternate" hreflang="en" href="https://kubesandclouds.com/index.php/2020/05/13/gitops/?lang=es_es"/>
+<link rel="alternate" hreflang="es" href="https://kubesandclouds.com/index.php/2020/05/13/gitops/?lang=es_es"/>
+<!-- Analytics by WP Statistics v13.2.8 - https://wp-statistics.com/ -->
+<link rel="pingback" href="https://kubesandclouds.com/xmlrpc.php"><style type="text/css" id="custom-background-css">
+body.custom-background { background-image: url("https://kubesandclouds.com/wp-content/uploads/2020/09/b-min_optimized.png"); background-position: left top; background-size: contain; background-repeat: repeat; background-attachment: scroll; }
+</style>
+	<link rel="icon" href="https://kubesandclouds.com/wp-content/uploads/2020/02/cropped-kc-e1581964077834-1-32x32.png" sizes="32x32" />
+<link rel="icon" href="https://kubesandclouds.com/wp-content/uploads/2020/02/cropped-kc-e1581964077834-1-192x192.png" sizes="192x192" />
+<link rel="apple-touch-icon" href="https://kubesandclouds.com/wp-content/uploads/2020/02/cropped-kc-e1581964077834-1-180x180.png" />
+<meta name="msapplication-TileImage" content="https://kubesandclouds.com/wp-content/uploads/2020/02/cropped-kc-e1581964077834-1-270x270.png" />
+</head>
+
+<body class="post-template-default single single-post postid-431 single-format-standard custom-background wp-custom-logo translatepress-es_ES theme-indigo title-center mob-menu-slideout-over">
+	<svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 0 0" width="0" height="0" focusable="false" role="none" style="visibility: hidden; position: absolute; left: -9999px; overflow: hidden;" ><defs><filter id="wp-duotone-dark-grayscale"><fecolormatrix color-interpolation-filters="sRGB" type="matrix" values=" .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 " /><fecomponenttransfer color-interpolation-filters="sRGB" ><fefuncr type="table" tablevalues="0 0.49803921568627" /><fefuncg type="table" tablevalues="0 0.49803921568627" /><fefuncb type="table" tablevalues="0 0.49803921568627" /><fefunca type="table" tablevalues="1 1" /></fecomponenttransfer><fecomposite in2="SourceGraphic" operator="in" /></filter></defs></svg><svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 0 0" width="0" height="0" focusable="false" role="none" style="visibility: hidden; position: absolute; left: -9999px; overflow: hidden;" ><defs><filter id="wp-duotone-grayscale"><fecolormatrix color-interpolation-filters="sRGB" type="matrix" values=" .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 " /><fecomponenttransfer color-interpolation-filters="sRGB" ><fefuncr type="table" tablevalues="0 1" /><fefuncg type="table" tablevalues="0 1" /><fefuncb type="table" tablevalues="0 1" /><fefunca type="table" tablevalues="1 1" /></fecomponenttransfer><fecomposite in2="SourceGraphic" operator="in" /></filter></defs></svg><svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 0 0" width="0" height="0" focusable="false" role="none" style="visibility: hidden; position: absolute; left: -9999px; overflow: hidden;" ><defs><filter id="wp-duotone-purple-yellow"><fecolormatrix color-interpolation-filters="sRGB" type="matrix" values=" .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 " /><fecomponenttransfer color-interpolation-filters="sRGB" ><fefuncr type="table" tablevalues="0.54901960784314 0.98823529411765" /><fefuncg type="table" tablevalues="0 1" /><fefuncb type="table" tablevalues="0.71764705882353 0.25490196078431" /><fefunca type="table" tablevalues="1 1" /></fecomponenttransfer><fecomposite in2="SourceGraphic" operator="in" /></filter></defs></svg><svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 0 0" width="0" height="0" focusable="false" role="none" style="visibility: hidden; position: absolute; left: -9999px; overflow: hidden;" ><defs><filter id="wp-duotone-blue-red"><fecolormatrix color-interpolation-filters="sRGB" type="matrix" values=" .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 " /><fecomponenttransfer color-interpolation-filters="sRGB" ><fefuncr type="table" tablevalues="0 1" /><fefuncg type="table" tablevalues="0 0.27843137254902" /><fefuncb type="table" tablevalues="0.5921568627451 0.27843137254902" /><fefunca type="table" tablevalues="1 1" /></fecomponenttransfer><fecomposite in2="SourceGraphic" operator="in" /></filter></defs></svg><svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 0 0" width="0" height="0" focusable="false" role="none" style="visibility: hidden; position: absolute; left: -9999px; overflow: hidden;" ><defs><filter id="wp-duotone-midnight"><fecolormatrix color-interpolation-filters="sRGB" type="matrix" values=" .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 " /><fecomponenttransfer color-interpolation-filters="sRGB" ><fefuncr type="table" tablevalues="0 0" /><fefuncg type="table" tablevalues="0 0.64705882352941" /><fefuncb type="table" tablevalues="0 1" /><fefunca type="table" tablevalues="1 1" /></fecomponenttransfer><fecomposite in2="SourceGraphic" operator="in" /></filter></defs></svg><svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 0 0" width="0" height="0" focusable="false" role="none" style="visibility: hidden; position: absolute; left: -9999px; overflow: hidden;" ><defs><filter id="wp-duotone-magenta-yellow"><fecolormatrix color-interpolation-filters="sRGB" type="matrix" values=" .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 " /><fecomponenttransfer color-interpolation-filters="sRGB" ><fefuncr type="table" tablevalues="0.78039215686275 1" /><fefuncg type="table" tablevalues="0 0.94901960784314" /><fefuncb type="table" tablevalues="0.35294117647059 0.47058823529412" /><fefunca type="table" tablevalues="1 1" /></fecomponenttransfer><fecomposite in2="SourceGraphic" operator="in" /></filter></defs></svg><svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 0 0" width="0" height="0" focusable="false" role="none" style="visibility: hidden; position: absolute; left: -9999px; overflow: hidden;" ><defs><filter id="wp-duotone-purple-green"><fecolormatrix color-interpolation-filters="sRGB" type="matrix" values=" .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 " /><fecomponenttransfer color-interpolation-filters="sRGB" ><fefuncr type="table" tablevalues="0.65098039215686 0.40392156862745" /><fefuncg type="table" tablevalues="0 1" /><fefuncb type="table" tablevalues="0.44705882352941 0.4" /><fefunca type="table" tablevalues="1 1" /></fecomponenttransfer><fecomposite in2="SourceGraphic" operator="in" /></filter></defs></svg><svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 0 0" width="0" height="0" focusable="false" role="none" style="visibility: hidden; position: absolute; left: -9999px; overflow: hidden;" ><defs><filter id="wp-duotone-blue-orange"><fecolormatrix color-interpolation-filters="sRGB" type="matrix" values=" .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 " /><fecomponenttransfer color-interpolation-filters="sRGB" ><fefuncr type="table" tablevalues="0.098039215686275 1" /><fefuncg type="table" tablevalues="0 0.66274509803922" /><fefuncb type="table" tablevalues="0.84705882352941 0.41960784313725" /><fefunca type="table" tablevalues="1 1" /></fecomponenttransfer><fecomposite in2="SourceGraphic" operator="in" /></filter></defs></svg><div id="page" class="site x-blog">
+	<a class="skip-link screen-reader-text" href="#content" data-no-translation="" data-trp-gettext="">Skip to content</a>
+
+	<header id="masthead" class="site-header">
+        		<div class="baby-container site-branding">
+            <a href="https://kubesandclouds.com/?lang=es_es" class="custom-logo-link" rel="home"><img width="258" height="258" src="https://kubesandclouds.com/wp-content/uploads/2020/06/cropped-kc2-e1591690394408-5.png" class="custom-logo" alt="Kubes&amp;Clouds" decoding="async" srcset="https://kubesandclouds.com/wp-content/uploads/2020/06/cropped-kc2-e1591690394408-5.png 258w, https://kubesandclouds.com/wp-content/uploads/2020/06/cropped-kc2-e1591690394408-5-150x150.png 150w" sizes="(max-width: 258px) 100vw, 258px" /></a>		</div><!-- .site-branding -->
+			<div class="menu-bar text-center">
+		<div class="baby-container menu-inner">
+			<nav id="site-navigation" class="main-navigation">
+				<div class="menu-top-menu-container"><ul id="baby-menu" class="baby-menu"><li id="menu-item-40" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-40"><a href="https://kubesandclouds.com?lang=es_es">Home</a></li>
+<li id="menu-item-41" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-41"><a href="https://kubesandclouds.com/index.php/about/?lang=es_es">Sobre mí</a></li>
+<li id="menu-item-42" class="menu-item menu-item-type-post_type menu-item-object-page current_page_parent menu-item-42"><a href="https://kubesandclouds.com/index.php/blog/?lang=es_es">Posts</a></li>
+<li id="menu-item-2425" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2425"><a href="https://kubesandclouds.com/index.php/contact/?lang=es_es">Talks &#038; Webinars</a></li>
+<li id="menu-item-2426" class="trp-language-switcher-container menu-item menu-item-type-post_type menu-item-object-language_switcher current-language-menu-item menu-item-2426"><a href="https://kubesandclouds.com/index.php/2020/05/13/gitops/?lang=es_es"><span data-no-translation><img class="trp-flag-image" src="https://kubesandclouds.com/wp-content/plugins/translatepress-multilingual/assets/images/flags/en_GB.png" width="18" height="12" alt="en_GB" title="English (UK)"></span></a></li>
+<li id="menu-item-2427" class="trp-language-switcher-container menu-item menu-item-type-post_type menu-item-object-language_switcher current-language-menu-item menu-item-2427"><a href="https://kubesandclouds.com/index.php/2020/05/13/gitops/?lang=es_es"><span data-no-translation><img class="trp-flag-image" src="https://kubesandclouds.com/wp-content/plugins/translatepress-multilingual/assets/images/flags/es_ES.png" width="18" height="12" alt="es_ES" title="Español"></span></a></li>
+</ul></div>			</nav><!-- #site-navigation -->	
+			
+		</div>
+		</div>
+
+		
+	</header><!-- #masthead -->
+
+	
+	<div id="content" class="baby-container site-content right-sidebar">
+
+	<div id="primary" class="content-area">
+		<main id="main" class="site-main">
+
+		
+<article id="post-431" class="post-431 post type-post status-publish format-standard has-post-thumbnail hentry category-devops category-gitops category-kubernetes tag-devops tag-gitops tag-kubernetes">
+	<header class="entry-header">
+		<h1 class="entry-title">GitOps: ArgoCD y Helm🤖☸️</h1>		<div class="entry-meta">
+			<span class="posted-on"><i class="far fa-clock"></i> <a href="https://kubesandclouds.com/index.php/2020/05/13/gitops/?lang=es_es" rel="bookmark"><time class="entry-date published" datetime="2020-05-13T08:03:05+00:00">mayo 13, 2020</time><time class="updated" datetime="2020-10-06T22:17:32+00:00">octubre 6, 2020</time></a></span><span class="byline"> <i class="far fa-user-circle"></i> <span class="author vcard"><a class="url fn n" href="https://kubesandclouds.com/author/miguel-fontanilla/?lang=es_es">Miguel Fontanilla</a></span></span>		</div><!-- .entry-meta -->
+			</header><!-- .entry-header -->
+            <div class="baby-feature-image"> 
+            <img width="1609" height="885" src="https://kubesandclouds.com/wp-content/uploads/2020/05/arg.png" class="attachment-full size-full wp-post-image" alt="" decoding="async" srcset="https://kubesandclouds.com/wp-content/uploads/2020/05/arg.png 1609w, https://kubesandclouds.com/wp-content/uploads/2020/05/arg-300x165.png 300w, https://kubesandclouds.com/wp-content/uploads/2020/05/arg-1024x563.png 1024w, https://kubesandclouds.com/wp-content/uploads/2020/05/arg-768x422.png 768w, https://kubesandclouds.com/wp-content/uploads/2020/05/arg-1536x845.png 1536w" sizes="(max-width: 1609px) 100vw, 1609px" />        </div>
+    
+	<div class="entry-content">
+		
+<p>Este es el primer post de una colección de artículos enfocados en herramientas para GitOps. En este post, analizaremos una herramienta para despliegue continuo en Kubernetes: <strong>ArgoCD</strong>. Si no has leído los artículos previos a cerca de <a href="https://kubesandclouds.com/index.php/2020/03/18/k8s-basic-objects/">Kubernetes deployments</a> y <a href="https://kubesandclouds.com/index.php/2020/04/06/helm-making-kubernetes-even-better/">Helm</a>, échales un ojo antes de leer este post, ya que te ayudarán a entender la idea general mucho mejor.</p>
+
+
+
+<h2>GitOps</h2>
+
+
+
+<p class="has-text-align-left">GitOps se define como una estrategia para gestionar la infraestructura de Kuberentes y sus aplicaciones en la que la definición declarativa de lo que debe estar corriendo en el clúster se almacena en un repositorio de git. El repositorio de git se considera como la <em>la única fuente de verdad</em> en el modelo de GitOps. Con esta estrategia, cualquier cambio en la definición de las aplicaciones (código), se refleja en la infraestructura desplegada y en las aplicaciones. Además, permite detectar diferencias y desviaciones entre el código de la aplicación y las versiones desplegadas.</p>
+
+
+
+<p>GitOps incrementa la frecuencia de entregas de software, ya que en el momento en el que el código se encuentre en la rama productiva, también estará presente en el clúster en cuestión de segundos, incrementando también la productividad. Este modelo incrementa también la fiabilidad y robustez, ya que como todas las aplicaciones y los despliegues se encuentran bajo el control de versiones de Git, los rollbacks y procedimientos de recuperación son más sencillos. Además, GitOps permite mejorar la estabilidad y la consistencia de las aplicaciones, al automatizar y unificar el método de despliegue.</p>
+
+
+
+<div class="wp-block-image"><figure class="aligncenter size-large"><img decoding="async" src="https://hackernoon.com/photos/2yGtI4geW3PncPogINYdKCMtdWJ2-1l3033u9" alt=""/><figcaption>GitOps tools por <a href="https://hackernoon.com/why-gitops-is-so-exciting-ca2a3a0y" target="_blank" rel="noopener">hackernoon</a></figcaption></figure></div>
+
+
+
+<hr class="wp-block-separator is-style-wide"/>
+
+
+
+<h2>ArgoCD</h2>
+
+
+
+<p>ArgoCD es una herramienta de despliegue continuo que funciona de forma declarativa. Se puede instalar en un clúster de Kubernetes y puede desplegar aplicaciones en el mismo clúster o en otros clústers, permitiendo así gestionar de forma centralizada y automática el despliegue de software. Además permite controlar qué versión de cada aplicación hay desplegada en cada entorno, detectar desviaciones y monitorizar el estado de los recursos de las aplicaciones. Gracias al control de las versiones que se despliegan, los rollbacks y upgrades de las aplicaciones se facilitan bastante.</p>
+
+
+
+<h3>Instalando ArgoCD</h3>
+
+
+
+<p>Para una instalación rápida, ArgoCD puede desplegarse utilizando sus <a href="https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml" target="_blank" rel="noopener">manifiestos de Kubernetes</a>. Ejecutando los comandos a continuación, ArgoCD se instala en un namespace dedicado, con todos los recursos que necesitará para operar en el clúster, incluyendo una interfaz web bastante útil. Esta instalación usa la configuración más sencilla posible, ya que se va a utilizar para una demostración sencilla. Para entornos productivos, el empleo de <a href="https://argoproj.github.io/argo-cd/operator-manual/high_availability/" target="_blank" rel="noopener">arquitecturas más complejas y resilientes</a> es recomendables.</p>
+
+
+
+<pre class="wp-block-prismatic-blocks"><code class="language-bash">kubectl create namespace argocd
+kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml</code></pre>
+
+
+
+<p>Al igual que Kubernetes, ArgoCD tiene su propio plano de control, incluyendo un API server, un controlador y un servidor de repositorios. Estos son los tres componentes que hacen la magia de ArgoCD posible🧙🏽‍♂️:</p>
+
+
+
+<ul><li>El API server permite interaccionar con ArgoCD a través de la interfaz web y del CLI, y facilita su integración con plataformas de CI/CD y sus pipelines. </li><li>El controlador de aplicaciones se encarga de monitorizar las aplicaciones desplegadas en el clúster, subsanando cualquier posible desviación con respecto al estado deseado, sincronizando los objetos de Kubernetes presentes en el clúster con los definidos en el repositorio git.</li><li>El servidor de repositorios cachea el repositorio git asociado con cada aplicación presente en el clúster. Genera los manifiestos de Kubernetes que se despliegan en el clúster, aplicando herramientas de templatizado y gestión de configuración y plugins cuando sea necesario.</li></ul>
+
+
+
+<div class="wp-block-image"><figure class="aligncenter size-large is-resized"><img decoding="async" loading="lazy" src="https://argoproj.github.io/argo-cd/assets/argocd_architecture.png" alt="" width="557" height="531"/><figcaption>Arquitectura por <a href="https://argoproj.github.io/argo-cd/" target="_blank" rel="noopener">ArgoCD</a></figcaption></figure></div>
+
+
+
+<p>Para interaccionar con la API de ArgoCD de forma programática, es necesario instalar su CLI. Obtén la versión del CLI para tu SO <a href="https://argoproj.github.io/argo-cd/cli_installation/" target="_blank" rel="noopener">aquí</a>.</p>
+
+
+
+<pre class="wp-block-prismatic-blocks"><code class="language-bash">brew tap argoproj/tap
+brew install argoproj/tap/argocd</code></pre>
+
+
+
+<p>El API server no se expone fuera del clúster con la configuración sencilla que estamos utilizando, por lo que hay que utilizar un <a href="https://argoproj.github.io/argo-cd/operator-manual/ingress/" target="_blank" rel="noopener">ingress controller</a> o un servicio de tipo <a href="https://argoproj.github.io/argo-cd/getting_started/#service-type-load-balancer" target="_blank" rel="noopener">LoadBalancer.</a> Para mantener este ejemplo lo más sencillo posible, sencillamente parchearemos el servicio que utiliza el API server de ArgoCD para que se exponga usando un LoadBalancer.</p>
+
+
+
+<pre class="wp-block-prismatic-blocks"><code class="language-bash">kubectl patch svc argocd-server -n argocd -p &#039;{&quot;spec&quot;: {&quot;type&quot;: &quot;LoadBalancer&quot;}}&#039;</code></pre>
+
+
+
+<p>Tras desplegar los recursos de ArgoCD y parchear el servicio, estos son los pods y servicios que deben estar corriendo en el clúster. Puedes observar que la IP externa que utiliza el LoadBalancer es localhost, esto se debe a que minikube fue el entorno empleado en este ejemplo.</p>
+
+
+
+<div class="wp-block-image"><figure class="aligncenter size-large"><img decoding="async" loading="lazy" width="1024" height="356" src="https://kubesandclouds.com/wp-content/uploads/2020/05/Screen-Shot-2020-05-08-at-1.40.26-PM-1024x356.png" alt="" class="wp-image-554" srcset="https://kubesandclouds.com/wp-content/uploads/2020/05/Screen-Shot-2020-05-08-at-1.40.26-PM-1024x356.png 1024w, https://kubesandclouds.com/wp-content/uploads/2020/05/Screen-Shot-2020-05-08-at-1.40.26-PM-300x104.png 300w, https://kubesandclouds.com/wp-content/uploads/2020/05/Screen-Shot-2020-05-08-at-1.40.26-PM-768x267.png 768w, https://kubesandclouds.com/wp-content/uploads/2020/05/Screen-Shot-2020-05-08-at-1.40.26-PM.png 1474w" sizes="(max-width: 1024px) 100vw, 1024px" /></figure></div>
+
+
+
+<p> Para la configuración inicial, ArgoCD utiliza el nombre del pod del API server como la clave del usuario admin, por lo que en este caso, la clave es <em>argocd-server-7fbc7665b-plpj7</em>. Loguéate en el servidor utilizando el CLI y cambia la contraseña. </p>
+
+
+
+<pre class="wp-block-prismatic-blocks"><code class="language-bash">argocd login &lt;argocd-server-ip&gt;
+argocd account update-password</code></pre>
+
+
+
+<hr class="wp-block-separator is-style-default"/>
+
+
+
+<h3>Utilizando el GUI</h3>
+
+
+
+<p>Ahora, podemos probar la nueva contraseña en la interfaz web. Estará accesible en la IP externa del servicio LoadBalancer en el puerto 80 y 443. Una vez que te hayas logueado correctamente, tendrás acceso al dashboard principal, desde el que se gestionan todas las aplicaciones y componentes desplegados en los clústers.</p>
+
+
+
+<div class="wp-block-image"><figure class="aligncenter size-large"><img decoding="async" loading="lazy" width="1024" height="535" src="https://kubesandclouds.com/wp-content/uploads/2020/05/Screen-Shot-2020-05-08-at-3.29.38-PM-1024x535.png" alt="" class="wp-image-562" srcset="https://kubesandclouds.com/wp-content/uploads/2020/05/Screen-Shot-2020-05-08-at-3.29.38-PM-1024x535.png 1024w, https://kubesandclouds.com/wp-content/uploads/2020/05/Screen-Shot-2020-05-08-at-3.29.38-PM-300x157.png 300w, https://kubesandclouds.com/wp-content/uploads/2020/05/Screen-Shot-2020-05-08-at-3.29.38-PM-768x401.png 768w, https://kubesandclouds.com/wp-content/uploads/2020/05/Screen-Shot-2020-05-08-at-3.29.38-PM-1536x802.png 1536w, https://kubesandclouds.com/wp-content/uploads/2020/05/Screen-Shot-2020-05-08-at-3.29.38-PM-2048x1070.png 2048w" sizes="(max-width: 1024px) 100vw, 1024px" /></figure></div>
+
+
+
+<p>Para desplegar una nueva aplicación, primero es necesario añadir un repositorio, para que se pueda utilizar el código. En este caso, usaremos <a href="https://github.com/mifonpe/helmbasics" target="_blank" rel="noopener">una sencilla aplicación con Helm</a> que se ha utilizado en posts anteriores. Despliega un conjunto de pods utilizando imágenes de apache (httpd). A la hora de configurar el repositorio, es posible añadir credenciales, así como un certificado TLS para utilizar una conexión segura. Además, se puede utilizar SSH en las conexiones con el repositorio.</p>
+
+
+
+<div class="wp-block-image"><figure class="aligncenter size-large"><img decoding="async" loading="lazy" width="1024" height="539" src="https://kubesandclouds.com/wp-content/uploads/2020/05/Screen-Shot-2020-05-08-at-2.41.26-PM-1024x539.png" alt="" class="wp-image-561" srcset="https://kubesandclouds.com/wp-content/uploads/2020/05/Screen-Shot-2020-05-08-at-2.41.26-PM-1024x539.png 1024w, https://kubesandclouds.com/wp-content/uploads/2020/05/Screen-Shot-2020-05-08-at-2.41.26-PM-300x158.png 300w, https://kubesandclouds.com/wp-content/uploads/2020/05/Screen-Shot-2020-05-08-at-2.41.26-PM-768x404.png 768w, https://kubesandclouds.com/wp-content/uploads/2020/05/Screen-Shot-2020-05-08-at-2.41.26-PM-1536x808.png 1536w, https://kubesandclouds.com/wp-content/uploads/2020/05/Screen-Shot-2020-05-08-at-2.41.26-PM-2048x1078.png 2048w" sizes="(max-width: 1024px) 100vw, 1024px" /></figure></div>
+
+
+
+<p>Una vez que el repositorio ha sido configurado, podemos empezar a crear la primera aplicación. Es recomendable comprobar antes que nada si ArgoCD puede conectarse al <a href="https://github.com/mifonpe/helmbasics" target="_blank" rel="noopener">repositorio de ejemplo</a>.</p>
+
+
+
+<div class="wp-block-image"><figure class="aligncenter size-large"><img decoding="async" loading="lazy" width="1024" height="161" src="https://kubesandclouds.com/wp-content/uploads/2020/05/Screen-Shot-2020-05-08-at-3.11.42-PM-1024x161.png" alt="" class="wp-image-563" srcset="https://kubesandclouds.com/wp-content/uploads/2020/05/Screen-Shot-2020-05-08-at-3.11.42-PM-1024x161.png 1024w, https://kubesandclouds.com/wp-content/uploads/2020/05/Screen-Shot-2020-05-08-at-3.11.42-PM-300x47.png 300w, https://kubesandclouds.com/wp-content/uploads/2020/05/Screen-Shot-2020-05-08-at-3.11.42-PM-768x121.png 768w, https://kubesandclouds.com/wp-content/uploads/2020/05/Screen-Shot-2020-05-08-at-3.11.42-PM-1536x242.png 1536w, https://kubesandclouds.com/wp-content/uploads/2020/05/Screen-Shot-2020-05-08-at-3.11.42-PM-2048x323.png 2048w" sizes="(max-width: 1024px) 100vw, 1024px" /></figure></div>
+
+
+
+<p>Para crear una nueva aplicación, hay que especificar una serie de parámetros, como el nombre, el repositorio de git y ruta a utilizar, así como el clúster de Kubernetes y el namespace en el que la aplicación se debe desplegar. En este paso, la política de sincronización puede definirse también. Para este primer ejemplo, la aplicación se desplegará de forma manual, dentro del mismo clúster en el que se encuentra ArgoCD, pero en un namespace diferente. En la imagen inferior puede verse que la revision <strong>HEAD</strong> está seleccionada, por lo que utilizará la rama máster del repositorio y <strong>.</strong> es la ruta dentro del repositorio en la que se buscarán los manifiestos de Kubernetes.</p>
+
+
+
+<div class="wp-block-image"><figure class="aligncenter size-large"><img decoding="async" loading="lazy" width="1024" height="800" src="https://kubesandclouds.com/wp-content/uploads/2020/05/Screen-Shot-2020-05-08-at-3.25.03-PM-1024x800.png" alt="" class="wp-image-559" srcset="https://kubesandclouds.com/wp-content/uploads/2020/05/Screen-Shot-2020-05-08-at-3.25.03-PM-1024x800.png 1024w, https://kubesandclouds.com/wp-content/uploads/2020/05/Screen-Shot-2020-05-08-at-3.25.03-PM-300x234.png 300w, https://kubesandclouds.com/wp-content/uploads/2020/05/Screen-Shot-2020-05-08-at-3.25.03-PM-768x600.png 768w, https://kubesandclouds.com/wp-content/uploads/2020/05/Screen-Shot-2020-05-08-at-3.25.03-PM-1536x1199.png 1536w, https://kubesandclouds.com/wp-content/uploads/2020/05/Screen-Shot-2020-05-08-at-3.25.03-PM-2048x1599.png 2048w" sizes="(max-width: 1024px) 100vw, 1024px" /></figure></div>
+
+
+
+<p>En este caso, se utilizará Helm como lenguaje de templatizado. No obstante, ArgoCD soporta <a href="https://kustomize.io/" target="_blank" rel="noopener">Kustomize</a> y <a href="https://ksonnet.io/" target="_blank" rel="noopener">Ksonnet</a> también como herramientas para el templatizado y la gestión de la configuración en Kubernetes. De la misma forma, se pueden utilizar manifiestos de Kubernetes sin templatizado. Las funcionalidades de ArgoCD se pueden  extender por medio de <a href="https://argoproj.github.io/argo-cd/user-guide/config-management-plugins/" target="_blank" rel="noopener">plugins</a>, que permiten su integración con otras herramientas externas. Se puede observar cómo ArgoCD detecta el fichero <a href="https://github.com/mifonpe/helmbasics/blob/master/values.yaml" target="_blank" rel="noopener">values.yaml</a> y permite modificar los valores directamente en la interfaz web, antes de desplegar el chart.</p>
+
+
+
+<div class="wp-block-image"><figure class="aligncenter size-large"><img decoding="async" loading="lazy" width="1024" height="802" src="https://kubesandclouds.com/wp-content/uploads/2020/05/Screen-Shot-2020-05-08-at-3.24.29-PM-1024x802.png" alt="" class="wp-image-560" srcset="https://kubesandclouds.com/wp-content/uploads/2020/05/Screen-Shot-2020-05-08-at-3.24.29-PM-1024x802.png 1024w, https://kubesandclouds.com/wp-content/uploads/2020/05/Screen-Shot-2020-05-08-at-3.24.29-PM-300x235.png 300w, https://kubesandclouds.com/wp-content/uploads/2020/05/Screen-Shot-2020-05-08-at-3.24.29-PM-768x601.png 768w, https://kubesandclouds.com/wp-content/uploads/2020/05/Screen-Shot-2020-05-08-at-3.24.29-PM-1536x1203.png 1536w, https://kubesandclouds.com/wp-content/uploads/2020/05/Screen-Shot-2020-05-08-at-3.24.29-PM-2048x1604.png 2048w" sizes="(max-width: 1024px) 100vw, 1024px" /></figure></div>
+
+
+
+<p>En el dashboard principal, clicando en la nueva aplicación, puede observarse como ArgoCD ha detectado todos los objetos de Kubernetes que conforman la aplicación. Esta visualización puede ser muy útil para despliegues complejos, ya que permite identificar las dependencias entre recursos de forma rápida y visual.</p>
+
+
+
+<div class="wp-block-image"><figure class="aligncenter size-large"><img decoding="async" loading="lazy" width="1024" height="443" src="https://kubesandclouds.com/wp-content/uploads/2020/05/Screen-Shot-2020-05-08-at-4.46.30-PM-1024x443.png" alt="" class="wp-image-566" srcset="https://kubesandclouds.com/wp-content/uploads/2020/05/Screen-Shot-2020-05-08-at-4.46.30-PM-1024x443.png 1024w, https://kubesandclouds.com/wp-content/uploads/2020/05/Screen-Shot-2020-05-08-at-4.46.30-PM-300x130.png 300w, https://kubesandclouds.com/wp-content/uploads/2020/05/Screen-Shot-2020-05-08-at-4.46.30-PM-768x333.png 768w, https://kubesandclouds.com/wp-content/uploads/2020/05/Screen-Shot-2020-05-08-at-4.46.30-PM-1536x665.png 1536w, https://kubesandclouds.com/wp-content/uploads/2020/05/Screen-Shot-2020-05-08-at-4.46.30-PM-2048x887.png 2048w" sizes="(max-width: 1024px) 100vw, 1024px" /></figure></div>
+
+
+
+<p>ArgoCD detecta la nueva aplicación en un estado de <strong>OutOfSync</strong> , ya que la aplicación se definió con un mecanismo de sincronización manual. Por ello, no existen aún componentes en el clúster asociados con la aplicación. A la hora de sincronizar, se pueden seleccionar diferentes opciones para los recursos, incluyendo el modo dry-run, ideal para validaciones.</p>
+
+
+
+<div class="wp-block-image"><figure class="aligncenter size-large"><img decoding="async" loading="lazy" width="1024" height="450" src="https://kubesandclouds.com/wp-content/uploads/2020/05/Screen-Shot-2020-05-08-at-4.47.00-PM-1024x450.png" alt="" class="wp-image-567" srcset="https://kubesandclouds.com/wp-content/uploads/2020/05/Screen-Shot-2020-05-08-at-4.47.00-PM-1024x450.png 1024w, https://kubesandclouds.com/wp-content/uploads/2020/05/Screen-Shot-2020-05-08-at-4.47.00-PM-300x132.png 300w, https://kubesandclouds.com/wp-content/uploads/2020/05/Screen-Shot-2020-05-08-at-4.47.00-PM-768x338.png 768w, https://kubesandclouds.com/wp-content/uploads/2020/05/Screen-Shot-2020-05-08-at-4.47.00-PM-1536x675.png 1536w, https://kubesandclouds.com/wp-content/uploads/2020/05/Screen-Shot-2020-05-08-at-4.47.00-PM-2048x901.png 2048w" sizes="(max-width: 1024px) 100vw, 1024px" /></figure></div>
+
+
+
+<p>Sincronicemos la aplicación manualmente! Para ello, es necesario clicar en el botón 'sync', y acto seguido la aplicación se empezará a sincronizar, mostrando el progreso en tiempo real. Una vez que acabe, los pods y el resto de recursos creados en el clúster aparecerán con un check en verde.</p>
+
+
+
+<div class="wp-block-image"><figure class="aligncenter size-large"><img decoding="async" loading="lazy" width="1024" height="503" src="https://kubesandclouds.com/wp-content/uploads/2020/05/Screen-Shot-2020-05-08-at-5.00.58-PM-1024x503.png" alt="" class="wp-image-569" srcset="https://kubesandclouds.com/wp-content/uploads/2020/05/Screen-Shot-2020-05-08-at-5.00.58-PM-1024x503.png 1024w, https://kubesandclouds.com/wp-content/uploads/2020/05/Screen-Shot-2020-05-08-at-5.00.58-PM-300x147.png 300w, https://kubesandclouds.com/wp-content/uploads/2020/05/Screen-Shot-2020-05-08-at-5.00.58-PM-768x377.png 768w, https://kubesandclouds.com/wp-content/uploads/2020/05/Screen-Shot-2020-05-08-at-5.00.58-PM-1536x754.png 1536w, https://kubesandclouds.com/wp-content/uploads/2020/05/Screen-Shot-2020-05-08-at-5.00.58-PM-2048x1006.png 2048w" sizes="(max-width: 1024px) 100vw, 1024px" /></figure></div>
+
+
+
+<p>Aquí puede verse como los recursos que muestra ArgoCD coinciden con los que se encuentran desplegados en el clúster, pero el interfaz de ArgoCD proporciona un método más visual.</p>
+
+
+
+<figure class="wp-block-image size-large"><img decoding="async" loading="lazy" width="1024" height="405" src="https://kubesandclouds.com/wp-content/uploads/2020/05/Screen-Shot-2020-05-08-at-5.01.45-PM-1024x405.png" alt="" class="wp-image-570" srcset="https://kubesandclouds.com/wp-content/uploads/2020/05/Screen-Shot-2020-05-08-at-5.01.45-PM-1024x405.png 1024w, https://kubesandclouds.com/wp-content/uploads/2020/05/Screen-Shot-2020-05-08-at-5.01.45-PM-300x119.png 300w, https://kubesandclouds.com/wp-content/uploads/2020/05/Screen-Shot-2020-05-08-at-5.01.45-PM-768x304.png 768w, https://kubesandclouds.com/wp-content/uploads/2020/05/Screen-Shot-2020-05-08-at-5.01.45-PM.png 1376w" sizes="(max-width: 1024px) 100vw, 1024px" /></figure>
+
+
+
+<hr class="wp-block-separator is-style-default"/>
+
+
+
+<h3>Utilizando el CLI</h3>
+
+
+
+<p>El API server de ArgoCD es lo que hace funcionar la interfaz web, por ello, interaccionando con el API server se pueden llevar a cabo las mismas acciones que utilizando el interfaz web. El CLI de ArgoCD es una herramienta que permite comunicarse con el API server de forma sencilla. </p>
+
+
+
+<p>Puedes comprobar el estado de las aplicaciones del clúster  y sincronizarlas con el CLI. Esto puede ser especialmente útil para la automatización. Los siguientes comandos muestran una lista de todas las aplicaciones que controla ArgoCD y describen los detalles de una aplicación específica.</p>
+
+
+
+<pre class="wp-block-prismatic-blocks"><code class="language-bash">argocd app list
+argoc app get yourappname</code></pre>
+
+
+
+<div class="wp-block-image"><figure class="aligncenter size-large"><img decoding="async" loading="lazy" width="1024" height="378" src="https://kubesandclouds.com/wp-content/uploads/2020/05/Screen-Shot-2020-05-08-at-5.10.39-PM-1024x378.png" alt="" class="wp-image-571" srcset="https://kubesandclouds.com/wp-content/uploads/2020/05/Screen-Shot-2020-05-08-at-5.10.39-PM-1024x378.png 1024w, https://kubesandclouds.com/wp-content/uploads/2020/05/Screen-Shot-2020-05-08-at-5.10.39-PM-300x111.png 300w, https://kubesandclouds.com/wp-content/uploads/2020/05/Screen-Shot-2020-05-08-at-5.10.39-PM-768x284.png 768w, https://kubesandclouds.com/wp-content/uploads/2020/05/Screen-Shot-2020-05-08-at-5.10.39-PM-1536x567.png 1536w, https://kubesandclouds.com/wp-content/uploads/2020/05/Screen-Shot-2020-05-08-at-5.10.39-PM-2048x756.png 2048w" sizes="(max-width: 1024px) 100vw, 1024px" /></figure></div>
+
+
+
+<p>Además, el CLI puede utilizarse para desplegar una aplicación utilizando su definición explícita, y soporta una gran variedad de opciones, por lo que si quieres conocerlo un poco mejor, la ayuda integrada del CLI será un poderoso aliado.</p>
+
+
+
+<pre class="wp-block-prismatic-blocks"><code class="language-bash">argocd app create helmcli --repo https://github.com/mifonpe/helmbasics --path . --dest-namespace test --dest-server https://kubernetes.default.svc</code></pre>
+
+
+
+<div class="wp-block-image"><figure class="aligncenter size-large"><img decoding="async" loading="lazy" width="1024" height="406" src="https://kubesandclouds.com/wp-content/uploads/2020/05/Screen-Shot-2020-05-08-at-5.48.54-PM-1024x406.png" alt="" class="wp-image-577" srcset="https://kubesandclouds.com/wp-content/uploads/2020/05/Screen-Shot-2020-05-08-at-5.48.54-PM-1024x406.png 1024w, https://kubesandclouds.com/wp-content/uploads/2020/05/Screen-Shot-2020-05-08-at-5.48.54-PM-300x119.png 300w, https://kubesandclouds.com/wp-content/uploads/2020/05/Screen-Shot-2020-05-08-at-5.48.54-PM-768x304.png 768w, https://kubesandclouds.com/wp-content/uploads/2020/05/Screen-Shot-2020-05-08-at-5.48.54-PM-1536x609.png 1536w, https://kubesandclouds.com/wp-content/uploads/2020/05/Screen-Shot-2020-05-08-at-5.48.54-PM-2048x812.png 2048w" sizes="(max-width: 1024px) 100vw, 1024px" /></figure></div>
+
+
+
+<p>Como se puede ver en la siguiente imagen, la aplicación no se ha desplegado bien, ya que esta aplicación expone su servicio utilizando el  mismo nodePort que emplea la aplicación que desplegamos anteriormente. Como los servicios NodePort en Kubernetes conectan los puertos de los contenedores con los puertos de los hosts físicos en los que corren, el mismo puerto del host no puede ser utilizado por dos servicios.</p>
+
+
+
+<div class="wp-block-image"><figure class="aligncenter size-large"><img decoding="async" loading="lazy" width="1024" height="440" src="https://kubesandclouds.com/wp-content/uploads/2020/05/Screen-Shot-2020-05-08-at-11.55.51-PM-1024x440.png" alt="" class="wp-image-580" srcset="https://kubesandclouds.com/wp-content/uploads/2020/05/Screen-Shot-2020-05-08-at-11.55.51-PM-1024x440.png 1024w, https://kubesandclouds.com/wp-content/uploads/2020/05/Screen-Shot-2020-05-08-at-11.55.51-PM-300x129.png 300w, https://kubesandclouds.com/wp-content/uploads/2020/05/Screen-Shot-2020-05-08-at-11.55.51-PM-768x330.png 768w, https://kubesandclouds.com/wp-content/uploads/2020/05/Screen-Shot-2020-05-08-at-11.55.51-PM-1536x660.png 1536w, https://kubesandclouds.com/wp-content/uploads/2020/05/Screen-Shot-2020-05-08-at-11.55.51-PM-2048x881.png 2048w, https://kubesandclouds.com/wp-content/uploads/2020/05/Screen-Shot-2020-05-08-at-11.55.51-PM-1400x600.png 1400w" sizes="(max-width: 1024px) 100vw, 1024px" /></figure></div>
+
+
+
+<p>Solucionemos el problema rápidamente. Utilizando el interfaz web, si inspeccionas los detalles de la aplicación, podrás editar los values que toma el chart de Helm. Modifica el valor del puerto del NodePort para que cada despliegue utilice un número de puerto diferente. Una vez modificados los values de Helm, sincroniza la aplicación.</p>
+
+
+
+<div class="wp-block-image"><figure class="aligncenter size-large"><img decoding="async" loading="lazy" width="1024" height="521" src="https://kubesandclouds.com/wp-content/uploads/2020/05/Screen-Shot-2020-05-09-at-12.00.33-AM-1024x521.png" alt="" class="wp-image-581" srcset="https://kubesandclouds.com/wp-content/uploads/2020/05/Screen-Shot-2020-05-09-at-12.00.33-AM-1024x521.png 1024w, https://kubesandclouds.com/wp-content/uploads/2020/05/Screen-Shot-2020-05-09-at-12.00.33-AM-300x153.png 300w, https://kubesandclouds.com/wp-content/uploads/2020/05/Screen-Shot-2020-05-09-at-12.00.33-AM-768x390.png 768w, https://kubesandclouds.com/wp-content/uploads/2020/05/Screen-Shot-2020-05-09-at-12.00.33-AM-1536x781.png 1536w, https://kubesandclouds.com/wp-content/uploads/2020/05/Screen-Shot-2020-05-09-at-12.00.33-AM-2048x1041.png 2048w" sizes="(max-width: 1024px) 100vw, 1024px" /></figure></div>
+
+
+
+<p>Con el nuevo número de puerto para el NodePort, esta nueva aplicación se despliega correctamente.</p>
+
+
+
+<div class="wp-block-image"><figure class="aligncenter size-large"><img decoding="async" loading="lazy" width="1024" height="311" src="https://kubesandclouds.com/wp-content/uploads/2020/05/Screen-Shot-2020-05-09-at-12.01.34-AM-1024x311.png" alt="" class="wp-image-582" srcset="https://kubesandclouds.com/wp-content/uploads/2020/05/Screen-Shot-2020-05-09-at-12.01.34-AM-1024x311.png 1024w, https://kubesandclouds.com/wp-content/uploads/2020/05/Screen-Shot-2020-05-09-at-12.01.34-AM-300x91.png 300w, https://kubesandclouds.com/wp-content/uploads/2020/05/Screen-Shot-2020-05-09-at-12.01.34-AM-768x233.png 768w, https://kubesandclouds.com/wp-content/uploads/2020/05/Screen-Shot-2020-05-09-at-12.01.34-AM-1536x466.png 1536w, https://kubesandclouds.com/wp-content/uploads/2020/05/Screen-Shot-2020-05-09-at-12.01.34-AM-2048x622.png 2048w" sizes="(max-width: 1024px) 100vw, 1024px" /></figure></div>
+
+
+
+<p>Por último, limpiemos el clúster utilizando el CLI. El comando que se muestra a continuación elimina la aplicación especificada y sus recursos.</p>
+
+
+
+<pre class="wp-block-prismatic-blocks"><code class="language-bash">argocd app delete yourappname</code></pre>
+
+
+
+<hr class="wp-block-separator is-style-default"/>
+
+
+
+<h3>Definición declarativa</h3>
+
+
+
+<p>Las aplicaciones en ArgoCD pueden definirse como objetos en Kubernetes, haciendo posible la automatización de la creación de las mismas. Esto es lo que se conoce como la <a href="https://argoproj.github.io/argo-cd/operator-manual/declarative-setup/#declarative-setup" target="_blank" rel="noopener">definición declarativa de las aplicaciones</a>. Para crear una aplicación de forma declarativa, ésta debe ser creada en el namespace en el que ArgoCD se encuentra instalado. El siguiente código muestra el contenido de <strong>app.yaml</strong>, una definición de aplicación declarativa.</p>
+
+
+
+<pre class="wp-block-prismatic-blocks"><code class="language-yaml">apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: declarative
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: &#039;https://github.com/mifonpe/helmbasics&#039;
+    path: .
+    targetRevision: HEAD
+  destination:
+    server: &#039;https://kubernetes.default.svc&#039;
+    namespace: default</code></pre>
+
+
+
+<p>Al crear este objeto en el clúster, la aplicación aparece en ArgoCD, pero como la sincronización automática no se activó, la aplicación se muestra de nuevo en estado OutOfSync.</p>
+
+
+
+<div class="wp-block-image"><figure class="aligncenter size-large"><img decoding="async" loading="lazy" width="1024" height="397" src="https://kubesandclouds.com/wp-content/uploads/2020/05/Screen-Shot-2020-05-13-at-11.31.06-AM-1024x397.png" alt="" class="wp-image-731" srcset="https://kubesandclouds.com/wp-content/uploads/2020/05/Screen-Shot-2020-05-13-at-11.31.06-AM-1024x397.png 1024w, https://kubesandclouds.com/wp-content/uploads/2020/05/Screen-Shot-2020-05-13-at-11.31.06-AM-300x116.png 300w, https://kubesandclouds.com/wp-content/uploads/2020/05/Screen-Shot-2020-05-13-at-11.31.06-AM-768x298.png 768w, https://kubesandclouds.com/wp-content/uploads/2020/05/Screen-Shot-2020-05-13-at-11.31.06-AM.png 1140w" sizes="(max-width: 1024px) 100vw, 1024px" /></figure></div>
+
+
+
+<div class="wp-block-image"><figure class="aligncenter size-large"><img decoding="async" loading="lazy" width="1024" height="427" src="https://kubesandclouds.com/wp-content/uploads/2020/05/Screen-Shot-2020-05-13-at-11.29.49-AM-1024x427.png" alt="" class="wp-image-730" srcset="https://kubesandclouds.com/wp-content/uploads/2020/05/Screen-Shot-2020-05-13-at-11.29.49-AM-1024x427.png 1024w, https://kubesandclouds.com/wp-content/uploads/2020/05/Screen-Shot-2020-05-13-at-11.29.49-AM-300x125.png 300w, https://kubesandclouds.com/wp-content/uploads/2020/05/Screen-Shot-2020-05-13-at-11.29.49-AM-768x320.png 768w, https://kubesandclouds.com/wp-content/uploads/2020/05/Screen-Shot-2020-05-13-at-11.29.49-AM-1536x641.png 1536w, https://kubesandclouds.com/wp-content/uploads/2020/05/Screen-Shot-2020-05-13-at-11.29.49-AM.png 1618w" sizes="(max-width: 1024px) 100vw, 1024px" /></figure></div>
+
+
+
+<p>Como comentamos anteriomente, el CLI puede utilizarse para sincronizar aplicaciones presentes en el clúster.</p>
+
+
+
+<div class="wp-block-image"><figure class="aligncenter size-large"><img decoding="async" loading="lazy" width="1024" height="691" src="https://kubesandclouds.com/wp-content/uploads/2020/05/Screen-Shot-2020-05-13-at-11.33.06-AM-1024x691.png" alt="" class="wp-image-732" srcset="https://kubesandclouds.com/wp-content/uploads/2020/05/Screen-Shot-2020-05-13-at-11.33.06-AM-1024x691.png 1024w, https://kubesandclouds.com/wp-content/uploads/2020/05/Screen-Shot-2020-05-13-at-11.33.06-AM-300x202.png 300w, https://kubesandclouds.com/wp-content/uploads/2020/05/Screen-Shot-2020-05-13-at-11.33.06-AM-768x518.png 768w, https://kubesandclouds.com/wp-content/uploads/2020/05/Screen-Shot-2020-05-13-at-11.33.06-AM.png 1087w" sizes="(max-width: 1024px) 100vw, 1024px" /></figure></div>
+
+
+
+<p>Por último, si se elmina el objeto creado en el clúster representando a la aplicación, desaparece en ArgoCD.</p>
+
+
+
+<div class="wp-block-image"><figure class="aligncenter size-large"><img decoding="async" loading="lazy" width="670" height="73" src="https://kubesandclouds.com/wp-content/uploads/2020/05/Screen-Shot-2020-05-13-at-11.38.39-AM.png" alt="" class="wp-image-733" srcset="https://kubesandclouds.com/wp-content/uploads/2020/05/Screen-Shot-2020-05-13-at-11.38.39-AM.png 670w, https://kubesandclouds.com/wp-content/uploads/2020/05/Screen-Shot-2020-05-13-at-11.38.39-AM-300x33.png 300w" sizes="(max-width: 670px) 100vw, 670px" /></figure></div>
+
+
+
+<hr class="wp-block-separator is-style-default"/>
+
+
+
+<h3>Sincronización automática</h3>
+
+
+
+<p>Para conseguir un despliegue continuo, es posible activar la sincronización automática de las aplicaciones. Cuando se activa, dos opciones adicionales pueden seleccionarse: prune y self-heal. La primera se asegura de que los recursos que se han borrado en el repositorio git se eliminen en el clúster, mientras que la segunda permite a ArgoCD recrear aquellos recursos que han sido modificados y no coinciden con el código original. Seleccionaremos los dos, y una rama diferente, la rama <strong>producción</strong> . <strong>NOTA IMPORTANTE: No podrás reproducir este mismo ejemplo ya que el repositorio público empleado no puede ser editado por motivos de seguridad. Si quieres probarlo, puedes hacer un fork del repositorio <a href="https://github.com/mifonpe/helmbasics" target="_blank" rel="noopener">helm basics</a> y dar de alta una nueva aplicación que utilice la URL de tu repositorio.</strong> <strong>No olvides añadir claves SSH o autenticación por usuario y contraseña.</strong></p>
+
+
+
+<figure class="wp-block-image size-large"><img decoding="async" loading="lazy" width="1024" height="498" src="https://kubesandclouds.com/wp-content/uploads/2020/05/Screen-Shot-2020-05-11-at-2.09.22-AM-1024x498.png" alt="" class="wp-image-588" srcset="https://kubesandclouds.com/wp-content/uploads/2020/05/Screen-Shot-2020-05-11-at-2.09.22-AM-1024x498.png 1024w, https://kubesandclouds.com/wp-content/uploads/2020/05/Screen-Shot-2020-05-11-at-2.09.22-AM-300x146.png 300w, https://kubesandclouds.com/wp-content/uploads/2020/05/Screen-Shot-2020-05-11-at-2.09.22-AM-768x374.png 768w, https://kubesandclouds.com/wp-content/uploads/2020/05/Screen-Shot-2020-05-11-at-2.09.22-AM-1536x747.png 1536w, https://kubesandclouds.com/wp-content/uploads/2020/05/Screen-Shot-2020-05-11-at-2.09.22-AM-2048x996.png 2048w" sizes="(max-width: 1024px) 100vw, 1024px" /></figure>
+
+
+
+<p>La mejor forma de probar el 'self-healing' de ArgoCD es jugar con nuestro despliegue. Escalemos el despliegue original a dos réplicas para que solo queden dos pods corriendo. Verás que es casi imposible, porque en el momento que ArgoCD detecta la diferencia entre el número de réplicas en el clúster y el código en git, restaura el número de réplicas originales.</p>
+
+
+
+<figure class="wp-block-image size-large"><img decoding="async" loading="lazy" width="1024" height="246" src="https://kubesandclouds.com/wp-content/uploads/2020/05/Screen-Shot-2020-05-11-at-2.17.27-AM-1024x246.png" alt="" class="wp-image-590" srcset="https://kubesandclouds.com/wp-content/uploads/2020/05/Screen-Shot-2020-05-11-at-2.17.27-AM-1024x246.png 1024w, https://kubesandclouds.com/wp-content/uploads/2020/05/Screen-Shot-2020-05-11-at-2.17.27-AM-300x72.png 300w, https://kubesandclouds.com/wp-content/uploads/2020/05/Screen-Shot-2020-05-11-at-2.17.27-AM-768x184.png 768w, https://kubesandclouds.com/wp-content/uploads/2020/05/Screen-Shot-2020-05-11-at-2.17.27-AM.png 1174w" sizes="(max-width: 1024px) 100vw, 1024px" /></figure>
+
+
+
+<p>Además, ArgoCD detecta nuevos commits en la rama del repositorio seleccionada en la configuración de la aplicación. Así, cualquier modificación en el código, se desplegará automáticamente en el clúster. Para este ejemplo, el número de réplicas se sube a 5 en el fichero values.yaml de la rama production. </p>
+
+
+
+<figure class="wp-block-image size-large"><img decoding="async" loading="lazy" width="1024" height="908" src="https://kubesandclouds.com/wp-content/uploads/2020/05/Screen-Shot-2020-05-11-at-11.19.21-PM-1024x908.png" alt="" class="wp-image-594" srcset="https://kubesandclouds.com/wp-content/uploads/2020/05/Screen-Shot-2020-05-11-at-11.19.21-PM-1024x908.png 1024w, https://kubesandclouds.com/wp-content/uploads/2020/05/Screen-Shot-2020-05-11-at-11.19.21-PM-300x266.png 300w, https://kubesandclouds.com/wp-content/uploads/2020/05/Screen-Shot-2020-05-11-at-11.19.21-PM-768x681.png 768w, https://kubesandclouds.com/wp-content/uploads/2020/05/Screen-Shot-2020-05-11-at-11.19.21-PM-1536x1361.png 1536w, https://kubesandclouds.com/wp-content/uploads/2020/05/Screen-Shot-2020-05-11-at-11.19.21-PM-2048x1815.png 2048w" sizes="(max-width: 1024px) 100vw, 1024px" /></figure>
+
+
+
+<p>Tras hacer el commit de los cambios en la rama production, y esperar a que ArgoCD detecte los cambios (20-30 segundos), dos nuevos pods se despliegan en nuestra aplicación.</p>
+
+
+
+<figure class="wp-block-image size-large"><img decoding="async" loading="lazy" width="1024" height="464" src="https://kubesandclouds.com/wp-content/uploads/2020/05/Screen-Shot-2020-05-11-at-11.20.20-PM-1024x464.png" alt="" class="wp-image-595" srcset="https://kubesandclouds.com/wp-content/uploads/2020/05/Screen-Shot-2020-05-11-at-11.20.20-PM-1024x464.png 1024w, https://kubesandclouds.com/wp-content/uploads/2020/05/Screen-Shot-2020-05-11-at-11.20.20-PM-300x136.png 300w, https://kubesandclouds.com/wp-content/uploads/2020/05/Screen-Shot-2020-05-11-at-11.20.20-PM-768x348.png 768w, https://kubesandclouds.com/wp-content/uploads/2020/05/Screen-Shot-2020-05-11-at-11.20.20-PM-1536x696.png 1536w, https://kubesandclouds.com/wp-content/uploads/2020/05/Screen-Shot-2020-05-11-at-11.20.20-PM-2048x928.png 2048w" sizes="(max-width: 1024px) 100vw, 1024px" /></figure>
+
+
+
+<p>El CLI de ArgoCD permite inspeccionar la historia de las aplicaciones, mostrando el checksum asociado con el commit de cada sincronización.</p>
+
+
+
+<figure class="wp-block-image size-large"><img decoding="async" loading="lazy" width="1024" height="108" src="https://kubesandclouds.com/wp-content/uploads/2020/05/Screen-Shot-2020-05-11-at-11.21.18-PM-1024x108.png" alt="" class="wp-image-596" srcset="https://kubesandclouds.com/wp-content/uploads/2020/05/Screen-Shot-2020-05-11-at-11.21.18-PM-1024x108.png 1024w, https://kubesandclouds.com/wp-content/uploads/2020/05/Screen-Shot-2020-05-11-at-11.21.18-PM-300x32.png 300w, https://kubesandclouds.com/wp-content/uploads/2020/05/Screen-Shot-2020-05-11-at-11.21.18-PM-768x81.png 768w, https://kubesandclouds.com/wp-content/uploads/2020/05/Screen-Shot-2020-05-11-at-11.21.18-PM-1536x162.png 1536w, https://kubesandclouds.com/wp-content/uploads/2020/05/Screen-Shot-2020-05-11-at-11.21.18-PM-2048x216.png 2048w" sizes="(max-width: 1024px) 100vw, 1024px" /></figure>
+
+
+
+<p>Si quieres limpiar el clúster al terminar este ejemplo, primero elimina la aplicación, y luego solo tendrás que eliminar los recursos de ArgoCD y su namespace.</p>
+
+
+
+<pre class="wp-block-prismatic-blocks"><code class="language-">argocd app delete yourappname
+kubectl delete -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
+kubectl delete namespace argocd</code></pre>
+
+
+
+<h2>Conclusión</h2>
+
+
+
+<p>En este post se hizo una presentación de ArgoCD como herramienta de CD y habilitador para el modelo de GitOps. ArgoCD ayuda automatizando el despliegue de aplicaciones en Kubernetes, así como garantizando que lo que está corriendo en el clúster coincide con lo que se ha definido en el repositorio de git. Este comportamiento proporciona funcionalidades muy útiles: análisis del estado de salud de las aplicaciones, detección de modificaciones, control de versiones y rollback a versiones anteriores.</p>
+
+
+
+<p>Además, ArgoCD ofrece su propio API server e interfaz web, que permiten consultar el estado de las aplicaciones en tiempo real, así como su propio CLI, ideal para integrarlo con pipelines de CI. Todas estas características son las que hacen de ArgoCD una buena elección para ser integrado en el de CI/CD en entornos cloud native.</p>
+
+
+
+<p>Si quieres saber más acerca de ArgoCD, aquí tienes su <a href="https://argoproj.github.io/argo-cd/" target="_blank" rel="noopener">documentación</a>.</p>
+
+
+
+<hr class="wp-block-separator is-style-wide"/>
+
+
+
+<hr class="wp-block-separator is-style-wide"/>
+
+
+
+<h2 class="has-vivid-cyan-blue-color has-text-color has-text-align-center">Otros artículos</h2>
+
+
+            <div class="mgpd mp-display-gird mgpdg1 mgpdg1613426">
+                <style type="text/css">
+                                    </style>
+
+
+
+
+                <div class="mgpd-masonry">
+                    <div class="row" data-masonry='{"percentPosition": true }'>
+                                                        <div class="mgpd-masonry-item col-lg-6">
+                                    <div class="card mgpdg1-card mb-4">
+
+                                                                                                                                                                    <div class="card-body">
+                                                                                            <div class="mp-meta cat-list">
+                                                    <i class="icon-mp-folder-oe"></i> <a href="https://kubesandclouds.com/index.php/category/devops/">devops</a>                                                </div>
+                                                                                        <h5 class="card-title"><a href="https://kubesandclouds.com/index.php/2022/01/04/karpenter-vs-cluster-autoscaler/?lang=es_es">Karpenter vs Cluster Autoscaler  ☸️ ⚒️</a></h5>
+                                                                                        <p class="card-text">
+                                                Getting the size of a Kubernetes cluster right is not an easy task, if the number of nodes provisioned is too high, resources might be&#8230;                                            </p>
+                                                                                            <a href="https://kubesandclouds.com/index.php/2022/01/04/karpenter-vs-cluster-autoscaler/?lang=es_es" class="btn btn-info">Read More</a>
+                                                                                    </div>
+                                                                                    <div class="card-footer">
+                                                <div class="mp-meta tag-list">
+                                                    <span class="tags-links" data-no-translation="" data-trp-gettext="">Tag: <a href="https://kubesandclouds.com/index.php/tag/autoscaler/" rel="tag">autoscaler</a>, <a href="https://kubesandclouds.com/index.php/tag/aws/" rel="tag">AWS</a>, <a href="https://kubesandclouds.com/index.php/tag/helm/" rel="tag">helm</a>, <a href="https://kubesandclouds.com/index.php/tag/kubernetes/" rel="tag">kubernetes</a>, <a href="https://kubesandclouds.com/index.php/tag/terraform/" rel="tag">terraform</a></span>                                                </div>
+                                            </div>
+                                                                            </div>
+                                </div>
+
+                                                            <div class="mgpd-masonry-item col-lg-6">
+                                    <div class="card mgpdg1-card mb-4">
+
+                                                                                                                                                                    <div class="card-body">
+                                                                                            <div class="mp-meta cat-list">
+                                                    <i class="icon-mp-folder-oe"></i> <a href="https://kubesandclouds.com/index.php/category/devops/">devops</a>                                                </div>
+                                                                                        <h5 class="card-title"><a href="https://kubesandclouds.com/index.php/2021/12/13/cluster-wide-registry-auth/?lang=es_es">Autenticación a nivel de clúster para tus registries privados 🌐🔐</a></h5>
+                                                                                        <p class="card-text">
+                                                Using private container image registries is a common practice in the industry, as it ensures applications packaged within the images are just accessible for users&#8230;                                            </p>
+                                                                                            <a href="https://kubesandclouds.com/index.php/2021/12/13/cluster-wide-registry-auth/?lang=es_es" class="btn btn-info">Read More</a>
+                                                                                    </div>
+                                                                                    <div class="card-footer">
+                                                <div class="mp-meta tag-list">
+                                                    <span class="tags-links" data-no-translation="" data-trp-gettext="">Tag: <a href="https://kubesandclouds.com/index.php/tag/docker/" rel="tag">docker</a>, <a href="https://kubesandclouds.com/index.php/tag/image/" rel="tag">image</a>, <a href="https://kubesandclouds.com/index.php/tag/k8s/" rel="tag">k8s</a>, <a href="https://kubesandclouds.com/index.php/tag/kubernetes/" rel="tag">kubernetes</a></span>                                                </div>
+                                            </div>
+                                                                            </div>
+                                </div>
+
+                                                            <div class="mgpd-masonry-item col-lg-6">
+                                    <div class="card mgpdg1-card mb-4">
+
+                                                                                                                                                                    <div class="card-body">
+                                                                                            <div class="mp-meta cat-list">
+                                                    <i class="icon-mp-folder-oe"></i> <a href="https://kubesandclouds.com/index.php/category/kubernetes/">kubernetes</a>                                                </div>
+                                                                                        <h5 class="card-title"><a href="https://kubesandclouds.com/index.php/2021/11/04/kaniko/?lang=es_es">Kaniko: construyendo imágenes sin Docker🐳🔫</a></h5>
+                                                                                        <p class="card-text">
+                                                Building container images is a pretty common stage within the modern CI flows, in which these images are the main artifact used to distribute and&#8230;                                            </p>
+                                                                                            <a href="https://kubesandclouds.com/index.php/2021/11/04/kaniko/?lang=es_es" class="btn btn-info">Read More</a>
+                                                                                    </div>
+                                                                                    <div class="card-footer">
+                                                <div class="mp-meta tag-list">
+                                                    <span class="tags-links" data-no-translation="" data-trp-gettext="">Tag: <a href="https://kubesandclouds.com/index.php/tag/cicd/" rel="tag">cicd</a>, <a href="https://kubesandclouds.com/index.php/tag/docker/" rel="tag">docker</a>, <a href="https://kubesandclouds.com/index.php/tag/kubernetes/" rel="tag">kubernetes</a></span>                                                </div>
+                                            </div>
+                                                                            </div>
+                                </div>
+
+                                                            <div class="mgpd-masonry-item col-lg-6">
+                                    <div class="card mgpdg1-card mb-4">
+
+                                                                                                                                                                    <div class="card-body">
+                                                                                            <div class="mp-meta cat-list">
+                                                    <i class="icon-mp-folder-oe"></i> <a href="https://kubesandclouds.com/index.php/category/kubernetes/">kubernetes</a>                                                </div>
+                                                                                        <h5 class="card-title"><a href="https://kubesandclouds.com/index.php/2021/03/17/kubernetes-in-5-minutes/?lang=es_es">Kubernetes en 5 Minutos ⏱️☸️</a></h5>
+                                                                                        <p class="card-text">
+                                                English https://www.youtube.com/watch?v=N8LDO9pHY8I Spanish https://www.youtube.com/watch?v=TC6VkqQ835U Other Articles                                            </p>
+                                                                                            <a href="https://kubesandclouds.com/index.php/2021/03/17/kubernetes-in-5-minutes/?lang=es_es" class="btn btn-info">Read More</a>
+                                                                                    </div>
+                                                                                    <div class="card-footer">
+                                                <div class="mp-meta tag-list">
+                                                    <span class="tags-links" data-no-translation="" data-trp-gettext="">Tag: <a href="https://kubesandclouds.com/index.php/tag/devops/" rel="tag">DevOps</a>, <a href="https://kubesandclouds.com/index.php/tag/kubernetes/" rel="tag">kubernetes</a></span>                                                </div>
+                                            </div>
+                                                                            </div>
+                                </div>
+
+                                                            <div class="mgpd-masonry-item col-lg-6">
+                                    <div class="card mgpdg1-card mb-4">
+
+                                                                                                                                                                    <div class="card-body">
+                                                                                            <div class="mp-meta cat-list">
+                                                    <i class="icon-mp-folder-oe"></i> <a href="https://kubesandclouds.com/index.php/category/devops/">devops</a>                                                </div>
+                                                                                        <h5 class="card-title"><a href="https://kubesandclouds.com/index.php/2021/01/20/ksniff/?lang=es_es">Ksniff: capturando tráfico en Kubernetes 🕵️‍♂️📦</a></h5>
+                                                                                        <p class="card-text">
+                                                Troubleshooting containers in Kubernetes is a recurring topic that you may face regularly. Logging and monitoring tools come in really handy here as they help&#8230;                                            </p>
+                                                                                            <a href="https://kubesandclouds.com/index.php/2021/01/20/ksniff/?lang=es_es" class="btn btn-info">Read More</a>
+                                                                                    </div>
+                                                                                    <div class="card-footer">
+                                                <div class="mp-meta tag-list">
+                                                    <span class="tags-links" data-no-translation="" data-trp-gettext="">Tag: <a href="https://kubesandclouds.com/index.php/tag/devops/" rel="tag">DevOps</a>, <a href="https://kubesandclouds.com/index.php/tag/kubernetes/" rel="tag">kubernetes</a></span>                                                </div>
+                                            </div>
+                                                                            </div>
+                                </div>
+
+                                                            <div class="mgpd-masonry-item col-lg-6">
+                                    <div class="card mgpdg1-card mb-4">
+
+                                                                                                                                                                    <div class="card-body">
+                                                                                            <div class="mp-meta cat-list">
+                                                    <i class="icon-mp-folder-oe"></i> <a href="https://kubesandclouds.com/index.php/category/gitops/">gitops</a>                                                </div>
+                                                                                        <h5 class="card-title"><a href="https://kubesandclouds.com/index.php/2020/12/16/helmfile/?lang=es_es">Helmfile: superpoderes para Helm ☸️🔧</a></h5>
+                                                                                        <p class="card-text">
+                                                Helm is definitely one the most used tools in the Kubernetes world. It comes in pretty handy as it is a deployment tool, a package&#8230;                                            </p>
+                                                                                            <a href="https://kubesandclouds.com/index.php/2020/12/16/helmfile/?lang=es_es" class="btn btn-info">Read More</a>
+                                                                                    </div>
+                                                                                    <div class="card-footer">
+                                                <div class="mp-meta tag-list">
+                                                    <span class="tags-links" data-no-translation="" data-trp-gettext="">Tag: <a href="https://kubesandclouds.com/index.php/tag/helm/" rel="tag">helm</a>, <a href="https://kubesandclouds.com/index.php/tag/kubernetes/" rel="tag">kubernetes</a></span>                                                </div>
+                                            </div>
+                                                                            </div>
+                                </div>
+
+                                                            <div class="mgpd-masonry-item col-lg-6">
+                                    <div class="card mgpdg1-card mb-4">
+
+                                                                                                                                                                    <div class="card-body">
+                                                                                            <div class="mp-meta cat-list">
+                                                    <i class="icon-mp-folder-oe"></i> <a href="https://kubesandclouds.com/index.php/category/aws/">aws</a>                                                </div>
+                                                                                        <h5 class="card-title"><a href="https://kubesandclouds.com/index.php/2020/11/18/terraboard/?lang=es_es">Terraboard: Gestionando estados de Terrafom visualmente🌍🖥</a></h5>
+                                                                                        <p class="card-text">
+                                                Dealing with multiple terraform remote states can become a rather complex task. Besides, querying resources with terraform CLI isn&#8217;t very visual 😅. In this post&#8230;                                            </p>
+                                                                                            <a href="https://kubesandclouds.com/index.php/2020/11/18/terraboard/?lang=es_es" class="btn btn-info">Read More</a>
+                                                                                    </div>
+                                                                                    <div class="card-footer">
+                                                <div class="mp-meta tag-list">
+                                                    <span class="tags-links" data-no-translation="" data-trp-gettext="">Tag: <a href="https://kubesandclouds.com/index.php/tag/aws/" rel="tag">AWS</a>, <a href="https://kubesandclouds.com/index.php/tag/iac/" rel="tag">IaC</a>, <a href="https://kubesandclouds.com/index.php/tag/terraform/" rel="tag">terraform</a></span>                                                </div>
+                                            </div>
+                                                                            </div>
+                                </div>
+
+                                                            <div class="mgpd-masonry-item col-lg-6">
+                                    <div class="card mgpdg1-card mb-4">
+
+                                                                                                                                                                    <div class="card-body">
+                                                                                            <div class="mp-meta cat-list">
+                                                    <i class="icon-mp-folder-oe"></i> <a href="https://kubesandclouds.com/index.php/category/gitops/">gitops</a>                                                </div>
+                                                                                        <h5 class="card-title"><a href="https://kubesandclouds.com/index.php/2020/10/06/eksctl-the-eks-cli/?lang=es_es">eksctl: el CLI para EKS ☸️ 🎮</a></h5>
+                                                                                        <p class="card-text">
+                                                Let&#8217;s be honest, managing Kubernetes clusters is not an easy task, even when it comes to managed Kubernetes services. Controlling the overall infrastructure, performing cluster&#8230;                                            </p>
+                                                                                            <a href="https://kubesandclouds.com/index.php/2020/10/06/eksctl-the-eks-cli/?lang=es_es" class="btn btn-info">Read More</a>
+                                                                                    </div>
+                                                                                    <div class="card-footer">
+                                                <div class="mp-meta tag-list">
+                                                    <span class="tags-links" data-no-translation="" data-trp-gettext="">Tag: <a href="https://kubesandclouds.com/index.php/tag/aws/" rel="tag">AWS</a>, <a href="https://kubesandclouds.com/index.php/tag/devops/" rel="tag">DevOps</a>, <a href="https://kubesandclouds.com/index.php/tag/kubernetes/" rel="tag">kubernetes</a></span>                                                </div>
+                                            </div>
+                                                                            </div>
+                                </div>
+
+                                                            <div class="mgpd-masonry-item col-lg-6">
+                                    <div class="card mgpdg1-card mb-4">
+
+                                                                                                                                                                    <div class="card-body">
+                                                                                            <div class="mp-meta cat-list">
+                                                    <i class="icon-mp-folder-oe"></i> <a href="https://kubesandclouds.com/index.php/category/kubernetes/">kubernetes</a>                                                </div>
+                                                                                        <h5 class="card-title"><a href="https://kubesandclouds.com/index.php/2020/09/01/werf-gitops/?lang=es_es">Werf: GitOps totalmente customizable 🛥️⚙️</a></h5>
+                                                                                        <p class="card-text">
+                                                This is the third post of a collection of GitOps tools articles. In this post, a continuous integration and continuous deployment tool for Kubernetes is&#8230;                                            </p>
+                                                                                            <a href="https://kubesandclouds.com/index.php/2020/09/01/werf-gitops/?lang=es_es" class="btn btn-info">Read More</a>
+                                                                                    </div>
+                                                                                    <div class="card-footer">
+                                                <div class="mp-meta tag-list">
+                                                    <span class="tags-links" data-no-translation="" data-trp-gettext="">Tag: <a href="https://kubesandclouds.com/index.php/tag/devops/" rel="tag">DevOps</a>, <a href="https://kubesandclouds.com/index.php/tag/gitops/" rel="tag">gitops</a>, <a href="https://kubesandclouds.com/index.php/tag/kubernetes/" rel="tag">kubernetes</a></span>                                                </div>
+                                            </div>
+                                                                            </div>
+                                </div>
+
+                                                </div>
+                </div>
+                            </div>
+
+
+
+	</div><!-- .entry-content -->
+
+	<footer class="entry-footer">
+		<span class="cat-links"><i class="fas fa-folder-open"></i>Posted in <a href="https://kubesandclouds.com/index.php/category/devops/" rel="category tag">devops</a>, <a href="https://kubesandclouds.com/index.php/category/gitops/" rel="category tag">gitops</a>, <a href="https://kubesandclouds.com/index.php/category/kubernetes/" rel="category tag">kubernetes</a></span><span class="tags-links"><i class="fas fa-tags"></i>Tagged <a href="https://kubesandclouds.com/index.php/tag/devops/" rel="tag">DevOps</a>, <a href="https://kubesandclouds.com/index.php/tag/gitops/" rel="tag">gitops</a>, <a href="https://kubesandclouds.com/index.php/tag/kubernetes/" rel="tag">kubernetes</a></span>	</footer><!-- .entry-footer -->
+</article><!-- #post-431 -->
+
+	<nav class="navigation post-navigation" aria-label="Entradas" data-no-translation-aria-label="">
+		<h2 class="screen-reader-text" data-no-translation="" data-trp-gettext="">Navegación de entradas</h2>
+		<div class="nav-links"><div class="nav-previous"><a href="https://kubesandclouds.com/index.php/2020/04/24/packer-and-image-builder/?lang=es_es" rel="prev">Construyendo AMIs: Packer &amp; Image Builder⚙️📦</a></div><div class="nav-next"><a href="https://kubesandclouds.com/index.php/2020/05/24/gitops-fluxcd/?lang=es_es" rel="next">GitOps Contraataca: FluxCD 📟☸️</a></div></div>
+	</nav>
+<div id="comments" class="comments-area">
+
+		<div id="respond" class="comment-respond">
+		<h3 id="reply-title" class="comment-reply-title">Deja una respuesta <small><a rel="nofollow" id="cancel-comment-reply-link" href="/index.php/2020/05/13/gitops/?lang=es_es#respond" style="display:none;" data-no-translation="" data-trp-gettext="">Cancelar la respuesta</a></small></h3><p class="must-log-in" data-no-translation="" data-trp-gettext="">Lo siento, debes estar <a href="https://kubesandclouds.com/wp-login.php?redirect_to=https%3A%2F%2Fkubesandclouds.com%2Findex.php%2F2020%2F05%2F13%2Fgitops%2F%3Flang%3Des_es">conectado</a> para publicar un comentario.</p>	</div><!-- #respond -->
+	
+</div><!-- #comments -->
+
+		</main><!-- #main -->
+	</div><!-- #primary -->
+
+
+<aside id="secondary" class="widget-area">
+	<section id="search-3" class="widget widget_search"><h2 class="widget-title">Buscar</h2><form role="search" method="get" class="search-form" action="https://kubesandclouds.com/?lang=es_es" data-trp-original-action="https://kubesandclouds.com/?lang=es_es">
+				<label>
+					<span class="screen-reader-text" data-no-translation="" data-trp-gettext="">Buscar:</span>
+					<input type="search" class="search-field" placeholder="Buscar …" value="" name="s" data-no-translation-placeholder="" />
+				</label>
+				<input type="submit" class="search-submit" value="Buscar" data-no-translation-value="" />
+			<input type="hidden" name="trp-form-language" value="es_es"/><input type="hidden" name="lang" value="es_es"/></form></section><section id="custom_html-7" class="widget_text widget widget_custom_html"><div class="textwidget custom-html-widget"><style>.bmc-button img{height: 34px !important;width: 35px !important;margin-bottom: 1px !important;box-shadow: none !important;border: none !important;vertical-align: middle !important; }.bmc-button{padding: 7px 15px 7px 10px !important;line-height: 35px !important;height:51px !important;text-decoration: none !important;display:block !important;color:#ffffff !important;background-color:#5F7FFF !important;border-radius: 8px !important;border: 1px solid transparent !important;font-size: 24px !important;letter-spacing:0.6px !important;box-shadow: 0px 1px 2px rgba(190, 190, 190, 0.5) !important;-webkit-box-shadow: 0px 1px 2px 2px rgba(190, 190, 190, 0.5) !important;margin: 0 auto !important;font-family:'Cookie', cursive !important;-webkit-box-sizing: border-box !important;box-sizing: border-box !important;}.bmc-button:hover, .bmc-button:active, .bmc-button:focus {-webkit-box-shadow: 0px 1px 2px 2px rgba(190, 190, 190, 0.5) !important;text-decoration: none !important;box-shadow: 0px 1px 2px 2px rgba(190, 190, 190, 0.5) !important;opacity: 0.85 !important;color:#ffffff !important;}</style><link href="https://fonts.googleapis.com/css?family=Cookie" rel="stylesheet"><a class="bmc-button" target="_blank" href="https://www.buymeacoffee.com/mifonpe" rel="noopener">🍺<span style="margin-left:20px;font-size:24px !important;">Buy me a beer</span></a></div></section><section id="text-8" class="widget widget_text"><h2 class="widget-title">Links &amp; Recursos</h2>			<div class="textwidget"><ul>
+<li><a href="https://kubernetes.io/">☸️ </a><a href="https://kubernetes.io/">Kubernetes</a> <a href="https://kubernetes.io/">☸️</a></li>
+<li>📦<a href="https://helm.sh/">Helm</a>📦</li>
+<li><a href="https://kubernetes.io/">☸️</a>📊 <a href="https://dok.community/">Data on Kubernetes</a> 📊<a href="https://kubernetes.io/">☸️</a></li>
+<li><a href="https://kubernetes.io/">☸️ </a><a href="https://github.com/mifonpe/k8sbasics">Kubernetes playground </a><a href="https://kubernetes.io/">☸️</a></li>
+<li>📦<a href="https://github.com/mifonpe/helmbasics">Helm playground</a>📦</li>
+<li>⚙️<a href="https://github.com/mifonpe/ami-basics">Packer examples</a>⚙️</li>
+<li>🖥️<a href="https://kubernetes.io/docs/setup/learning-environment/minikube/">Minikube</a>🖥️</li>
+<li>☁️🇪🇺<a href="https://www.europeclouds.com/">EuropeClouds</a>🇪🇺☁️</li>
+<li>☁️🇪🇸<a href="https://www.spainclouds.com/">SpainClouds</a>🇪🇸☁️</li>
+<li>🐯<a href="https://www.katacoda.com/courses/kubernetes/playground">Katacoda</a>🐯</li>
+<li>🏗️<a href="https://kubernetes-kops.netlify.app/">Kops</a>🏗️</li>
+<li>🔴<a href="https://www.openshift.com/learn/courses/playground/">Openshift 4 playground</a>🔴</li>
+<li>💻<a href="https://github.com/aws-samples/aws-cdk-examples">AWS CDK Examples</a>💻</li>
+<li><a href="https://github.com/pulumi/examples">🦆</a><a href="https://github.com/pulumi/examples">Pulumi Examples🦆</a></li>
+</ul>
+</div>
+		</section></aside><!-- #secondary -->
+
+	</div><!-- #content -->
+        <div class="footer-widget-area"> 
+        <div class="baby-container widget-footer"> 
+                    </div>
+    </div>
+    	<footer id="colophon" class="site-footer footer-display">
+		<div class="baby-container site-info">
+			<p class="footer-copyright">&copy;
+				2023				<a href="https://kubesandclouds.com/?lang=es_es">Kubes&amp;Clouds</a>
+				<span class="sep"> | </span>
+					<a href="https://www.linkedin.com/in/miguel-fontanilla-14114710b">Miguel Fontanilla</a>
+				
+		</div><!-- .site-info -->
+	</footer><!-- #colophon -->
+</div><!-- #page -->
+
+<template id="tp-language" data-tp-language="es_ES"></template><!--googleoff: all--><div id="cookie-law-info-bar" data-nosnippet="true"><h5 class="cli_messagebar_head">Want some cookies? 🍪</h5><span><div class="cli-bar-container cli-style-v2"><div class="cli-bar-message">We use cookies on our website to give you the most relevant experience by remembering your preferences and repeat visits. By clicking “Accept”, you consent to the use of ALL the cookies.</div><div class="cli-bar-btn_container"><a role='button' class="cli_settings_button" style="margin:0px 10px 0px 5px">Cookie settings</a><a role='button' data-cli_action="accept" id="cookie_action_close_header" class="medium cli-plugin-button cli-plugin-main-button cookie_action_close_header cli_action_button wt-cli-accept-btn" data-no-translation="" data-trp-gettext="">ACCEPT</a></div></div></span></div><div id="cookie-law-info-again" data-nosnippet="true"><span id="cookie_hdr_showagain">Privacy &amp; Cookies Policy</span></div><div class="cli-modal" data-nosnippet="true" id="cliSettingsPopup" tabindex="-1" role="dialog" aria-labelledby="cliSettingsPopup" aria-hidden="true">
+  <div class="cli-modal-dialog" role="document">
+	<div class="cli-modal-content cli-bar-popup">
+		  <button type="button" class="cli-modal-close" id="cliModalClose">
+			<svg class="" viewbox="0 0 24 24"><path d="M19 6.41l-1.41-1.41-5.59 5.59-5.59-5.59-1.41 1.41 5.59 5.59-5.59 5.59 1.41 1.41 5.59-5.59 5.59 5.59 1.41-1.41-5.59-5.59z"></path><path d="M0 0h24v24h-24z" fill="none"></path></svg>
+			<span class="wt-cli-sr-only" data-no-translation="" data-trp-gettext="">Cerrar</span>
+		  </button>
+		  <div class="cli-modal-body">
+			<div class="cli-container-fluid cli-tab-container">
+	<div class="cli-row">
+		<div class="cli-col-12 cli-align-items-stretch cli-px-0">
+			<div class="cli-privacy-overview">
+				<h4>Privacy Overview</h4>				<div class="cli-privacy-content">
+					<div class="cli-privacy-content-text">This website uses cookies to improve your experience while you navigate through the website. Out of these cookies, the cookies that are categorized as necessary are stored on your browser as they are essential for the working of basic functionalities of the website. We also use third-party cookies that help us analyze and understand how you use this website. These cookies will be stored in your browser only with your consent. You also have the option to opt-out of these cookies. But opting out of some of these cookies may have an effect on your browsing experience.</div>
+				</div>
+				<a class="cli-privacy-readmore" aria-label="Mostrar más" role="button" data-readmore-text="Mostrar más" data-readless-text="Mostrar menos" data-no-translation-aria-label="" data-no-translation-data-readmore-text="" data-no-translation-data-readless-text=""></a>			</div>
+		</div>
+		<div class="cli-col-12 cli-align-items-stretch cli-px-0 cli-tab-section-container">
+												<div class="cli-tab-section">
+						<div class="cli-tab-header">
+							<a role="button" tabindex="0" class="cli-nav-link cli-settings-mobile" data-target="necessary" data-toggle="cli-toggle-tab">
+								Necessary							</a>
+															<div class="wt-cli-necessary-checkbox">
+									<input type="checkbox" class="cli-user-preference-checkbox"  id="wt-cli-checkbox-necessary" data-id="checkbox-necessary" checked="checked"  />
+									<label class="form-check-label" for="wt-cli-checkbox-necessary">Necessary</label>
+								</div>
+								<span class="cli-necessary-caption" data-no-translation="" data-trp-gettext="">Siempre activado</span>
+													</div>
+						<div class="cli-tab-content">
+							<div class="cli-tab-pane cli-fade" data-id="necessary">
+								<div class="wt-cli-cookie-description">
+									Necessary cookies are absolutely essential for the website to function properly. This category only includes cookies that ensures basic functionalities and security features of the website. These cookies do not store any personal information.								</div>
+							</div>
+						</div>
+					</div>
+																	<div class="cli-tab-section">
+						<div class="cli-tab-header">
+							<a role="button" tabindex="0" class="cli-nav-link cli-settings-mobile" data-target="non-necessary" data-toggle="cli-toggle-tab">
+								Non-necessary							</a>
+															<div class="cli-switch">
+									<input type="checkbox" id="wt-cli-checkbox-non-necessary" class="cli-user-preference-checkbox"  data-id="checkbox-non-necessary" checked='checked' />
+									<label for="wt-cli-checkbox-non-necessary" class="cli-slider" data-cli-enable="Activado" data-cli-disable="Desactivado" data-no-translation-data-cli-enable="" data-no-translation-data-cli-disable=""><span class="wt-cli-sr-only">Non-necessary</span></label>
+								</div>
+													</div>
+						<div class="cli-tab-content">
+							<div class="cli-tab-pane cli-fade" data-id="non-necessary">
+								<div class="wt-cli-cookie-description">
+									Any cookies that may not be particularly necessary for the website to function and is used specifically to collect user personal data via analytics, ads, other embedded contents are termed as non-necessary cookies. It is mandatory to procure user consent prior to running these cookies on your website.								</div>
+							</div>
+						</div>
+					</div>
+										</div>
+	</div>
+</div>
+		  </div>
+		  <div class="cli-modal-footer">
+			<div class="wt-cli-element cli-container-fluid cli-tab-container">
+				<div class="cli-row">
+					<div class="cli-col-12 cli-align-items-stretch cli-px-0">
+						<div class="cli-tab-footer wt-cli-privacy-overview-actions">
+						
+															<a id="wt-cli-privacy-save-btn" role="button" tabindex="0" data-cli-action="accept" class="wt-cli-privacy-btn cli_setting_save_button wt-cli-privacy-accept-btn cli-btn" data-no-translation="" data-trp-gettext="">GUARDAR Y ACEPTAR</a>
+													</div>
+						
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+  </div>
+</div>
+<div class="cli-modal-backdrop cli-fade cli-settings-overlay"></div>
+<div class="cli-modal-backdrop cli-fade cli-popupbar-overlay"></div>
+<!--googleon: all-->		 <div class="preloader-plus"> 			<div class="prog-bar-wrapper">
+				<div class="prog-bar-bg"></div>
+				<div class="prog-bar"></div>
+			</div> 			 <div class="preloader-content">   	 					<img class="preloader-custom-img" src="https://kubesandclouds.com/wp-content/uploads/2020/09/inverted-e1600211415828.png" /> 
+			 </div>
+		 </div> <div class="mobmenu-overlay"></div><div class="mob-menu-header-holder mobmenu"  data-menu-display="mob-menu-slideout-over" data-open-icon="down-open" data-close-icon="up-open"><div  class="mobmenul-container"><a href="#" class="mobmenu-left-bt mobmenu-trigger-action" data-panel-target="mobmenu-left-panel" aria-label="Left Menu Button" data-no-translation-aria-label=""><i class="mob-icon-menu mob-menu-icon"></i><i class="mob-icon-cancel-1 mob-cancel-button"></i></a></div><div class="mob-menu-logo-holder"><a href="https://kubesandclouds.com?lang=es_es" class="headertext"><span>Kubes&amp;Clouds</span></a></div><div class="mobmenur-container"></div></div>
+		<div class="mobmenu-left-alignment mobmenu-panel mobmenu-left-panel">
+		<a href="#" class="mobmenu-left-bt" aria-label="Left Menu Button" data-no-translation-aria-label=""><i class="mob-icon-cancel-1 mob-cancel-button"></i></a>
+
+		<div class="mobmenu-content">
+		<div class="menu-top-menu-container"><ul id="mobmenuleft" class="wp-mobile-menu" role="menubar" aria-label="Main navigation for mobile devices" data-no-translation-aria-label=""><li role="none"  class="menu-item menu-item-type-custom menu-item-object-custom menu-item-40"><a href="https://kubesandclouds.com?lang=es_es" role="menuitem" class="">Home</a></li><li role="none"  class="menu-item menu-item-type-post_type menu-item-object-page menu-item-41"><a href="https://kubesandclouds.com/index.php/about/?lang=es_es" role="menuitem" class="">Sobre mí</a></li><li role="none"  class="menu-item menu-item-type-post_type menu-item-object-page current_page_parent menu-item-42"><a href="https://kubesandclouds.com/index.php/blog/?lang=es_es" role="menuitem" class="">Posts</a></li><li role="none"  class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2425"><a href="https://kubesandclouds.com/index.php/contact/?lang=es_es" role="menuitem" class="">Talks &#038; Webinars</a></li><li role="none"  class="trp-language-switcher-container menu-item menu-item-type-post_type menu-item-object-language_switcher current-language-menu-item menu-item-2426"><a href="https://kubesandclouds.com/index.php/2020/05/13/gitops/?lang=es_es" role="menuitem" class=""><span data-no-translation><img class="trp-flag-image" src="https://kubesandclouds.com/wp-content/plugins/translatepress-multilingual/assets/images/flags/en_GB.png" width="18" height="12" alt="en_GB" title="English (UK)"></span></a></li><li role="none"  class="trp-language-switcher-container menu-item menu-item-type-post_type menu-item-object-language_switcher current-language-menu-item menu-item-2427"><a href="https://kubesandclouds.com/index.php/2020/05/13/gitops/?lang=es_es" role="menuitem" class=""><span data-no-translation><img class="trp-flag-image" src="https://kubesandclouds.com/wp-content/plugins/translatepress-multilingual/assets/images/flags/es_ES.png" width="18" height="12" alt="es_ES" title="Español"></span></a></li></ul></div>
+		</div><div class="mob-menu-left-bg-holder"></div></div>
+
+		<script type='text/javascript' src='https://kubesandclouds.com/wp-includes/js/imagesloaded.min.js?ver=4.1.4' id='imagesloaded-js'></script>
+<script type='text/javascript' src='https://kubesandclouds.com/wp-includes/js/masonry.min.js?ver=4.2.2' id='masonry-js'></script>
+<script type='text/javascript' src='https://kubesandclouds.com/wp-content/plugins/magical-posts-display/assets/js/venobox.min.js?ver=1.0.0' id='venobox-js-js'></script>
+<script type='text/javascript' src='https://kubesandclouds.com/wp-content/plugins/magical-posts-display/assets/js/main.js?ver=1.2.16' id='mpd-main-js'></script>
+<script type='text/javascript' src='https://kubesandclouds.com/wp-content/plugins/prismatic/lib/prism/js/prism-core.js?ver=3.2.2' id='prismatic-prism-js'></script>
+<script type='text/javascript' src='https://kubesandclouds.com/wp-content/plugins/prismatic/lib/prism/js/plugin-toolbar.js?ver=3.2.2' id='prismatic-prism-toolbar-js'></script>
+<script type='text/javascript' src='https://kubesandclouds.com/wp-content/plugins/prismatic/lib/prism/js/plugin-line-highlight.js?ver=3.2.2' id='prismatic-prism-line-highlight-js'></script>
+<script type='text/javascript' src='https://kubesandclouds.com/wp-content/plugins/prismatic/lib/prism/js/plugin-copy-clipboard.js?ver=3.2.2' id='prismatic-copy-clipboard-js'></script>
+<script type='text/javascript' src='https://kubesandclouds.com/wp-content/plugins/prismatic/lib/prism/js/lang-bash.js?ver=3.2.2' id='prismatic-prism-bash-js'></script>
+<script type='text/javascript' src='https://kubesandclouds.com/wp-content/plugins/prismatic/lib/prism/js/lang-yaml.js?ver=3.2.2' id='prismatic-prism-yaml-js'></script>
+<script type='text/javascript' src='https://kubesandclouds.com/wp-content/themes/x-blog/assets/js/skip-link-focus-fix.js?ver=1.3.11' id='xblog-skip-link-focus-fix-js'></script>
+<script type='text/javascript' src='https://kubesandclouds.com/wp-content/themes/x-blog/assets/js/jquery.slicknav.js?ver=20151215' id='slicknav-js'></script>
+<script type='text/javascript' src='https://kubesandclouds.com/wp-content/themes/x-blog/assets/js/main.js?ver=1.3.11' id='xblog-main-js'></script>
+<script type='text/javascript' src='https://kubesandclouds.com/wp-includes/js/comment-reply.min.js?ver=6.1.1' id='comment-reply-js'></script>
+
+</body>
+</html>

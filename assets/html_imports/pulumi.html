@@ -1,0 +1,1128 @@
+<!doctype html>
+<html lang="es" prefix="og: https://ogp.me/ns#">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="profile" href="http://gmpg.org/xfn/11">
+
+	<meta name='robots' content='max-image-preview:large' />
+
+<!-- Optimización para motores de búsqueda de Rank Math - https://s.rankmath.com/home -->
+<title>Pulumi: Multi-Platform Multi-Language IaC 📚🏗️ - Kubes&amp;Clouds</title>
+<meta name="description" content="This is the second article on Infrastructure as Code using well-known programming languages. The first one was focused on the AWS CDK. In this post, we will"/>
+<meta name="robots" content="follow, index, max-snippet:-1, max-video-preview:-1, max-image-preview:large"/>
+<link rel="canonical" href="https://kubesandclouds.com/index.php/2020/07/28/pulumi-mp-ml-iac/?lang=es_es" />
+<meta property="og:locale" content="es_ES">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Pulumi: Multi-Platform Multi-Language IaC 📚🏗️ - Kubes&amp;Clouds">
+<meta property="og:description" content="This is the second article on Infrastructure as Code using well-known programming languages. The first one was focused on the AWS CDK. In this post, we will">
+<meta property="og:url" content="https://kubesandclouds.com/index.php/2020/07/28/pulumi-mp-ml-iac/?lang=es_es">
+<meta property="og:site_name" content="Kubes&amp;Clouds">
+<meta property="article:tag" content="AWS">
+<meta property="article:tag" content="Azure">
+<meta property="article:tag" content="GCP">
+<meta property="article:tag" content="IaC">
+<meta property="article:tag" content="kubernetes">
+<meta property="article:section" content="aws">
+<meta property="og:updated_time" content="2020-10-06T22:14:47+00:00">
+<meta property="og:image" content="https://www.pulumi.com/images/whitepaper/cloud-native-infrastructure/graph4.png">
+<meta property="og:image:secure_url" content="https://www.pulumi.com/images/whitepaper/cloud-native-infrastructure/graph4.png">
+<meta property="og:image:alt" content="Pulumi: Multi-Platform Multi-Language IaC 📚🏗️">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Pulumi: Multi-Platform Multi-Language IaC 📚🏗️ - Kubes&amp;Clouds">
+<meta name="twitter:description" content="This is the second article on Infrastructure as Code using well-known programming languages. The first one was focused on the AWS CDK. In this post, we will">
+<meta name="twitter:image" content="https://www.pulumi.com/images/whitepaper/cloud-native-infrastructure/graph4.png">
+<script type="application/ld+json" class="rank-math-schema">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://kubesandclouds.com/?lang=es_es#organization","name":"Kubes&Clouds","url":"https://kubesandclouds.com","logo":{"@type":"ImageObject","url":"https://kubesandclouds.com/wp-content/uploads/2020/06/cropped-kc2-e1591690394408-4.png"}},{"@type":"WebSite","@id":"https://kubesandclouds.com/?lang=es_es#website","url":"https://kubesandclouds.com?lang=es_es","name":"Kubes&Clouds","publisher":{"@id":"https://kubesandclouds.com/?lang=es_es#organization"},"inLanguage":"es","potentialAction":{"@type":"SearchAction","target":"https://kubesandclouds.com/?s=%7Bsearch_term_string%7D&lang=es_es","query-input":"required name=search_term_string"}},{"@type":"ImageObject","@id":"https://kubesandclouds.com/index.php/2020/07/28/pulumi-mp-ml-iac/?lang=es_es#primaryImage","url":"https://www.pulumi.com/images/whitepaper/cloud-native-infrastructure/graph4.png","width":200,"height":200},{"@type":"WebPage","@id":"https://kubesandclouds.com/index.php/2020/07/28/pulumi-mp-ml-iac/?lang=es_es#webpage","url":"https://kubesandclouds.com/index.php/2020/07/28/pulumi-mp-ml-iac/?lang=es_es","name":"Pulumi: Multi-Platform Multi-Language IaC \ud83d\udcda\ud83c\udfd7\ufe0f - Kubes&amp;Clouds","datePublished":"2020-07-28T19:45:30+00:00","dateModified":"2020-10-06T22:14:47+00:00","isPartOf":{"@id":"https://kubesandclouds.com/?lang=es_es#website"},"primaryImageOfPage":{"@id":"https://kubesandclouds.com/index.php/2020/07/28/pulumi-mp-ml-iac/?lang=es_es#primaryImage"},"inLanguage":"es"},{"@type":"BlogPosting","headline":"Pulumi: Multi-Platform Multi-Language IaC \ud83d\udcda\ud83c\udfd7\ufe0f - Kubes&amp;Clouds","datePublished":"2020-07-28T19:45:30+00:00","dateModified":"2020-10-06T22:14:47+00:00","author":{"@type":"Person","name":"Miguel Fontanilla"},"publisher":{"@id":"https://kubesandclouds.com/?lang=es_es#organization"},"description":"This is the second article on Infrastructure as Code using well-known programming languages. The first one was focused on the AWS CDK. In this post, we will","@id":"https://kubesandclouds.com/index.php/2020/07/28/pulumi-mp-ml-iac/?lang=es_es#richSnippet","isPartOf":{"@id":"https://kubesandclouds.com/index.php/2020/07/28/pulumi-mp-ml-iac/?lang=es_es#webpage"},"image":{"@id":"https://kubesandclouds.com/index.php/2020/07/28/pulumi-mp-ml-iac/?lang=es_es#primaryImage"},"inLanguage":"es","mainEntityOfPage":{"@id":"https://kubesandclouds.com/index.php/2020/07/28/pulumi-mp-ml-iac/?lang=es_es#webpage"}}]}</script>
+<!-- /Plugin Rank Math WordPress SEO -->
+
+<link rel='dns-prefetch' href='//fonts.googleapis.com' />
+<link rel="alternate" type="application/rss+xml" title="Kubes&amp;Clouds &raquo; Feed" href="https://kubesandclouds.com/index.php/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Kubes&amp;Clouds &raquo; Feed de los comentarios" href="https://kubesandclouds.com/index.php/comments/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Kubes&amp;Clouds &raquo; Comentario Pulumi: Multi-Platform Multi-Language IaC 📚🏗️ del feed" href="https://kubesandclouds.com/index.php/2020/07/28/pulumi-mp-ml-iac/?lang=es_es/feed/" />
+<script type="text/javascript">
+window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/14.0.0\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/14.0.0\/svg\/","svgExt":".svg","source":{"concatemoji":"https:\/\/kubesandclouds.com\/wp-includes\/js\/wp-emoji-release.min.js?ver=6.1.1"}};
+/*! This file is auto-generated */
+!function(e,a,t){var n,r,o,i=a.createElement("canvas"),p=i.getContext&&i.getContext("2d");function s(e,t){var a=String.fromCharCode,e=(p.clearRect(0,0,i.width,i.height),p.fillText(a.apply(this,e),0,0),i.toDataURL());return p.clearRect(0,0,i.width,i.height),p.fillText(a.apply(this,t),0,0),e===i.toDataURL()}function c(e){var t=a.createElement("script");t.src=e,t.defer=t.type="text/javascript",a.getElementsByTagName("head")[0].appendChild(t)}for(o=Array("flag","emoji"),t.supports={everything:!0,everythingExceptFlag:!0},r=0;r<o.length;r++)t.supports[o[r]]=function(e){if(p&&p.fillText)switch(p.textBaseline="top",p.font="600 32px Arial",e){case"flag":return s([127987,65039,8205,9895,65039],[127987,65039,8203,9895,65039])?!1:!s([55356,56826,55356,56819],[55356,56826,8203,55356,56819])&&!s([55356,57332,56128,56423,56128,56418,56128,56421,56128,56430,56128,56423,56128,56447],[55356,57332,8203,56128,56423,8203,56128,56418,8203,56128,56421,8203,56128,56430,8203,56128,56423,8203,56128,56447]);case"emoji":return!s([129777,127995,8205,129778,127999],[129777,127995,8203,129778,127999])}return!1}(o[r]),t.supports.everything=t.supports.everything&&t.supports[o[r]],"flag"!==o[r]&&(t.supports.everythingExceptFlag=t.supports.everythingExceptFlag&&t.supports[o[r]]);t.supports.everythingExceptFlag=t.supports.everythingExceptFlag&&!t.supports.flag,t.DOMReady=!1,t.readyCallback=function(){t.DOMReady=!0},t.supports.everything||(n=function(){t.readyCallback()},a.addEventListener?(a.addEventListener("DOMContentLoaded",n,!1),e.addEventListener("load",n,!1)):(e.attachEvent("onload",n),a.attachEvent("onreadystatechange",function(){"complete"===a.readyState&&t.readyCallback()})),(e=t.source||{}).concatemoji?c(e.concatemoji):e.wpemoji&&e.twemoji&&(c(e.twemoji),c(e.wpemoji)))}(window,document,window._wpemojiSettings);
+</script>
+<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 0.07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+	<link rel='stylesheet' id='wp-block-library-css' href='https://kubesandclouds.com/wp-includes/css/dist/block-library/style.min.css?ver=6.1.1' type='text/css' media='all' />
+<style id='wp-block-library-theme-inline-css' type='text/css'>
+.wp-block-audio figcaption{color:#555;font-size:13px;text-align:center}.is-dark-theme .wp-block-audio figcaption{color:hsla(0,0%,100%,.65)}.wp-block-audio{margin:0 0 1em}.wp-block-code{border:1px solid #ccc;border-radius:4px;font-family:Menlo,Consolas,monaco,monospace;padding:.8em 1em}.wp-block-embed figcaption{color:#555;font-size:13px;text-align:center}.is-dark-theme .wp-block-embed figcaption{color:hsla(0,0%,100%,.65)}.wp-block-embed{margin:0 0 1em}.blocks-gallery-caption{color:#555;font-size:13px;text-align:center}.is-dark-theme .blocks-gallery-caption{color:hsla(0,0%,100%,.65)}.wp-block-image figcaption{color:#555;font-size:13px;text-align:center}.is-dark-theme .wp-block-image figcaption{color:hsla(0,0%,100%,.65)}.wp-block-image{margin:0 0 1em}.wp-block-pullquote{border-top:4px solid;border-bottom:4px solid;margin-bottom:1.75em;color:currentColor}.wp-block-pullquote__citation,.wp-block-pullquote cite,.wp-block-pullquote footer{color:currentColor;text-transform:uppercase;font-size:.8125em;font-style:normal}.wp-block-quote{border-left:.25em solid;margin:0 0 1.75em;padding-left:1em}.wp-block-quote cite,.wp-block-quote footer{color:currentColor;font-size:.8125em;position:relative;font-style:normal}.wp-block-quote.has-text-align-right{border-left:none;border-right:.25em solid;padding-left:0;padding-right:1em}.wp-block-quote.has-text-align-center{border:none;padding-left:0}.wp-block-quote.is-large,.wp-block-quote.is-style-large,.wp-block-quote.is-style-plain{border:none}.wp-block-search .wp-block-search__label{font-weight:700}.wp-block-search__button{border:1px solid #ccc;padding:.375em .625em}:where(.wp-block-group.has-background){padding:1.25em 2.375em}.wp-block-separator.has-css-opacity{opacity:.4}.wp-block-separator{border:none;border-bottom:2px solid;margin-left:auto;margin-right:auto}.wp-block-separator.has-alpha-channel-opacity{opacity:1}.wp-block-separator:not(.is-style-wide):not(.is-style-dots){width:100px}.wp-block-separator.has-background:not(.is-style-dots){border-bottom:none;height:1px}.wp-block-separator.has-background:not(.is-style-wide):not(.is-style-dots){height:2px}.wp-block-table{margin:"0 0 1em 0"}.wp-block-table thead{border-bottom:3px solid}.wp-block-table tfoot{border-top:3px solid}.wp-block-table td,.wp-block-table th{word-break:normal}.wp-block-table figcaption{color:#555;font-size:13px;text-align:center}.is-dark-theme .wp-block-table figcaption{color:hsla(0,0%,100%,.65)}.wp-block-video figcaption{color:#555;font-size:13px;text-align:center}.is-dark-theme .wp-block-video figcaption{color:hsla(0,0%,100%,.65)}.wp-block-video{margin:0 0 1em}.wp-block-template-part.has-background{padding:1.25em 2.375em;margin-top:0;margin-bottom:0}
+</style>
+<link rel='stylesheet' id='prismatic-blocks-css' href='https://kubesandclouds.com/wp-content/plugins/prismatic/css/styles-blocks.css?ver=6.1.1' type='text/css' media='all' />
+<link rel='stylesheet' id='venobox.min-css' href='https://kubesandclouds.com/wp-content/plugins/magical-posts-display/assets/css/venobox.min.css?ver=1.0.0' type='text/css' media='all' />
+<link rel='stylesheet' id='bootstrap-css' href='https://kubesandclouds.com/wp-content/plugins/magical-posts-display/assets/css/bootstrap.min.css?ver=5.1.1' type='text/css' media='all' />
+<link rel='stylesheet' id='mpd-fonts-css' href='https://kubesandclouds.com/wp-content/plugins/magical-posts-display/assets/css/fontello.css?ver=1.2.16' type='text/css' media='all' />
+<link rel='stylesheet' id='swiper.min-css' href='https://kubesandclouds.com/wp-content/plugins/magical-posts-display/assets/css/swiper.min.css?ver=5.3.8' type='text/css' media='all' />
+<link rel='stylesheet' id='mpd-style-css' href='https://kubesandclouds.com/wp-content/plugins/magical-posts-display/assets/css/mp-style.css?ver=1.2.16' type='text/css' media='all' />
+<link rel='stylesheet' id='xblog-gb-block-css' href='https://kubesandclouds.com/wp-content/themes/x-blog/assets/css/admin-block.css?ver=1.0' type='text/css' media='all' />
+<link rel='stylesheet' id='xblog-admin-google-font-css' href='https://fonts.googleapis.com/css?family=PT+Serif%3A400%2C400i%2C700%2C700i%7CCrete+Round%3A400%2C400i&#038;subset=latin%2Clatin-ext' type='text/css' media='all' />
+<link rel='stylesheet' id='classic-theme-styles-css' href='https://kubesandclouds.com/wp-includes/css/classic-themes.min.css?ver=1' type='text/css' media='all' />
+<style id='global-styles-inline-css' type='text/css'>
+body{--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: #abb8c3;--wp--preset--color--white: #ffffff;--wp--preset--color--pale-pink: #f78da7;--wp--preset--color--vivid-red: #cf2e2e;--wp--preset--color--luminous-vivid-orange: #ff6900;--wp--preset--color--luminous-vivid-amber: #fcb900;--wp--preset--color--light-green-cyan: #7bdcb5;--wp--preset--color--vivid-green-cyan: #00d084;--wp--preset--color--pale-cyan-blue: #8ed1fc;--wp--preset--color--vivid-cyan-blue: #0693e3;--wp--preset--color--vivid-purple: #9b51e0;--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple: linear-gradient(135deg,rgba(6,147,227,1) 0%,rgb(155,81,224) 100%);--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan: linear-gradient(135deg,rgb(122,220,180) 0%,rgb(0,208,130) 100%);--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange: linear-gradient(135deg,rgba(252,185,0,1) 0%,rgba(255,105,0,1) 100%);--wp--preset--gradient--luminous-vivid-orange-to-vivid-red: linear-gradient(135deg,rgba(255,105,0,1) 0%,rgb(207,46,46) 100%);--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray: linear-gradient(135deg,rgb(238,238,238) 0%,rgb(169,184,195) 100%);--wp--preset--gradient--cool-to-warm-spectrum: linear-gradient(135deg,rgb(74,234,220) 0%,rgb(151,120,209) 20%,rgb(207,42,186) 40%,rgb(238,44,130) 60%,rgb(251,105,98) 80%,rgb(254,248,76) 100%);--wp--preset--gradient--blush-light-purple: linear-gradient(135deg,rgb(255,206,236) 0%,rgb(152,150,240) 100%);--wp--preset--gradient--blush-bordeaux: linear-gradient(135deg,rgb(254,205,165) 0%,rgb(254,45,45) 50%,rgb(107,0,62) 100%);--wp--preset--gradient--luminous-dusk: linear-gradient(135deg,rgb(255,203,112) 0%,rgb(199,81,192) 50%,rgb(65,88,208) 100%);--wp--preset--gradient--pale-ocean: linear-gradient(135deg,rgb(255,245,203) 0%,rgb(182,227,212) 50%,rgb(51,167,181) 100%);--wp--preset--gradient--electric-grass: linear-gradient(135deg,rgb(202,248,128) 0%,rgb(113,206,126) 100%);--wp--preset--gradient--midnight: linear-gradient(135deg,rgb(2,3,129) 0%,rgb(40,116,252) 100%);--wp--preset--duotone--dark-grayscale: url('#wp-duotone-dark-grayscale');--wp--preset--duotone--grayscale: url('#wp-duotone-grayscale');--wp--preset--duotone--purple-yellow: url('#wp-duotone-purple-yellow');--wp--preset--duotone--blue-red: url('#wp-duotone-blue-red');--wp--preset--duotone--midnight: url('#wp-duotone-midnight');--wp--preset--duotone--magenta-yellow: url('#wp-duotone-magenta-yellow');--wp--preset--duotone--purple-green: url('#wp-duotone-purple-green');--wp--preset--duotone--blue-orange: url('#wp-duotone-blue-orange');--wp--preset--font-size--small: 13px;--wp--preset--font-size--medium: 20px;--wp--preset--font-size--large: 36px;--wp--preset--font-size--x-large: 42px;--wp--preset--spacing--20: 0.44rem;--wp--preset--spacing--30: 0.67rem;--wp--preset--spacing--40: 1rem;--wp--preset--spacing--50: 1.5rem;--wp--preset--spacing--60: 2.25rem;--wp--preset--spacing--70: 3.38rem;--wp--preset--spacing--80: 5.06rem;}:where(.is-layout-flex){gap: 0.5em;}body .is-layout-flow > .alignleft{float: left;margin-inline-start: 0;margin-inline-end: 2em;}body .is-layout-flow > .alignright{float: right;margin-inline-start: 2em;margin-inline-end: 0;}body .is-layout-flow > .aligncenter{margin-left: auto !important;margin-right: auto !important;}body .is-layout-constrained > .alignleft{float: left;margin-inline-start: 0;margin-inline-end: 2em;}body .is-layout-constrained > .alignright{float: right;margin-inline-start: 2em;margin-inline-end: 0;}body .is-layout-constrained > .aligncenter{margin-left: auto !important;margin-right: auto !important;}body .is-layout-constrained > :where(:not(.alignleft):not(.alignright):not(.alignfull)){max-width: var(--wp--style--global--content-size);margin-left: auto !important;margin-right: auto !important;}body .is-layout-constrained > .alignwide{max-width: var(--wp--style--global--wide-size);}body .is-layout-flex{display: flex;}body .is-layout-flex{flex-wrap: wrap;align-items: center;}body .is-layout-flex > *{margin: 0;}:where(.wp-block-columns.is-layout-flex){gap: 2em;}.has-black-color{color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-color{color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-color{color: var(--wp--preset--color--white) !important;}.has-pale-pink-color{color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-color{color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-color{color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-color{color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-color{color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-color{color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-color{color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-color{color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-color{color: var(--wp--preset--color--vivid-purple) !important;}.has-black-background-color{background-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-background-color{background-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-background-color{background-color: var(--wp--preset--color--white) !important;}.has-pale-pink-background-color{background-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-background-color{background-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-background-color{background-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-background-color{background-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-background-color{background-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-background-color{background-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-background-color{background-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-background-color{background-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-background-color{background-color: var(--wp--preset--color--vivid-purple) !important;}.has-black-border-color{border-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-border-color{border-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-border-color{border-color: var(--wp--preset--color--white) !important;}.has-pale-pink-border-color{border-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-border-color{border-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-border-color{border-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-border-color{border-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-border-color{border-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-border-color{border-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-border-color{border-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-border-color{border-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-border-color{border-color: var(--wp--preset--color--vivid-purple) !important;}.has-vivid-cyan-blue-to-vivid-purple-gradient-background{background: var(--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple) !important;}.has-light-green-cyan-to-vivid-green-cyan-gradient-background{background: var(--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan) !important;}.has-luminous-vivid-amber-to-luminous-vivid-orange-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange) !important;}.has-luminous-vivid-orange-to-vivid-red-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-orange-to-vivid-red) !important;}.has-very-light-gray-to-cyan-bluish-gray-gradient-background{background: var(--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray) !important;}.has-cool-to-warm-spectrum-gradient-background{background: var(--wp--preset--gradient--cool-to-warm-spectrum) !important;}.has-blush-light-purple-gradient-background{background: var(--wp--preset--gradient--blush-light-purple) !important;}.has-blush-bordeaux-gradient-background{background: var(--wp--preset--gradient--blush-bordeaux) !important;}.has-luminous-dusk-gradient-background{background: var(--wp--preset--gradient--luminous-dusk) !important;}.has-pale-ocean-gradient-background{background: var(--wp--preset--gradient--pale-ocean) !important;}.has-electric-grass-gradient-background{background: var(--wp--preset--gradient--electric-grass) !important;}.has-midnight-gradient-background{background: var(--wp--preset--gradient--midnight) !important;}.has-small-font-size{font-size: var(--wp--preset--font-size--small) !important;}.has-medium-font-size{font-size: var(--wp--preset--font-size--medium) !important;}.has-large-font-size{font-size: var(--wp--preset--font-size--large) !important;}.has-x-large-font-size{font-size: var(--wp--preset--font-size--x-large) !important;}
+.wp-block-navigation a:where(:not(.wp-element-button)){color: inherit;}
+:where(.wp-block-columns.is-layout-flex){gap: 2em;}
+.wp-block-pullquote{font-size: 1.5em;line-height: 1.6;}
+</style>
+<link rel='stylesheet' id='cookie-law-info-css' href='https://kubesandclouds.com/wp-content/plugins/cookie-law-info/legacy/public/css/cookie-law-info-public.css?ver=3.0.7' type='text/css' media='all' />
+<link rel='stylesheet' id='cookie-law-info-gdpr-css' href='https://kubesandclouds.com/wp-content/plugins/cookie-law-info/legacy/public/css/cookie-law-info-gdpr.css?ver=3.0.7' type='text/css' media='all' />
+<link rel='stylesheet' id='preloader-plus-css' href='https://kubesandclouds.com/wp-content/plugins/preloader-plus/assets/css/preloader-plus.min.css?ver=2.2.1' type='text/css' media='all' />
+<style id='preloader-plus-inline-css' type='text/css'>
+.preloader-plus {background-color: #108fd4; }body.complete > *:not(.preloader-plus),.preloader-plus {transition-duration: 1000ms,1000ms,0s; }.preloader-plus * {color: #65615F; }.preloader-plus.complete {opacity: 0; transform:  scale(1); transition-delay: 0s,0s,1000ms; }.preloader-plus .preloader-site-title {font-weight: bold; font-size: 50px; text-transform: none; }.preloader-plus #preloader-counter {font-weight: bold; font-size: 24px; }.preloader-plus .preloader-plus-custom-content {font-weight: bold; font-size: 24px; text-transform: none; }.preloader-plus-default-icons {width: 80px; height: 80px; }.preloader-plus .preloader-custom-img {animation: preloader-rotation 1500ms linear infinite; width: 250px; }.preloader-plus .prog-bar {height: 5px; background-color: #ffffff; }.preloader-plus .prog-bar-bg {height: 5px; background-color: #919191; }.preloader-plus .prog-bar-wrapper {top: 0; padding-top: 0; width: 100%; }
+</style>
+<link rel='stylesheet' id='prismatic-prism-css' href='https://kubesandclouds.com/wp-content/plugins/prismatic/lib/prism/css/theme-okaidia.css?ver=3.2.2' type='text/css' media='all' />
+<link rel='stylesheet' id='prismatic-plugin-styles-css' href='https://kubesandclouds.com/wp-content/plugins/prismatic/lib/prism/css/plugin-styles.css?ver=3.2.2' type='text/css' media='all' />
+<link rel='stylesheet' id='trp-language-switcher-style-css' href='https://kubesandclouds.com/wp-content/plugins/translatepress-multilingual/assets/css/trp-language-switcher.css?ver=2.4.3' type='text/css' media='all' />
+<link rel='stylesheet' id='xblog-google-font-css' href='https://fonts.googleapis.com/css?family=PT+Serif%3A400%2C400i%2C700%2C700i%7CCrete+Round%3A400%2C400i&#038;subset=latin%2Clatin-ext' type='text/css' media='all' />
+<link rel='stylesheet' id='font-awesome-five-all-css' href='https://kubesandclouds.com/wp-content/themes/x-blog/assets/css/all.css?ver=5.13.0' type='text/css' media='all' />
+<link rel='stylesheet' id='slicknav-css' href='https://kubesandclouds.com/wp-content/themes/x-blog/assets/css/slicknav.css?ver=1' type='text/css' media='all' />
+<link rel='stylesheet' id='block-style-css' href='https://kubesandclouds.com/wp-content/themes/x-blog/assets/css/block.css?ver=1.3.11' type='text/css' media='all' />
+<link rel='stylesheet' id='xblog-style-css' href='https://kubesandclouds.com/wp-content/themes/x-blog/style.css?ver=6.1.1' type='text/css' media='all' />
+<link rel='stylesheet' id='xblog-responsive-css' href='https://kubesandclouds.com/wp-content/themes/x-blog/assets/css/responsive.css?ver=1.3.11' type='text/css' media='all' />
+<link rel='stylesheet' id='x-blog-custom-style-css' href='https://kubesandclouds.com/wp-content/themes/x-blog/assets/css/custom_script.css?ver=6.1.1' type='text/css' media='all' />
+<style id='x-blog-custom-style-inline-css' type='text/css'>
+.site-title,
+			.site-description {
+				position: absolute;
+				clip: rect(1px, 1px, 1px, 1px);
+			}header.site-header{
+                    background: #309bdd;
+                }
+</style>
+<link rel='stylesheet' id='mm-compiled-options-mobmenu-css' href='https://kubesandclouds.com/wp-content/uploads/dynamic-mobmenu.css?ver=2.8.3-531' type='text/css' media='all' />
+<link rel='stylesheet' id='mm-google-webfont-dosis-css' href='//fonts.googleapis.com/css?family=Dosis%3Ainherit%2C400&#038;subset=latin%2Clatin-ext&#038;ver=6.1.1' type='text/css' media='all' />
+<link rel='stylesheet' id='cssmobmenu-icons-css' href='https://kubesandclouds.com/wp-content/plugins/mobile-menu/includes/css/mobmenu-icons.css?ver=6.1.1' type='text/css' media='all' />
+<link rel='stylesheet' id='cssmobmenu-css' href='https://kubesandclouds.com/wp-content/plugins/mobile-menu/includes/css/mobmenu.css?ver=2.8.3' type='text/css' media='all' />
+<script type='text/javascript' src='https://kubesandclouds.com/wp-includes/js/jquery/jquery.min.js?ver=3.6.1' id='jquery-core-js'></script>
+<script type='text/javascript' src='https://kubesandclouds.com/wp-includes/js/jquery/jquery-migrate.min.js?ver=3.3.2' id='jquery-migrate-js'></script>
+<script type='text/javascript' src='https://kubesandclouds.com/wp-content/plugins/magical-posts-display/assets/js/bootstrap.bundle.min.js?ver=5.1.1' id='bootstrap.bundle.min-js'></script>
+<script type='text/javascript' src='https://kubesandclouds.com/wp-content/plugins/magical-posts-display/assets/js/swiper.min.js?ver=5.3.8' id='swiper.min-js'></script>
+<script type='text/javascript' src='https://kubesandclouds.com/wp-content/plugins/magical-posts-display/assets/js/jquery.easy-ticker.min.js?ver=3.1.0' id='jquery.easy-ticker-js'></script>
+<script type='text/javascript' id='cookie-law-info-js-extra'>
+/* <![CDATA[ */
+var Cli_Data = {"nn_cookie_ids":[],"cookielist":[],"non_necessary_cookies":[],"ccpaEnabled":"","ccpaRegionBased":"","ccpaBarEnabled":"","strictlyEnabled":["necessary","obligatoire"],"ccpaType":"gdpr","js_blocking":"","custom_integration":"","triggerDomRefresh":"","secure_cookies":""};
+var cli_cookiebar_settings = {"animate_speed_hide":"500","animate_speed_show":"500","background":"#108fd4","border":"#b1a6a6c2","border_on":"","button_1_button_colour":"#ffffff","button_1_button_hover":"#cccccc","button_1_link_colour":"#0c2a7c","button_1_as_button":"1","button_1_new_win":"","button_2_button_colour":"#333","button_2_button_hover":"#292929","button_2_link_colour":"#444","button_2_as_button":"","button_2_hidebar":"","button_3_button_colour":"#3566bb","button_3_button_hover":"#2a5296","button_3_link_colour":"#fff","button_3_as_button":"1","button_3_new_win":"","button_4_button_colour":"#000","button_4_button_hover":"#000000","button_4_link_colour":"#333333","button_4_as_button":"","button_7_button_colour":"#61a229","button_7_button_hover":"#4e8221","button_7_link_colour":"#fff","button_7_as_button":"1","button_7_new_win":"","font_family":"inherit","header_fix":"","notify_animate_hide":"1","notify_animate_show":"1","notify_div_id":"#cookie-law-info-bar","notify_position_horizontal":"right","notify_position_vertical":"bottom","scroll_close":"","scroll_close_reload":"","accept_close_reload":"","reject_close_reload":"","showagain_tab":"1","showagain_background":"#fff","showagain_border":"#000","showagain_div_id":"#cookie-law-info-again","showagain_x_position":"100px","text":"#ffffff","show_once_yn":"","show_once":"10000","logging_on":"","as_popup":"","popup_overlay":"","bar_heading_text":"Want some cookies? \ud83c\udf6a","cookie_bar_as":"banner","popup_showagain_position":"bottom-right","widget_position":"left"};
+var log_object = {"ajax_url":"https:\/\/kubesandclouds.com\/wp-admin\/admin-ajax.php"};
+/* ]]> */
+</script>
+<script type='text/javascript' src='https://kubesandclouds.com/wp-content/plugins/cookie-law-info/legacy/public/js/cookie-law-info-public.js?ver=3.0.7' id='cookie-law-info-js'></script>
+<script type='text/javascript' id='preloader-plus-js-extra'>
+/* <![CDATA[ */
+var preloader_plus = {"animation_delay":"500","animation_duration":"1000"};
+/* ]]> */
+</script>
+<script type='text/javascript' src='https://kubesandclouds.com/wp-content/plugins/preloader-plus//assets/js/preloader-plus.min.js?ver=2.2.1' id='preloader-plus-js'></script>
+<script type='text/javascript' src='https://kubesandclouds.com/wp-content/themes/x-blog/assets/js/modernizr.js?ver=6.1.1' id='modernizr-js'></script>
+<script type='text/javascript' src='https://kubesandclouds.com/wp-content/plugins/mobile-menu/includes/js/mobmenu.js?ver=2.8.3' id='mobmenujs-js'></script>
+<link rel="https://api.w.org/" href="https://kubesandclouds.com/index.php/wp-json/" /><link rel="alternate" type="application/json" href="https://kubesandclouds.com/index.php/wp-json/wp/v2/posts/1073" /><link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://kubesandclouds.com/xmlrpc.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="https://kubesandclouds.com/wp-includes/wlwmanifest.xml" />
+<meta name="generator" content="WordPress 6.1.1" />
+<link rel='shortlink' href='https://kubesandclouds.com/?p=1073&#038;lang=es_es' />
+<link rel="alternate" type="application/json+oembed" href="https://kubesandclouds.com/index.php/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fkubesandclouds.com%2Findex.php%2F2020%2F07%2F28%2Fpulumi-mp-ml-iac%2F%3Flang%3Des_es" />
+<link rel="alternate" type="text/xml+oembed" href="https://kubesandclouds.com/index.php/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fkubesandclouds.com%2Findex.php%2F2020%2F07%2F28%2Fpulumi-mp-ml-iac%2F%3Flang%3Des_es&#038;format=xml" />
+<link rel="alternate" hreflang="en-GB" href="https://kubesandclouds.com/index.php/2020/07/28/pulumi-mp-ml-iac/?lang=es_es"/>
+<link rel="alternate" hreflang="es-ES" href="https://kubesandclouds.com/index.php/2020/07/28/pulumi-mp-ml-iac/?lang=es_es"/>
+<link rel="alternate" hreflang="en" href="https://kubesandclouds.com/index.php/2020/07/28/pulumi-mp-ml-iac/?lang=es_es"/>
+<link rel="alternate" hreflang="es" href="https://kubesandclouds.com/index.php/2020/07/28/pulumi-mp-ml-iac/?lang=es_es"/>
+<!-- Analytics by WP Statistics v13.2.8 - https://wp-statistics.com/ -->
+<link rel="pingback" href="https://kubesandclouds.com/xmlrpc.php"><style type="text/css" id="custom-background-css">
+body.custom-background { background-image: url("https://kubesandclouds.com/wp-content/uploads/2020/09/b-min_optimized.png"); background-position: left top; background-size: contain; background-repeat: repeat; background-attachment: scroll; }
+</style>
+	<link rel="icon" href="https://kubesandclouds.com/wp-content/uploads/2020/02/cropped-kc-e1581964077834-1-32x32.png" sizes="32x32" />
+<link rel="icon" href="https://kubesandclouds.com/wp-content/uploads/2020/02/cropped-kc-e1581964077834-1-192x192.png" sizes="192x192" />
+<link rel="apple-touch-icon" href="https://kubesandclouds.com/wp-content/uploads/2020/02/cropped-kc-e1581964077834-1-180x180.png" />
+<meta name="msapplication-TileImage" content="https://kubesandclouds.com/wp-content/uploads/2020/02/cropped-kc-e1581964077834-1-270x270.png" />
+</head>
+
+<body class="post-template-default single single-post postid-1073 single-format-standard custom-background wp-custom-logo translatepress-es_ES theme-indigo title-center mob-menu-slideout-over">
+	<svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 0 0" width="0" height="0" focusable="false" role="none" style="visibility: hidden; position: absolute; left: -9999px; overflow: hidden;" ><defs><filter id="wp-duotone-dark-grayscale"><fecolormatrix color-interpolation-filters="sRGB" type="matrix" values=" .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 " /><fecomponenttransfer color-interpolation-filters="sRGB" ><fefuncr type="table" tablevalues="0 0.49803921568627" /><fefuncg type="table" tablevalues="0 0.49803921568627" /><fefuncb type="table" tablevalues="0 0.49803921568627" /><fefunca type="table" tablevalues="1 1" /></fecomponenttransfer><fecomposite in2="SourceGraphic" operator="in" /></filter></defs></svg><svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 0 0" width="0" height="0" focusable="false" role="none" style="visibility: hidden; position: absolute; left: -9999px; overflow: hidden;" ><defs><filter id="wp-duotone-grayscale"><fecolormatrix color-interpolation-filters="sRGB" type="matrix" values=" .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 " /><fecomponenttransfer color-interpolation-filters="sRGB" ><fefuncr type="table" tablevalues="0 1" /><fefuncg type="table" tablevalues="0 1" /><fefuncb type="table" tablevalues="0 1" /><fefunca type="table" tablevalues="1 1" /></fecomponenttransfer><fecomposite in2="SourceGraphic" operator="in" /></filter></defs></svg><svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 0 0" width="0" height="0" focusable="false" role="none" style="visibility: hidden; position: absolute; left: -9999px; overflow: hidden;" ><defs><filter id="wp-duotone-purple-yellow"><fecolormatrix color-interpolation-filters="sRGB" type="matrix" values=" .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 " /><fecomponenttransfer color-interpolation-filters="sRGB" ><fefuncr type="table" tablevalues="0.54901960784314 0.98823529411765" /><fefuncg type="table" tablevalues="0 1" /><fefuncb type="table" tablevalues="0.71764705882353 0.25490196078431" /><fefunca type="table" tablevalues="1 1" /></fecomponenttransfer><fecomposite in2="SourceGraphic" operator="in" /></filter></defs></svg><svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 0 0" width="0" height="0" focusable="false" role="none" style="visibility: hidden; position: absolute; left: -9999px; overflow: hidden;" ><defs><filter id="wp-duotone-blue-red"><fecolormatrix color-interpolation-filters="sRGB" type="matrix" values=" .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 " /><fecomponenttransfer color-interpolation-filters="sRGB" ><fefuncr type="table" tablevalues="0 1" /><fefuncg type="table" tablevalues="0 0.27843137254902" /><fefuncb type="table" tablevalues="0.5921568627451 0.27843137254902" /><fefunca type="table" tablevalues="1 1" /></fecomponenttransfer><fecomposite in2="SourceGraphic" operator="in" /></filter></defs></svg><svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 0 0" width="0" height="0" focusable="false" role="none" style="visibility: hidden; position: absolute; left: -9999px; overflow: hidden;" ><defs><filter id="wp-duotone-midnight"><fecolormatrix color-interpolation-filters="sRGB" type="matrix" values=" .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 " /><fecomponenttransfer color-interpolation-filters="sRGB" ><fefuncr type="table" tablevalues="0 0" /><fefuncg type="table" tablevalues="0 0.64705882352941" /><fefuncb type="table" tablevalues="0 1" /><fefunca type="table" tablevalues="1 1" /></fecomponenttransfer><fecomposite in2="SourceGraphic" operator="in" /></filter></defs></svg><svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 0 0" width="0" height="0" focusable="false" role="none" style="visibility: hidden; position: absolute; left: -9999px; overflow: hidden;" ><defs><filter id="wp-duotone-magenta-yellow"><fecolormatrix color-interpolation-filters="sRGB" type="matrix" values=" .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 " /><fecomponenttransfer color-interpolation-filters="sRGB" ><fefuncr type="table" tablevalues="0.78039215686275 1" /><fefuncg type="table" tablevalues="0 0.94901960784314" /><fefuncb type="table" tablevalues="0.35294117647059 0.47058823529412" /><fefunca type="table" tablevalues="1 1" /></fecomponenttransfer><fecomposite in2="SourceGraphic" operator="in" /></filter></defs></svg><svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 0 0" width="0" height="0" focusable="false" role="none" style="visibility: hidden; position: absolute; left: -9999px; overflow: hidden;" ><defs><filter id="wp-duotone-purple-green"><fecolormatrix color-interpolation-filters="sRGB" type="matrix" values=" .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 " /><fecomponenttransfer color-interpolation-filters="sRGB" ><fefuncr type="table" tablevalues="0.65098039215686 0.40392156862745" /><fefuncg type="table" tablevalues="0 1" /><fefuncb type="table" tablevalues="0.44705882352941 0.4" /><fefunca type="table" tablevalues="1 1" /></fecomponenttransfer><fecomposite in2="SourceGraphic" operator="in" /></filter></defs></svg><svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 0 0" width="0" height="0" focusable="false" role="none" style="visibility: hidden; position: absolute; left: -9999px; overflow: hidden;" ><defs><filter id="wp-duotone-blue-orange"><fecolormatrix color-interpolation-filters="sRGB" type="matrix" values=" .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 " /><fecomponenttransfer color-interpolation-filters="sRGB" ><fefuncr type="table" tablevalues="0.098039215686275 1" /><fefuncg type="table" tablevalues="0 0.66274509803922" /><fefuncb type="table" tablevalues="0.84705882352941 0.41960784313725" /><fefunca type="table" tablevalues="1 1" /></fecomponenttransfer><fecomposite in2="SourceGraphic" operator="in" /></filter></defs></svg><div id="page" class="site x-blog">
+	<a class="skip-link screen-reader-text" href="#content" data-no-translation="" data-trp-gettext="">Skip to content</a>
+
+	<header id="masthead" class="site-header">
+        		<div class="baby-container site-branding">
+            <a href="https://kubesandclouds.com/?lang=es_es" class="custom-logo-link" rel="home"><img width="258" height="258" src="https://kubesandclouds.com/wp-content/uploads/2020/06/cropped-kc2-e1591690394408-5.png" class="custom-logo" alt="Kubes&amp;Clouds" decoding="async" srcset="https://kubesandclouds.com/wp-content/uploads/2020/06/cropped-kc2-e1591690394408-5.png 258w, https://kubesandclouds.com/wp-content/uploads/2020/06/cropped-kc2-e1591690394408-5-150x150.png 150w" sizes="(max-width: 258px) 100vw, 258px" /></a>		</div><!-- .site-branding -->
+			<div class="menu-bar text-center">
+		<div class="baby-container menu-inner">
+			<nav id="site-navigation" class="main-navigation">
+				<div class="menu-top-menu-container"><ul id="baby-menu" class="baby-menu"><li id="menu-item-40" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-40"><a href="https://kubesandclouds.com?lang=es_es">Home</a></li>
+<li id="menu-item-41" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-41"><a href="https://kubesandclouds.com/index.php/about/?lang=es_es">Sobre mí</a></li>
+<li id="menu-item-42" class="menu-item menu-item-type-post_type menu-item-object-page current_page_parent menu-item-42"><a href="https://kubesandclouds.com/index.php/blog/?lang=es_es">Posts</a></li>
+<li id="menu-item-2425" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2425"><a href="https://kubesandclouds.com/index.php/contact/?lang=es_es">Talks &#038; Webinars</a></li>
+<li id="menu-item-2426" class="trp-language-switcher-container menu-item menu-item-type-post_type menu-item-object-language_switcher current-language-menu-item menu-item-2426"><a href="https://kubesandclouds.com/index.php/2020/07/28/pulumi-mp-ml-iac/?lang=es_es"><span data-no-translation><img class="trp-flag-image" src="https://kubesandclouds.com/wp-content/plugins/translatepress-multilingual/assets/images/flags/en_GB.png" width="18" height="12" alt="en_GB" title="English (UK)"></span></a></li>
+<li id="menu-item-2427" class="trp-language-switcher-container menu-item menu-item-type-post_type menu-item-object-language_switcher current-language-menu-item menu-item-2427"><a href="https://kubesandclouds.com/index.php/2020/07/28/pulumi-mp-ml-iac/?lang=es_es"><span data-no-translation><img class="trp-flag-image" src="https://kubesandclouds.com/wp-content/plugins/translatepress-multilingual/assets/images/flags/es_ES.png" width="18" height="12" alt="es_ES" title="Español"></span></a></li>
+</ul></div>			</nav><!-- #site-navigation -->	
+			
+		</div>
+		</div>
+
+		
+	</header><!-- #masthead -->
+
+	
+	<div id="content" class="baby-container site-content right-sidebar">
+
+	<div id="primary" class="content-area">
+		<main id="main" class="site-main">
+
+		
+<article id="post-1073" class="post-1073 post type-post status-publish format-standard hentry category-aws category-azure category-devops category-gcp category-iac category-kubernetes tag-aws tag-azure tag-gcp tag-iac tag-kubernetes">
+	<header class="entry-header">
+		<h1 class="entry-title">Pulumi: IaC Multi-Lenguaje y Multi-Plataforma 📚🏗️</h1>		<div class="entry-meta">
+			<span class="posted-on"><i class="far fa-clock"></i> <a href="https://kubesandclouds.com/index.php/2020/07/28/pulumi-mp-ml-iac/?lang=es_es" rel="bookmark"><time class="entry-date published" datetime="2020-07-28T19:45:30+00:00">julio 28, 2020</time><time class="updated" datetime="2020-10-06T22:14:47+00:00">octubre 6, 2020</time></a></span><span class="byline"> <i class="far fa-user-circle"></i> <span class="author vcard"><a class="url fn n" href="https://kubesandclouds.com/author/miguel-fontanilla/?lang=es_es">Miguel Fontanilla</a></span></span>		</div><!-- .entry-meta -->
+			</header><!-- .entry-header -->
+    
+	<div class="entry-content">
+		
+<p>Bienvenido al segundo artículo sobre Infraestructura como Código (IaC) utilizando lenguajes de programación populares y de alto nivel. <a href="https://kubesandclouds.com/index.php/2020/07/13/aws-cdk-dev-like-iac/">El primero</a> presentaba el AWS CDK. En este artículo presentaremos Pulumi, una herramienta similar que ofrece soporte multi-cloud.</p>
+
+
+
+<p>La Infraestructura como código (IaC) es una de las mayores revoluciones en el panorama de la computación en la nube, ya que permite automatizar el despliegue de infraestructura en base a la definición especificada en el código. El hecho de utilizar código como fuente de verdad para la infraestructura tiene varios beneficios:</p>
+
+
+
+<ul><li>La infraestructura puede versionarse, como normalmente se hace con el código, proporcionando trazabilidad de la misma.</li><li>Los despliegues, rollbacks, y procedimientos de recuperación ante desastres pueden automatizarse fácilmente, reduciendo la intervención manual y por tanto la probabilidad de errores humanos.</li><li>Los costes se reducen, ya que los recursos pueden redimensionarse modificando el código para adaptarlos a las fluctuaciones de tráfico y uso, y los entornos pueden apagarse cuando no se están utilizando.</li><li>Los procesos de despliegue se aceleran de forma significativa, haciendo el ciclo de vida de desarrollo del software más eficiente, ya que los entornos pueden desplegarse cuando se necesitan.</li></ul>
+
+
+
+<p>La IaC puede implementarse por medio de diferentes herramientas, siendo Terraform, AWS CloudFormation, Ansible, Chef o Puppet algunas de las más utilizadas. Estas herramientas utilizan normalmente lenguajes declarativos (o dialectos), basados en YAML, JSON y derivados del JSON para la definición de la infraestructura. Trabajar con estas herramientas y lenguajes puede ser todo un reto, especialmente para aquellos con un background más cercano al desarrollo.</p>
+
+
+
+<p>Por ello, tiene sentido el desplegar infraestructura utilizando lenguajes de alto nivel, que son más naturales para los desarrolladores. Este enfoque puede incrementar la productividad, ya que los patrones de desarrollo comunes pueden reutilizarse con facilidad. Este modelo de trabajo permite a los desarrolladores provisionar infraestructura de forma sencilla e intuitiva, sin necesidad de ser expertos en la materia. Además, los desarrolladores pueden provisionar stacks completos, conteniendo las aplicaciones y la infraestructura sobre la que corren, utilizando su IDE y lenguaje de preferencia. Esto puede ser particularmente útil en pequeñas y medianas empresas y proyectos, en las que un solo equipo se encarga de gestionar y operar la parte 'Dev' y 'Ops'.</p>
+
+
+
+<div class="wp-block-image"><figure class="aligncenter size-large"><img decoding="async" src="https://www.pulumi.com/images/whitepaper/cloud-native-infrastructure/graph4.png" alt=""/><figcaption>Pulumi overview by <a href="https://www.pulumi.com/" target="_blank" rel="noopener">Pulumi</a></figcaption></figure></div>
+
+
+
+<p>A lo largo de este artículo se analizará Pulumi y sus funcionalidades. Pulumi es un framework de código abierto que permite crear y gestionar infraestructura y aplicaciones sobre proveedores de nube pública utilizando lenguajes de programación comunes y ampliamente extendidos, como Typescript, Javascript, Python, Go y C#.</p>
+
+
+
+<p>Para los ejemplos que se muestran en el artículo, se escogió Python como lenguaje de programación, desplegando la infraestructura resultante sobre diferentes proveedores de nube pública. Puedes encontrar el código que se emplea para desplegar los ejemplos que se muestran a continuación en el <a href="https://github.com/pulumi/examples" target="_blank" rel="noopener">repositorio de ejemplos de Pulumi</a>.</p>
+
+
+
+<hr class="wp-block-separator is-style-default"/>
+
+
+
+<h2>Configurando Pulumi⚙️</h2>
+
+
+
+<p>El primer paso es instalar Python 3, específicamente Python 3.6 o versiones posteriores. Puedes descargar la última versión de Python 3 en <a href="https://www.python.org/downloads/" target="_blank" rel="noopener">aquí</a>. Una vez que tengas Python 3 instalado, el siguiente paso es instalar Pulumi en tu máquina. Para las distribuciones de Linux, puedes ejecutar el siguiente comando. Para cualquier otro SO, puedes encontrar el manual de instalación en<a href="https://www.pulumi.com/docs/get-started/aws/begin/#install-pulumi" target="_blank" rel="noopener"> aquí</a>. </p>
+
+
+
+<pre class="wp-block-prismatic-blocks"><code class="language-bash">curl -fsSL https://get.pulumi.com | sh</code></pre>
+
+
+
+<p>Para poder usar Pulumi en tu línea de comandos, necesitaras registrarte primero en la <a href="https://app.pulumi.com/signin" target="_blank" rel="noopener">consola web de Pulumi</a>, para que el estado de tu stack pueda ser persistido. No te preocupes, ya que Pulumi es gratuito para uso personal, y puedes registrarte utilizando tus cuentas de GitLab, GitHub, Atlassian o tu correo.</p>
+
+
+
+<div class="wp-block-image"><figure class="aligncenter size-large"><img decoding="async" loading="lazy" width="1024" height="513" src="https://kubesandclouds.com/wp-content/uploads/2020/07/Screen-Shot-2020-07-20-at-1.59.26-PM-1024x513.png" alt="" class="wp-image-1330" srcset="https://kubesandclouds.com/wp-content/uploads/2020/07/Screen-Shot-2020-07-20-at-1.59.26-PM-1024x513.png 1024w, https://kubesandclouds.com/wp-content/uploads/2020/07/Screen-Shot-2020-07-20-at-1.59.26-PM-300x150.png 300w, https://kubesandclouds.com/wp-content/uploads/2020/07/Screen-Shot-2020-07-20-at-1.59.26-PM-768x385.png 768w, https://kubesandclouds.com/wp-content/uploads/2020/07/Screen-Shot-2020-07-20-at-1.59.26-PM.png 1160w" sizes="(max-width: 1024px) 100vw, 1024px" /></figure></div>
+
+
+
+<p>Una vez que te hayas registrado, es el momento de generar un token de acceso, ya que el CLI necesita uno para poder acceder a la cuenta y almacenar la información del stack.</p>
+
+
+
+<div class="wp-block-image"><figure class="aligncenter size-large"><img decoding="async" loading="lazy" width="1024" height="377" src="https://kubesandclouds.com/wp-content/uploads/2020/07/Screen-Shot-2020-07-20-at-2.00.37-PM-1024x377.png" alt="" class="wp-image-1329" srcset="https://kubesandclouds.com/wp-content/uploads/2020/07/Screen-Shot-2020-07-20-at-2.00.37-PM-1024x377.png 1024w, https://kubesandclouds.com/wp-content/uploads/2020/07/Screen-Shot-2020-07-20-at-2.00.37-PM-300x110.png 300w, https://kubesandclouds.com/wp-content/uploads/2020/07/Screen-Shot-2020-07-20-at-2.00.37-PM-768x283.png 768w, https://kubesandclouds.com/wp-content/uploads/2020/07/Screen-Shot-2020-07-20-at-2.00.37-PM.png 1475w" sizes="(max-width: 1024px) 100vw, 1024px" /></figure></div>
+
+
+
+<p>Finalmente, ejecuta el siguiente comando y pega el token de acceso que acabas de generar el paso anterior. Si todo va bien, deberías ver una salida en el terminal similar a la que se muestra en la siguiente imagen.</p>
+
+
+
+<pre class="wp-block-prismatic-blocks"><code class="language-bash">pulumi login</code></pre>
+
+
+
+<div class="wp-block-image"><figure class="aligncenter size-large"><img decoding="async" loading="lazy" width="685" height="341" src="https://kubesandclouds.com/wp-content/uploads/2020/07/Screen-Shot-2020-07-20-at-2.00.58-PM.png" alt="" class="wp-image-1333" srcset="https://kubesandclouds.com/wp-content/uploads/2020/07/Screen-Shot-2020-07-20-at-2.00.58-PM.png 685w, https://kubesandclouds.com/wp-content/uploads/2020/07/Screen-Shot-2020-07-20-at-2.00.58-PM-300x149.png 300w" sizes="(max-width: 685px) 100vw, 685px" /></figure></div>
+
+
+
+<hr class="wp-block-separator is-style-default"/>
+
+
+
+<h2>Estructura del proyecto🔖&nbsp;</h2>
+
+
+
+<p>Si tuvieras que generar tu primer proyecto con Pulumi, tendrías que crear un directorio y ejecutar los siguientes comandos, especificando el proveedor de cloud a utilizar y el lenguaje de programación elegido.</p>
+
+
+
+<pre class="wp-block-prismatic-blocks"><code class="language-bash">mkdir test-project
+cd test-project
+pulumi new &lt;provider&gt;-&lt;language&gt;</code></pre>
+
+
+
+<p>En este caso, el CLI de Pulumi te guiaría a través de un proceso de setup bastante sencillo, donde se pueden especificar varios parámetros, como el nombre del proyecto, su descripción, el nombre del stack y la región en la que se desplegaría. <strong>Sin embargo, ten en cuenta que para los ejemplos que se muestran en este artículo, se emplean proyectos preconfigurados, y por ello, no es necesario que lleves a cabo este procedimiento de setup, es sencillamente una indicación por si quisieras desarrollar tu propio proyecto desde cero.</strong></p>
+
+
+
+<figure class="wp-block-image size-large"><img decoding="async" loading="lazy" width="857" height="298" src="https://kubesandclouds.com/wp-content/uploads/2020/07/Screen-Shot-2020-07-22-at-12.20.21-AM.png" alt="" class="wp-image-1352" srcset="https://kubesandclouds.com/wp-content/uploads/2020/07/Screen-Shot-2020-07-22-at-12.20.21-AM.png 857w, https://kubesandclouds.com/wp-content/uploads/2020/07/Screen-Shot-2020-07-22-at-12.20.21-AM-300x104.png 300w, https://kubesandclouds.com/wp-content/uploads/2020/07/Screen-Shot-2020-07-22-at-12.20.21-AM-768x267.png 768w" sizes="(max-width: 857px) 100vw, 857px" /></figure>
+
+
+
+<p>Después de configurar el proyecto (usando Python en este caso), los ficheros que se encuentran en el directorio del proyecto serán parecidos a los que se ven en la siguiente imagen. <strong>Pulumi.yaml</strong> y <strong>Pulumi.dev.yaml</strong> son los ficheros de configuración del proyecto y del stack respectivamente, mientras que <strong>__main__.py</strong> es el Programa de Python en el que se define el stack. El fichero <strong>requirements.txt</strong> especifica las dependencias que el stack necesita para funcionar y el directorio <strong>venv</strong> es un <a href="https://docs.python.org/3/tutorial/venv.html" target="_blank" rel="noopener">Python virtual environment</a>, que contiene todos los ejecutables y las librerías necesarias para hacer uso de los paquetes importados en el proyecto de Python.</p>
+
+
+
+<div class="wp-block-image"><figure class="aligncenter size-large"><img decoding="async" loading="lazy" width="538" height="170" src="https://kubesandclouds.com/wp-content/uploads/2020/07/Screen-Shot-2020-07-22-at-12.26.39-AM.png" alt="" class="wp-image-1354" srcset="https://kubesandclouds.com/wp-content/uploads/2020/07/Screen-Shot-2020-07-22-at-12.26.39-AM.png 538w, https://kubesandclouds.com/wp-content/uploads/2020/07/Screen-Shot-2020-07-22-at-12.26.39-AM-300x95.png 300w" sizes="(max-width: 538px) 100vw, 538px" /></figure></div>
+
+
+
+<p>El siguiente extracto muestra el contenido de un fichero <strong>Pulumi.yaml</strong> . Para hacer que Pulumi funcione, es necesario definir al menos name y runtime. Bajo la ruta <em>template.config</em>, se pueden especificar valores obligatorios para que el stack pueda crearse.</p>
+
+
+
+<pre class="wp-block-prismatic-blocks"><code class="language-yaml">name: aws-py-eks
+runtime: python
+description: A minimal AWS Python EKS example cluster
+template:
+  config:
+    aws:region:
+      description: The AWS region to deploy into
+      default: us-east-2</code></pre>
+
+
+
+<hr class="wp-block-separator is-style-default"/>
+
+
+
+<h2>Desplegando el Stack🤖</h2>
+
+
+
+<p>Para probar Pulumi con diferentes proveedores de cloud, utilizaremos el <a href="https://github.com/pulumi/examples" target="_blank" rel="noopener">repositorio de ejemplos de Pulumi</a>. Clónalo en tu máquina utilizando git para poder empezar.</p>
+
+
+
+<pre class="wp-block-prismatic-blocks"><code class="language-bash">git clone https://github.com/pulumi/examples.git
+cd examples</code></pre>
+
+
+
+<hr class="wp-block-separator is-style-wide"/>
+
+
+
+<h3>AWS☁️🔶&nbsp;</h3>
+
+
+
+<p>Antes de desplegar el stack, necesitarás configurar tus credenciales de AWS, utilizando el AWS CLI (puedes descargarlo en <a href="https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2.html" target="_blank" rel="noopener">aquí</a>).Para ello, necesitarás un par de access key y secret key de AWS. Si no dispones de uno, puedes generarlo en la consola de IAM de AWS. Consulta<a href="https://docs.aws.amazon.com/general/latest/gr/aws-sec-cred-types.html#access-keys-and-secret-access-keys" target="_blank" rel="noopener">&nbsp;la documentación oficial</a>&nbsp;como referencia si lo necesitas.</p>
+
+
+
+<pre class="wp-block-prismatic-blocks"><code class="language-bash">aws configure</code></pre>
+
+
+
+<p>Ten en cuenta que el usuario al que se le asignen dichas claves de acceso debe tener permisos para crear la infraestructura. Para este ejemplo puedes utilizar la policy gestionada&nbsp;<strong>AdministratorAccess</strong>&nbsp;. Guarda bien el par de claves, y una vez que termines de probar estos ejemplos y este usuario no se vaya a utilizar de nuevo, elimínala, para evitar riesgos innecesarios.</p>
+
+
+
+<figure class="wp-block-image size-large"><img decoding="async" loading="lazy" width="1024" height="393" src="https://kubesandclouds.com/wp-content/uploads/2020/07/Screen-Shot-2020-07-07-at-3.06.05-PM-1024x393-1.png" alt="" class="wp-image-1336" srcset="https://kubesandclouds.com/wp-content/uploads/2020/07/Screen-Shot-2020-07-07-at-3.06.05-PM-1024x393-1.png 1024w, https://kubesandclouds.com/wp-content/uploads/2020/07/Screen-Shot-2020-07-07-at-3.06.05-PM-1024x393-1-300x115.png 300w, https://kubesandclouds.com/wp-content/uploads/2020/07/Screen-Shot-2020-07-07-at-3.06.05-PM-1024x393-1-768x295.png 768w" sizes="(max-width: 1024px) 100vw, 1024px" /></figure>
+
+
+
+<p>Para AWS, utilizaremos el <a href="https://github.com/pulumi/examples/tree/master/aws-py-eks" target="_blank" rel="noopener">ejemplo de EKS con Python</a>. Este ejemplo contiene tres ficheros con el código de Python: <strong>__main__.py</strong>, <strong>iam.py</strong> y<strong> vpc.py</strong>, en los que se define respectivamente, el clúster de EKS, sus roles y políticas de IAM asociados y los recursos de red necesarios para poder crear las instancias. El código que se muestra a continuación es el contenido de <strong>__main__.py</strong> , que define un clúster de EKS con dos workers. Tómate tu tiempo para inspeccionar los diferentes ficheros, y así poder tener una idea general del stack completo a desplegar.</p>
+
+
+
+<pre class="wp-block-prismatic-blocks"><code class="language-python">import iam
+import vpc
+import pulumi
+from pulumi_aws import eks
+
+## EKS Cluster
+
+eks_cluster = eks.Cluster(
+    &#039;eks-cluster&#039;,
+    role_arn=iam.eks_role.arn,
+    tags= {&#039;Name&#039;:&#039;pulumi-eks-cluster&#039;},
+    vpc_config = {
+        &#039;publicAccessCidrs&#039;: [&#039;0.0.0.0/0&#039;],
+        &#039;security_group_ids&#039;: [vpc.eks_security_group.id],
+        &#039;subnet_ids&#039;: vpc.subnet_ids,
+    }
+)
+
+eks_node_group = eks.NodeGroup(
+    &#039;eks-node-group&#039;,
+    cluster_name=eks_cluster.name,
+    node_group_name=&#039;pulumi-eks-nodegroup&#039;,
+    node_role_arn=iam.ec2_role.arn,
+    subnet_ids=vpc.subnet_ids,
+    tags={
+        &#039;Name&#039; : &#039;pulumi-cluster-nodeGroup&#039;
+    },
+    scaling_config = {
+        &#039;desired_size&#039;: 2,
+        &#039;max_size&#039;: 2,
+        &#039;min_size&#039;: 1,
+  },
+)
+
+pulumi.export(&#039;cluster-name&#039;, eks_cluster.name)</code></pre>
+
+
+
+<p>Puedes encontrar los ficheros para llevar a cabo el despliegue en el directorio <strong>aws-py-eks</strong> .</p>
+
+
+
+<pre class="wp-block-prismatic-blocks"><code class="language-bash">cd aws-py-eks/</code></pre>
+
+
+
+<p>Crea el virtual environment y actívalo. Una vez hecho esto, instala los paquetes especificados en<strong> requirements.txt</strong>.</p>
+
+
+
+<pre class="wp-block-prismatic-blocks"><code class="language-bash">virtualenv -p python3 venv
+source venv/bin/activate
+pip3 install -r requirements.txt</code></pre>
+
+
+
+<p>Una vez que toda la parte de Python esté lista, inicializa el stack. Si accedes a la consola de Pulumi tras hacerlo, puedes comprobar tu nuevo stack y sus tags.</p>
+
+
+
+<pre class="wp-block-prismatic-blocks"><code class="language-bash">pulumi stack init python-eks-testing</code></pre>
+
+
+
+<div class="wp-block-image"><figure class="aligncenter size-large"><img decoding="async" loading="lazy" width="1024" height="605" src="https://kubesandclouds.com/wp-content/uploads/2020/07/Screen-Shot-2020-07-28-at-9.19.10-AM-1024x605.png" alt="" class="wp-image-1387" srcset="https://kubesandclouds.com/wp-content/uploads/2020/07/Screen-Shot-2020-07-28-at-9.19.10-AM-1024x605.png 1024w, https://kubesandclouds.com/wp-content/uploads/2020/07/Screen-Shot-2020-07-28-at-9.19.10-AM-300x177.png 300w, https://kubesandclouds.com/wp-content/uploads/2020/07/Screen-Shot-2020-07-28-at-9.19.10-AM-768x454.png 768w, https://kubesandclouds.com/wp-content/uploads/2020/07/Screen-Shot-2020-07-28-at-9.19.10-AM.png 1509w" sizes="(max-width: 1024px) 100vw, 1024px" /></figure></div>
+
+
+
+<p>Selecciona la región de AWS en la que se desplegará el stack.</p>
+
+
+
+<pre class="wp-block-prismatic-blocks"><code class="language-bash">pulumi config set aws:region &lt;aws-region&gt;</code></pre>
+
+
+
+<p>Ejecuta el siguiente comando para que Pulumi genere el plan de despliegue. Si el plan tiene buena pinta, selecciona <em>yes</em> y espera hasta que el stack sea desplegado⌛.</p>
+
+
+
+<pre class="wp-block-prismatic-blocks"><code class="language-bash">pulumi up</code></pre>
+
+
+
+<div class="wp-block-image"><figure class="aligncenter size-large"><img decoding="async" loading="lazy" width="1024" height="706" src="https://kubesandclouds.com/wp-content/uploads/2020/07/Screen-Shot-2020-07-27-at-8.24.29-PM-1024x706.png" alt="" class="wp-image-1365" srcset="https://kubesandclouds.com/wp-content/uploads/2020/07/Screen-Shot-2020-07-27-at-8.24.29-PM-1024x706.png 1024w, https://kubesandclouds.com/wp-content/uploads/2020/07/Screen-Shot-2020-07-27-at-8.24.29-PM-300x207.png 300w, https://kubesandclouds.com/wp-content/uploads/2020/07/Screen-Shot-2020-07-27-at-8.24.29-PM-768x530.png 768w, https://kubesandclouds.com/wp-content/uploads/2020/07/Screen-Shot-2020-07-27-at-8.24.29-PM-1536x1059.png 1536w, https://kubesandclouds.com/wp-content/uploads/2020/07/Screen-Shot-2020-07-27-at-8.24.29-PM.png 1540w" sizes="(max-width: 1024px) 100vw, 1024px" /></figure></div>
+
+
+
+<p>Actualiza tu Kubeconfig local para poder acceder al nuevo clúster.</p>
+
+
+
+<pre class="wp-block-prismatic-blocks"><code class="language-bash">aws eks --region &lt;aws-region&gt; update-kubeconfig --name $(pulumi stack output cluster-name)</code></pre>
+
+
+
+<p>Y voilà, el clúster fue creado correctamente!</p>
+
+
+
+<figure class="wp-block-image size-large"><img decoding="async" loading="lazy" width="1024" height="146" src="https://kubesandclouds.com/wp-content/uploads/2020/07/Screen-Shot-2020-07-27-at-10.07.22-PM-1024x146.png" alt="" class="wp-image-1369" srcset="https://kubesandclouds.com/wp-content/uploads/2020/07/Screen-Shot-2020-07-27-at-10.07.22-PM-1024x146.png 1024w, https://kubesandclouds.com/wp-content/uploads/2020/07/Screen-Shot-2020-07-27-at-10.07.22-PM-300x43.png 300w, https://kubesandclouds.com/wp-content/uploads/2020/07/Screen-Shot-2020-07-27-at-10.07.22-PM-768x110.png 768w, https://kubesandclouds.com/wp-content/uploads/2020/07/Screen-Shot-2020-07-27-at-10.07.22-PM-1536x219.png 1536w, https://kubesandclouds.com/wp-content/uploads/2020/07/Screen-Shot-2020-07-27-at-10.07.22-PM-2048x292.png 2048w" sizes="(max-width: 1024px) 100vw, 1024px" /></figure>
+
+
+
+<p>Una vez que termines de jugar con el clúster, destruye la infraestructura y elimina el stack. Comprueba que los recursos a destruir coinciden con los creados anteriormente. Ejecutando el comando <em>deactivate</em>desactivará el virtual environment utilizado anteriormente.</p>
+
+
+
+<pre class="wp-block-prismatic-blocks"><code class="language-bash">pulumi destroy
+pulumi stack rm python-eks-testing
+deactivate</code></pre>
+
+
+
+<hr class="wp-block-separator is-style-wide"/>
+
+
+
+<h3>GCP☁️&nbsp;🌈</h3>
+
+
+
+<p>Al igual que en el ejemplo anterior, es necesario configurar las credenciales (en este caso de GCP) para que puedan ser utilizadas por Pulumi. Puedes utilizar el <a href="https://cloud.google.com/sdk/docs#install_the_latest_cloud_tools_version_cloudsdk_current_version" target="_blank" rel="noopener">gcloud CLI</a> para configurar las credenciales de acceso. Ejecutando los siguientes comandos establecerás las credenciales por defecto, el proyecto de GCP y te autenticarás utilizando el gcloud SDK.</p>
+
+
+
+<pre class="wp-block-prismatic-blocks"><code class="language-bash">gcloud auth login
+gcloud config set project &lt;project-name&gt;
+gcloud auth application-default login</code></pre>
+
+
+
+<p>El código que se muestra a continuación es el contenido en <strong>__main__.py</strong> que puede encontrarse dentro del repo de ejemplos <a href="https://github.com/pulumi/examples/tree/master/gcp-py-gke" target="_blank" rel="noopener">en esta ruta</a>. Este fichero de Python genera un clúster de GKE, el servicio de Kubernetes gestionado de GCP, y crea un despliegue canary de nginx. Para crearlo, genera un Kubeconfig (k8s_config) que permite a Pulumi autenticarse y acceder al clúster.</p>
+
+
+
+<pre class="wp-block-prismatic-blocks"><code class="language-python">from pulumi import Config, export, get_project, get_stack, Output, ResourceOptions
+from pulumi_gcp.config import project, zone
+from pulumi_gcp.container import Cluster, get_engine_versions
+from pulumi_kubernetes import Provider
+from pulumi_kubernetes.apps.v1 import Deployment
+from pulumi_kubernetes.core.v1 import Service
+from pulumi_random import RandomPassword
+
+config = Config(None)
+
+NODE_COUNT = config.get(&#039;node_count&#039;) or 3
+NODE_MACHINE_TYPE = config.get(&#039;node_machine_type&#039;) or &#039;n1-standard-1&#039;
+USERNAME = config.get(&#039;username&#039;) or &#039;admin&#039;
+PASSWORD = config.get_secret(&#039;password&#039;) or RandomPassword(&quot;password&quot;, length=20, special=True).result
+MASTER_VERSION = config.get(&#039;master_version&#039;)
+
+k8s_cluster = Cluster(&#039;gke-cluster&#039;,
+    initial_node_count=NODE_COUNT,
+    node_version=MASTER_VERSION,
+    min_master_version=MASTER_VERSION,
+    master_auth={ &#039;username&#039;: USERNAME, &#039;password&#039;: PASSWORD },
+    node_config={
+        &#039;machine_type&#039;: NODE_MACHINE_TYPE,
+        &#039;oauth_scopes&#039;: [
+            &#039;https://www.googleapis.com/auth/compute&#039;,
+            &#039;https://www.googleapis.com/auth/devstorage.read_only&#039;,
+            &#039;https://www.googleapis.com/auth/logging.write&#039;,
+            &#039;https://www.googleapis.com/auth/monitoring&#039;
+        ],
+    },
+)
+
+k8s_info = Output.all(k8s_cluster.name, k8s_cluster.endpoint, k8s_cluster.master_auth)
+k8s_config = k8s_info.apply(
+    lambda info: &quot;&quot;&quot;apiVersion: v1
+clusters:
+- cluster:
+    certificate-authority-data: {0}
+    server: https://{1}
+  name: {2}
+contexts:
+- context:
+    cluster: {2}
+    user: {2}
+  name: {2}
+current-context: {2}
+kind: Config
+preferences: {{}}
+users:
+- name: {2}
+  user:
+    auth-provider:
+      config:
+        cmd-args: config config-helper --format=json
+        cmd-path: gcloud
+        expiry-key: &#039;{{.credential.token_expiry}}&#039;
+        token-key: &#039;{{.credential.access_token}}&#039;
+      name: gcp
+&quot;&quot;&quot;.format(info[2][&#039;clusterCaCertificate&#039;], info[1], &#039;{0}_{1}_{2}&#039;.format(project, zone, info[0])))
+
+k8s_provider = Provider(&#039;gke_k8s&#039;, kubeconfig=k8s_config)
+
+labels = { &#039;app&#039;: &#039;canary-{0}-{1}&#039;.format(get_project(), get_stack()) }
+canary = Deployment(&#039;canary&#039;,
+    spec={
+        &#039;selector&#039;: { &#039;matchLabels&#039;: labels },
+        &#039;replicas&#039;: 1,
+        &#039;template&#039;: {
+            &#039;metadata&#039;: { &#039;labels&#039;: labels },
+            &#039;spec&#039;: { &#039;containers&#039;: [{ &#039;name&#039;: &#039;nginx&#039;, &#039;image&#039;: &#039;nginx&#039; }] },
+        },
+    }, __opts__=ResourceOptions(provider=k8s_provider)
+)
+
+ingress = Service(&#039;ingress&#039;,
+    spec={
+        &#039;type&#039;: &#039;LoadBalancer&#039;,
+        &#039;selector&#039;: labels,
+        &#039;ports&#039;: [{&#039;port&#039;: 80}],
+    }, __opts__=ResourceOptions(provider=k8s_provider)
+)
+
+export(&#039;kubeconfig&#039;, k8s_config)
+export(&#039;ingress_ip&#039;, Output.all(ingress.status[&#039;load_balancer&#039;][&#039;ingress&#039;][0][&#039;ip&#039;]))</code></pre>
+
+
+
+<p>Prepara el entorno de Python e inicializa el stack  tal y como hiciste en el ejemplo anterior.</p>
+
+
+
+<pre class="wp-block-prismatic-blocks"><code class="language-bash">cd ../gcp-py-gke
+virtualenv -p python3 venv
+source venv/bin/activate
+pip3 install -r requirements.txt
+pulumi stack init python-gke-testing</code></pre>
+
+
+
+<p>Este ejemplo emplea algunas variables a las que se les debe asignar un valor antes de generar el plan de despliegue. Para hacerlo, puedes utilizar el comando <em>pulumi config set </em>. <strong>Ten en cuenta que la contraseña que introduzcas debe tener al menos 16 caracteres</strong>!</p>
+
+
+
+<pre class="wp-block-prismatic-blocks"><code class="language-bash">pulumi config set gcp:project &lt;gcp-project&gt;
+pulumi config set gcp:zone &lt;gcp-zone&gt;
+pulumi config set password --secret &lt;cluster-password&gt;
+pulumi config set master_version &lt;master-version&gt;</code></pre>
+
+
+
+<p>Una vez que asignes valores a dichas variables, puedes generar el plan de despliegue y aceptarlo si todo va bien.</p>
+
+
+
+<pre class="wp-block-prismatic-blocks"><code class="language-bash"> pulumi up</code></pre>
+
+
+
+<p>Si accedes a la consola de Pulumi tras crear la infraestructura podrás ver los diferentes recursos que se crearon, así como los outputs generados y las variables que se definieron para el stack.</p>
+
+
+
+<figure class="wp-block-image size-large"><img decoding="async" loading="lazy" width="1024" height="298" src="https://kubesandclouds.com/wp-content/uploads/2020/07/Screen-Shot-2020-07-28-at-2.31.55-PM-1024x298.png" alt="" class="wp-image-1395" srcset="https://kubesandclouds.com/wp-content/uploads/2020/07/Screen-Shot-2020-07-28-at-2.31.55-PM-1024x298.png 1024w, https://kubesandclouds.com/wp-content/uploads/2020/07/Screen-Shot-2020-07-28-at-2.31.55-PM-300x87.png 300w, https://kubesandclouds.com/wp-content/uploads/2020/07/Screen-Shot-2020-07-28-at-2.31.55-PM-768x223.png 768w, https://kubesandclouds.com/wp-content/uploads/2020/07/Screen-Shot-2020-07-28-at-2.31.55-PM.png 1511w" sizes="(max-width: 1024px) 100vw, 1024px" /></figure>
+
+
+
+<p>El Kubeconfig que se crea en el código puede obtenerse como un output de Pulumi. Sin embargo, se trata de un output cifrado dentro del stack, por lo que es necesario utilizar el flag <em>&#8211;show-secrets</em> para poder obtenerlo en claro🔐.</p>
+
+
+
+<pre class="wp-block-prismatic-blocks"><code class="language-bash">pulumi stack output kubeconfig --show-secrets &gt; kubeconfig.yaml</code></pre>
+
+
+
+<p>Utilizando este Kubeconfig, podrás acceder al clúster utilizando <em>kubectl</em>y comprobar cómo el despliegue canary se encuentra presente.</p>
+
+
+
+<figure class="wp-block-image size-large"><img decoding="async" loading="lazy" width="913" height="237" src="https://kubesandclouds.com/wp-content/uploads/2020/07/Screen-Shot-2020-07-28-at-3.00.38-PM.png" alt="" class="wp-image-1399" srcset="https://kubesandclouds.com/wp-content/uploads/2020/07/Screen-Shot-2020-07-28-at-3.00.38-PM.png 913w, https://kubesandclouds.com/wp-content/uploads/2020/07/Screen-Shot-2020-07-28-at-3.00.38-PM-300x78.png 300w, https://kubesandclouds.com/wp-content/uploads/2020/07/Screen-Shot-2020-07-28-at-3.00.38-PM-768x199.png 768w" sizes="(max-width: 913px) 100vw, 913px" /></figure>
+
+
+
+<p>Al igual que en el ejemplo anterior, una vez que hayas terminado de probar el clúster, elimina los recursos, el stack de Pulumi y desactiva el virtual environment de Python.</p>
+
+
+
+<pre class="wp-block-prismatic-blocks"><code class="language-bash">pulumi destroy
+pulumi stack rm python-gke-testing
+deactivate</code></pre>
+
+
+
+<hr class="wp-block-separator is-style-wide"/>
+
+
+
+<h3>Azure☁️🔷</h3>
+
+
+
+<p>El repositorio de ejemplos de Pulumi incluye un <a href="https://github.com/pulumi/examples/tree/master/azure-py-aks" target="_blank" rel="noopener">ejemplo similar</a> a los anteriores pero utilizando el servicio de Kubernetes gestionado de Azure (AKS). No obstante, estoy seguro de que ya te has hecho una idea general de como utilizar Pulumi para desplegar clústers gestionados😉 . Por ello, si tienes interés en probarlo, puedes seguir las instrucciones que encontrarás en el propio repositorio y desplegar un clúster de AKS.</p>
+
+
+
+<hr class="wp-block-separator is-style-default"/>
+
+
+
+<h2>Pulumi y Kubernetes☸️</h2>
+
+
+
+<p>Por último, Pulumi puede interaccionar directamente con clústers de Kubernetes <br>(tanto gestionados como no gestionados) para desplegar aplicaciones y recursos. El siguiente código crea un <a href="https://github.com/pulumi/examples/tree/master/kubernetes-py-nginx" target="_blank" rel="noopener">deployment de nginx simple</a> en Kuberneres utilizando Python.</p>
+
+
+
+<pre class="wp-block-prismatic-blocks"><code class="language-python">import pulumi
+from pulumi_kubernetes.apps.v1 import Deployment
+
+config = pulumi.Config()
+nginxLabels = { &quot;app&quot;: &quot;nginx&quot; }
+nginxDeployment = Deployment(
+    &quot;nginx-deployment&quot;, 
+    spec={
+        &quot;selector&quot;: { &quot;matchLabels&quot;: nginxLabels },
+        &quot;replicas&quot;: 2 if config.get_int(&quot;replicas&quot;) is None else config.get_int(&quot;replicas&quot;),
+        &quot;template&quot;: {
+            &quot;metadata&quot;: { &quot;labels&quot;: nginxLabels },
+            &quot;spec&quot;: {
+                &quot;containers&quot;: [{
+                    &quot;name&quot;: &quot;nginx&quot;,
+                    &quot;image&quot;: &quot;nginx:1.7.9&quot;,
+                    &quot;ports&quot;: [{ &quot;containerPort&quot;: 80 }],
+                }],
+            },
+        },
+    })
+
+pulumi.export(&quot;nginx&quot;, nginxDeployment.metadata[&quot;name&quot;])</code></pre>
+
+
+
+<p>Para poder interaccionar con el clúster solo necesitarás establecer el valor de la variable <em>KUBECONFIG</em> con el path del fichero Kubeconfig del clúster que quieras usar. Una vez que lo hayas configurado, ejecuta los siguientes comandos para desplegar el stack.</p>
+
+
+
+<pre class="wp-block-prismatic-blocks"><code class="language-bash">cd ../kubernetes-py-nginx
+virtualenv -p python3 venv
+source venv/bin/activate
+pip3 install -r requirements.txt
+pulumi stack init python-k8s-testing
+pulumi up</code></pre>
+
+
+
+<div class="wp-block-image"><figure class="aligncenter size-large"><img decoding="async" loading="lazy" width="688" height="226" src="https://kubesandclouds.com/wp-content/uploads/2020/07/Screen-Shot-2020-07-28-at-4.23.19-PM.png" alt="" class="wp-image-1412" srcset="https://kubesandclouds.com/wp-content/uploads/2020/07/Screen-Shot-2020-07-28-at-4.23.19-PM.png 688w, https://kubesandclouds.com/wp-content/uploads/2020/07/Screen-Shot-2020-07-28-at-4.23.19-PM-300x99.png 300w" sizes="(max-width: 688px) 100vw, 688px" /></figure></div>
+
+
+
+<p>Si inspeccionas los pods y los despliegues dentro del clúster, verás que los recursos definidos en el fichero de Python han sido creados correctamente por Pulumi.</p>
+
+
+
+<div class="wp-block-image"><figure class="aligncenter size-large"><img decoding="async" loading="lazy" width="566" height="121" src="https://kubesandclouds.com/wp-content/uploads/2020/07/Screen-Shot-2020-07-28-at-4.24.09-PM.png" alt="" class="wp-image-1413" srcset="https://kubesandclouds.com/wp-content/uploads/2020/07/Screen-Shot-2020-07-28-at-4.24.09-PM.png 566w, https://kubesandclouds.com/wp-content/uploads/2020/07/Screen-Shot-2020-07-28-at-4.24.09-PM-300x64.png 300w" sizes="(max-width: 566px) 100vw, 566px" /></figure></div>
+
+
+
+<p>Haz limpieza una vez que hayas terminado de probar!</p>
+
+
+
+<pre class="wp-block-prismatic-blocks"><code class="language-bash">pulumi destroy
+pulumi stack rm python-k8s-testing
+deactivate</code></pre>
+
+
+
+<hr class="wp-block-separator is-style-default"/>
+
+
+
+<h2>Sigue aprendiendo👩‍💻👨‍💻</h2>
+
+
+
+<p>Si te ha gustado Pulumi, tómate tu tiempo para investigar dentro del <a href="https://github.com/pulumi/examples" target="_blank" rel="noopener">repositorio de ejemplos</a>, ya que encontrarás un montón de casos de uso interesantes. utilizando diferentes lenguajes de programación y diferentes proveedores de cloud. </p>
+
+
+
+<p>Algunos de los casos de uso más interesantes son:</p>
+
+
+
+<ul><li><a href="https://github.com/pulumi/examples/blob/master/kubernetes-ts-helm-wordpress/index.ts" target="_blank" rel="noopener">Desplegando con Helm con Typescript</a></li><li><a href="https://github.com/pulumi/examples/tree/master/azure-ts-serverless-url-shortener-global" target="_blank" rel="noopener">Acortador de URLs Serverless en Azure con Typescript</a> </li><li><a href="https://github.com/pulumi/examples/tree/master/gcp-py-serverless-raw" target="_blank" rel="noopener">Cloud functions en GCP con Python y Go</a></li><li><a href="https://github.com/pulumi/examples/tree/master/kubernetes-py-jenkins" target="_blank" rel="noopener">Desplegando un servidor de CI Jenkins en k8s con Python</a></li><li><a href="https://github.com/pulumi/examples/tree/master/gcp-ts-slackbot" target="_blank" rel="noopener">Desplegando un Slackbot en GCP con Typescript</a></li></ul>
+
+
+
+<p>Conviértete en un 'Políglota de la IaC', confía en mí, merece la pena😎!</p>
+
+
+
+<hr class="wp-block-separator is-style-wide"/>
+
+
+
+<hr class="wp-block-separator is-style-wide"/>
+
+
+
+<h2 class="has-vivid-cyan-blue-color has-text-color has-text-align-center">Otros Artículos</h2>
+
+
+            <div class="mgpd mp-display-gird mgpdg1 mgpdg1390947">
+                <style type="text/css">
+                                    </style>
+
+
+
+
+                <div class="mgpd-masonry">
+                    <div class="row" data-masonry='{"percentPosition": true }'>
+                                                        <div class="mgpd-masonry-item col-lg-4">
+                                    <div class="card mgpdg1-card mb-4">
+
+                                                                                                                                                                    <div class="card-body">
+                                                                                            <div class="mp-meta cat-list">
+                                                    <i class="icon-mp-folder-oe"></i> <a href="https://kubesandclouds.com/index.php/category/iac/">IaC</a>                                                </div>
+                                                                                        <h5 class="card-title"><a href="https://kubesandclouds.com/index.php/2022/01/04/karpenter-vs-cluster-autoscaler/?lang=es_es">Karpenter vs Cluster Autoscaler  ☸️ ⚒️</a></h5>
+                                                                                            <div class="mp-meta bottom-meta mb-2">
+                                                    <i class="icon-mp-clock"></i> enero 4, 2022                                                </div>
+                                                                                        <p class="card-text">
+                                                Getting the size of a Kubernetes cluster right is not an easy task, if the number of nodes provisioned is too high, resources might be&#8230;                                            </p>
+                                                                                            <a href="https://kubesandclouds.com/index.php/2022/01/04/karpenter-vs-cluster-autoscaler/?lang=es_es" class="btn btn-info">Read More</a>
+                                                                                    </div>
+                                                                                    <div class="card-footer">
+                                                <div class="mp-meta tag-list">
+                                                    <span class="tags-links" data-no-translation="" data-trp-gettext="">Tag: <a href="https://kubesandclouds.com/index.php/tag/autoscaler/" rel="tag">autoscaler</a>, <a href="https://kubesandclouds.com/index.php/tag/aws/" rel="tag">AWS</a>, <a href="https://kubesandclouds.com/index.php/tag/helm/" rel="tag">helm</a>, <a href="https://kubesandclouds.com/index.php/tag/kubernetes/" rel="tag">kubernetes</a>, <a href="https://kubesandclouds.com/index.php/tag/terraform/" rel="tag">terraform</a></span>                                                </div>
+                                            </div>
+                                                                            </div>
+                                </div>
+
+                                                            <div class="mgpd-masonry-item col-lg-4">
+                                    <div class="card mgpdg1-card mb-4">
+
+                                                                                                                                                                    <div class="card-body">
+                                                                                            <div class="mp-meta cat-list">
+                                                    <i class="icon-mp-folder-oe"></i> <a href="https://kubesandclouds.com/index.php/category/kubernetes/">kubernetes</a>                                                </div>
+                                                                                        <h5 class="card-title"><a href="https://kubesandclouds.com/index.php/2021/12/13/cluster-wide-registry-auth/?lang=es_es">Autenticación a nivel de clúster para tus registries privados 🌐🔐</a></h5>
+                                                                                            <div class="mp-meta bottom-meta mb-2">
+                                                    <i class="icon-mp-clock"></i> diciembre 13, 2021                                                </div>
+                                                                                        <p class="card-text">
+                                                Using private container image registries is a common practice in the industry, as it ensures applications packaged within the images are just accessible for users&#8230;                                            </p>
+                                                                                            <a href="https://kubesandclouds.com/index.php/2021/12/13/cluster-wide-registry-auth/?lang=es_es" class="btn btn-info">Read More</a>
+                                                                                    </div>
+                                                                                    <div class="card-footer">
+                                                <div class="mp-meta tag-list">
+                                                    <span class="tags-links" data-no-translation="" data-trp-gettext="">Tag: <a href="https://kubesandclouds.com/index.php/tag/docker/" rel="tag">docker</a>, <a href="https://kubesandclouds.com/index.php/tag/image/" rel="tag">image</a>, <a href="https://kubesandclouds.com/index.php/tag/k8s/" rel="tag">k8s</a>, <a href="https://kubesandclouds.com/index.php/tag/kubernetes/" rel="tag">kubernetes</a></span>                                                </div>
+                                            </div>
+                                                                            </div>
+                                </div>
+
+                                                            <div class="mgpd-masonry-item col-lg-4">
+                                    <div class="card mgpdg1-card mb-4">
+
+                                                                                                                                                                    <div class="card-body">
+                                                                                            <div class="mp-meta cat-list">
+                                                    <i class="icon-mp-folder-oe"></i> <a href="https://kubesandclouds.com/index.php/category/kubernetes/">kubernetes</a>                                                </div>
+                                                                                        <h5 class="card-title"><a href="https://kubesandclouds.com/index.php/2021/11/04/kaniko/?lang=es_es">Kaniko: construyendo imágenes sin Docker🐳🔫</a></h5>
+                                                                                            <div class="mp-meta bottom-meta mb-2">
+                                                    <i class="icon-mp-clock"></i> noviembre 4, 2021                                                </div>
+                                                                                        <p class="card-text">
+                                                Building container images is a pretty common stage within the modern CI flows, in which these images are the main artifact used to distribute and&#8230;                                            </p>
+                                                                                            <a href="https://kubesandclouds.com/index.php/2021/11/04/kaniko/?lang=es_es" class="btn btn-info">Read More</a>
+                                                                                    </div>
+                                                                                    <div class="card-footer">
+                                                <div class="mp-meta tag-list">
+                                                    <span class="tags-links" data-no-translation="" data-trp-gettext="">Tag: <a href="https://kubesandclouds.com/index.php/tag/cicd/" rel="tag">cicd</a>, <a href="https://kubesandclouds.com/index.php/tag/docker/" rel="tag">docker</a>, <a href="https://kubesandclouds.com/index.php/tag/kubernetes/" rel="tag">kubernetes</a></span>                                                </div>
+                                            </div>
+                                                                            </div>
+                                </div>
+
+                                                            <div class="mgpd-masonry-item col-lg-4">
+                                    <div class="card mgpdg1-card mb-4">
+
+                                                                                                                                                                    <div class="card-body">
+                                                                                            <div class="mp-meta cat-list">
+                                                    <i class="icon-mp-folder-oe"></i> <a href="https://kubesandclouds.com/index.php/category/uncategorized/">Uncategorized</a>                                                </div>
+                                                                                        <h5 class="card-title"><a href="https://kubesandclouds.com/index.php/2021/03/17/kubernetes-in-5-minutes/?lang=es_es">Kubernetes en 5 Minutos ⏱️☸️</a></h5>
+                                                                                            <div class="mp-meta bottom-meta mb-2">
+                                                    <i class="icon-mp-clock"></i> marzo 17, 2021                                                </div>
+                                                                                        <p class="card-text">
+                                                English https://www.youtube.com/watch?v=N8LDO9pHY8I Spanish https://www.youtube.com/watch?v=TC6VkqQ835U Other Articles                                            </p>
+                                                                                            <a href="https://kubesandclouds.com/index.php/2021/03/17/kubernetes-in-5-minutes/?lang=es_es" class="btn btn-info">Read More</a>
+                                                                                    </div>
+                                                                                    <div class="card-footer">
+                                                <div class="mp-meta tag-list">
+                                                    <span class="tags-links" data-no-translation="" data-trp-gettext="">Tag: <a href="https://kubesandclouds.com/index.php/tag/devops/" rel="tag">DevOps</a>, <a href="https://kubesandclouds.com/index.php/tag/kubernetes/" rel="tag">kubernetes</a></span>                                                </div>
+                                            </div>
+                                                                            </div>
+                                </div>
+
+                                                            <div class="mgpd-masonry-item col-lg-4">
+                                    <div class="card mgpdg1-card mb-4">
+
+                                                                                                                                                                    <div class="card-body">
+                                                                                            <div class="mp-meta cat-list">
+                                                    <i class="icon-mp-folder-oe"></i> <a href="https://kubesandclouds.com/index.php/category/uncategorized/">Uncategorized</a>                                                </div>
+                                                                                        <h5 class="card-title"><a href="https://kubesandclouds.com/index.php/2021/01/20/ksniff/?lang=es_es">Ksniff: capturando tráfico en Kubernetes 🕵️‍♂️📦</a></h5>
+                                                                                            <div class="mp-meta bottom-meta mb-2">
+                                                    <i class="icon-mp-clock"></i> enero 20, 2021                                                </div>
+                                                                                        <p class="card-text">
+                                                Troubleshooting containers in Kubernetes is a recurring topic that you may face regularly. Logging and monitoring tools come in really handy here as they help&#8230;                                            </p>
+                                                                                            <a href="https://kubesandclouds.com/index.php/2021/01/20/ksniff/?lang=es_es" class="btn btn-info">Read More</a>
+                                                                                    </div>
+                                                                                    <div class="card-footer">
+                                                <div class="mp-meta tag-list">
+                                                    <span class="tags-links" data-no-translation="" data-trp-gettext="">Tag: <a href="https://kubesandclouds.com/index.php/tag/devops/" rel="tag">DevOps</a>, <a href="https://kubesandclouds.com/index.php/tag/kubernetes/" rel="tag">kubernetes</a></span>                                                </div>
+                                            </div>
+                                                                            </div>
+                                </div>
+
+                                                            <div class="mgpd-masonry-item col-lg-4">
+                                    <div class="card mgpdg1-card mb-4">
+
+                                                                                                                                                                    <div class="card-body">
+                                                                                            <div class="mp-meta cat-list">
+                                                    <i class="icon-mp-folder-oe"></i> <a href="https://kubesandclouds.com/index.php/category/devops/">devops</a>                                                </div>
+                                                                                        <h5 class="card-title"><a href="https://kubesandclouds.com/index.php/2020/12/16/helmfile/?lang=es_es">Helmfile: superpoderes para Helm ☸️🔧</a></h5>
+                                                                                            <div class="mp-meta bottom-meta mb-2">
+                                                    <i class="icon-mp-clock"></i> diciembre 16, 2020                                                </div>
+                                                                                        <p class="card-text">
+                                                Helm is definitely one the most used tools in the Kubernetes world. It comes in pretty handy as it is a deployment tool, a package&#8230;                                            </p>
+                                                                                            <a href="https://kubesandclouds.com/index.php/2020/12/16/helmfile/?lang=es_es" class="btn btn-info">Read More</a>
+                                                                                    </div>
+                                                                                    <div class="card-footer">
+                                                <div class="mp-meta tag-list">
+                                                    <span class="tags-links" data-no-translation="" data-trp-gettext="">Tag: <a href="https://kubesandclouds.com/index.php/tag/helm/" rel="tag">helm</a>, <a href="https://kubesandclouds.com/index.php/tag/kubernetes/" rel="tag">kubernetes</a></span>                                                </div>
+                                            </div>
+                                                                            </div>
+                                </div>
+
+                                                            <div class="mgpd-masonry-item col-lg-4">
+                                    <div class="card mgpdg1-card mb-4">
+
+                                                                                                                                                                    <div class="card-body">
+                                                                                            <div class="mp-meta cat-list">
+                                                    <i class="icon-mp-folder-oe"></i> <a href="https://kubesandclouds.com/index.php/category/iac/">IaC</a>                                                </div>
+                                                                                        <h5 class="card-title"><a href="https://kubesandclouds.com/index.php/2020/11/18/terraboard/?lang=es_es">Terraboard: Gestionando estados de Terrafom visualmente🌍🖥</a></h5>
+                                                                                            <div class="mp-meta bottom-meta mb-2">
+                                                    <i class="icon-mp-clock"></i> noviembre 18, 2020                                                </div>
+                                                                                        <p class="card-text">
+                                                Dealing with multiple terraform remote states can become a rather complex task. Besides, querying resources with terraform CLI isn&#8217;t very visual 😅. In this post&#8230;                                            </p>
+                                                                                            <a href="https://kubesandclouds.com/index.php/2020/11/18/terraboard/?lang=es_es" class="btn btn-info">Read More</a>
+                                                                                    </div>
+                                                                                    <div class="card-footer">
+                                                <div class="mp-meta tag-list">
+                                                    <span class="tags-links" data-no-translation="" data-trp-gettext="">Tag: <a href="https://kubesandclouds.com/index.php/tag/aws/" rel="tag">AWS</a>, <a href="https://kubesandclouds.com/index.php/tag/iac/" rel="tag">IaC</a>, <a href="https://kubesandclouds.com/index.php/tag/terraform/" rel="tag">terraform</a></span>                                                </div>
+                                            </div>
+                                                                            </div>
+                                </div>
+
+                                                            <div class="mgpd-masonry-item col-lg-4">
+                                    <div class="card mgpdg1-card mb-4">
+
+                                                                                                                                                                    <div class="card-body">
+                                                                                            <div class="mp-meta cat-list">
+                                                    <i class="icon-mp-folder-oe"></i> <a href="https://kubesandclouds.com/index.php/category/gitops/">gitops</a>                                                </div>
+                                                                                        <h5 class="card-title"><a href="https://kubesandclouds.com/index.php/2020/10/06/eksctl-the-eks-cli/?lang=es_es">eksctl: el CLI para EKS ☸️ 🎮</a></h5>
+                                                                                            <div class="mp-meta bottom-meta mb-2">
+                                                    <i class="icon-mp-clock"></i> octubre 6, 2020                                                </div>
+                                                                                        <p class="card-text">
+                                                Let&#8217;s be honest, managing Kubernetes clusters is not an easy task, even when it comes to managed Kubernetes services. Controlling the overall infrastructure, performing cluster&#8230;                                            </p>
+                                                                                            <a href="https://kubesandclouds.com/index.php/2020/10/06/eksctl-the-eks-cli/?lang=es_es" class="btn btn-info">Read More</a>
+                                                                                    </div>
+                                                                                    <div class="card-footer">
+                                                <div class="mp-meta tag-list">
+                                                    <span class="tags-links" data-no-translation="" data-trp-gettext="">Tag: <a href="https://kubesandclouds.com/index.php/tag/aws/" rel="tag">AWS</a>, <a href="https://kubesandclouds.com/index.php/tag/devops/" rel="tag">DevOps</a>, <a href="https://kubesandclouds.com/index.php/tag/kubernetes/" rel="tag">kubernetes</a></span>                                                </div>
+                                            </div>
+                                                                            </div>
+                                </div>
+
+                                                            <div class="mgpd-masonry-item col-lg-4">
+                                    <div class="card mgpdg1-card mb-4">
+
+                                                                                                                                                                    <div class="card-body">
+                                                                                            <div class="mp-meta cat-list">
+                                                    <i class="icon-mp-folder-oe"></i> <a href="https://kubesandclouds.com/index.php/category/kubernetes/">kubernetes</a>                                                </div>
+                                                                                        <h5 class="card-title"><a href="https://kubesandclouds.com/index.php/2020/09/01/werf-gitops/?lang=es_es">Werf: GitOps totalmente customizable 🛥️⚙️</a></h5>
+                                                                                            <div class="mp-meta bottom-meta mb-2">
+                                                    <i class="icon-mp-clock"></i> septiembre 1, 2020                                                </div>
+                                                                                        <p class="card-text">
+                                                This is the third post of a collection of GitOps tools articles. In this post, a continuous integration and continuous deployment tool for Kubernetes is&#8230;                                            </p>
+                                                                                            <a href="https://kubesandclouds.com/index.php/2020/09/01/werf-gitops/?lang=es_es" class="btn btn-info">Read More</a>
+                                                                                    </div>
+                                                                                    <div class="card-footer">
+                                                <div class="mp-meta tag-list">
+                                                    <span class="tags-links" data-no-translation="" data-trp-gettext="">Tag: <a href="https://kubesandclouds.com/index.php/tag/devops/" rel="tag">DevOps</a>, <a href="https://kubesandclouds.com/index.php/tag/gitops/" rel="tag">gitops</a>, <a href="https://kubesandclouds.com/index.php/tag/kubernetes/" rel="tag">kubernetes</a></span>                                                </div>
+                                            </div>
+                                                                            </div>
+                                </div>
+
+                                                </div>
+                </div>
+                            </div>
+
+
+
+	</div><!-- .entry-content -->
+
+	<footer class="entry-footer">
+		<span class="cat-links"><i class="fas fa-folder-open"></i>Posted in <a href="https://kubesandclouds.com/index.php/category/aws/" rel="category tag">aws</a>, <a href="https://kubesandclouds.com/index.php/category/azure/" rel="category tag">azure</a>, <a href="https://kubesandclouds.com/index.php/category/devops/" rel="category tag">devops</a>, <a href="https://kubesandclouds.com/index.php/category/gcp/" rel="category tag">gcp</a>, <a href="https://kubesandclouds.com/index.php/category/iac/" rel="category tag">IaC</a>, <a href="https://kubesandclouds.com/index.php/category/kubernetes/" rel="category tag">kubernetes</a></span><span class="tags-links"><i class="fas fa-tags"></i>Tagged <a href="https://kubesandclouds.com/index.php/tag/aws/" rel="tag">AWS</a>, <a href="https://kubesandclouds.com/index.php/tag/azure/" rel="tag">Azure</a>, <a href="https://kubesandclouds.com/index.php/tag/gcp/" rel="tag">GCP</a>, <a href="https://kubesandclouds.com/index.php/tag/iac/" rel="tag">IaC</a>, <a href="https://kubesandclouds.com/index.php/tag/kubernetes/" rel="tag">kubernetes</a></span>	</footer><!-- .entry-footer -->
+</article><!-- #post-1073 -->
+
+	<nav class="navigation post-navigation" aria-label="Entradas" data-no-translation-aria-label="">
+		<h2 class="screen-reader-text" data-no-translation="" data-trp-gettext="">Navegación de entradas</h2>
+		<div class="nav-links"><div class="nav-previous"><a href="https://kubesandclouds.com/index.php/2020/07/13/aws-cdk-dev-like-iac/?lang=es_es" rel="prev">AWS CDK: IaC 'a lo Developer' 🖥️🏗️</a></div><div class="nav-next"><a href="https://kubesandclouds.com/index.php/2020/09/01/werf-gitops/?lang=es_es" rel="next">Werf: GitOps totalmente customizable 🛥️⚙️</a></div></div>
+	</nav>
+<div id="comments" class="comments-area">
+
+		<div id="respond" class="comment-respond">
+		<h3 id="reply-title" class="comment-reply-title">Deja una respuesta <small><a rel="nofollow" id="cancel-comment-reply-link" href="/index.php/2020/07/28/pulumi-mp-ml-iac/?lang=es_es#respond" style="display:none;" data-no-translation="" data-trp-gettext="">Cancelar la respuesta</a></small></h3><p class="must-log-in" data-no-translation="" data-trp-gettext="">Lo siento, debes estar <a href="https://kubesandclouds.com/wp-login.php?redirect_to=https%3A%2F%2Fkubesandclouds.com%2Findex.php%2F2020%2F07%2F28%2Fpulumi-mp-ml-iac%2F%3Flang%3Des_es">conectado</a> para publicar un comentario.</p>	</div><!-- #respond -->
+	
+</div><!-- #comments -->
+
+		</main><!-- #main -->
+	</div><!-- #primary -->
+
+
+<aside id="secondary" class="widget-area">
+	<section id="search-3" class="widget widget_search"><h2 class="widget-title">Buscar</h2><form role="search" method="get" class="search-form" action="https://kubesandclouds.com/?lang=es_es" data-trp-original-action="https://kubesandclouds.com/?lang=es_es">
+				<label>
+					<span class="screen-reader-text" data-no-translation="" data-trp-gettext="">Buscar:</span>
+					<input type="search" class="search-field" placeholder="Buscar …" value="" name="s" data-no-translation-placeholder="" />
+				</label>
+				<input type="submit" class="search-submit" value="Buscar" data-no-translation-value="" />
+			<input type="hidden" name="trp-form-language" value="es_es"/><input type="hidden" name="lang" value="es_es"/></form></section><section id="custom_html-7" class="widget_text widget widget_custom_html"><div class="textwidget custom-html-widget"><style>.bmc-button img{height: 34px !important;width: 35px !important;margin-bottom: 1px !important;box-shadow: none !important;border: none !important;vertical-align: middle !important; }.bmc-button{padding: 7px 15px 7px 10px !important;line-height: 35px !important;height:51px !important;text-decoration: none !important;display:block !important;color:#ffffff !important;background-color:#5F7FFF !important;border-radius: 8px !important;border: 1px solid transparent !important;font-size: 24px !important;letter-spacing:0.6px !important;box-shadow: 0px 1px 2px rgba(190, 190, 190, 0.5) !important;-webkit-box-shadow: 0px 1px 2px 2px rgba(190, 190, 190, 0.5) !important;margin: 0 auto !important;font-family:'Cookie', cursive !important;-webkit-box-sizing: border-box !important;box-sizing: border-box !important;}.bmc-button:hover, .bmc-button:active, .bmc-button:focus {-webkit-box-shadow: 0px 1px 2px 2px rgba(190, 190, 190, 0.5) !important;text-decoration: none !important;box-shadow: 0px 1px 2px 2px rgba(190, 190, 190, 0.5) !important;opacity: 0.85 !important;color:#ffffff !important;}</style><link href="https://fonts.googleapis.com/css?family=Cookie" rel="stylesheet"><a class="bmc-button" target="_blank" href="https://www.buymeacoffee.com/mifonpe" rel="noopener">🍺<span style="margin-left:20px;font-size:24px !important;">Buy me a beer</span></a></div></section><section id="text-8" class="widget widget_text"><h2 class="widget-title">Links &amp; Recursos</h2>			<div class="textwidget"><ul>
+<li><a href="https://kubernetes.io/">☸️ </a><a href="https://kubernetes.io/">Kubernetes</a> <a href="https://kubernetes.io/">☸️</a></li>
+<li>📦<a href="https://helm.sh/">Helm</a>📦</li>
+<li><a href="https://kubernetes.io/">☸️</a>📊 <a href="https://dok.community/">Data on Kubernetes</a> 📊<a href="https://kubernetes.io/">☸️</a></li>
+<li><a href="https://kubernetes.io/">☸️ </a><a href="https://github.com/mifonpe/k8sbasics">Kubernetes playground </a><a href="https://kubernetes.io/">☸️</a></li>
+<li>📦<a href="https://github.com/mifonpe/helmbasics">Helm playground</a>📦</li>
+<li>⚙️<a href="https://github.com/mifonpe/ami-basics">Packer examples</a>⚙️</li>
+<li>🖥️<a href="https://kubernetes.io/docs/setup/learning-environment/minikube/">Minikube</a>🖥️</li>
+<li>☁️🇪🇺<a href="https://www.europeclouds.com/">EuropeClouds</a>🇪🇺☁️</li>
+<li>☁️🇪🇸<a href="https://www.spainclouds.com/">SpainClouds</a>🇪🇸☁️</li>
+<li>🐯<a href="https://www.katacoda.com/courses/kubernetes/playground">Katacoda</a>🐯</li>
+<li>🏗️<a href="https://kubernetes-kops.netlify.app/">Kops</a>🏗️</li>
+<li>🔴<a href="https://www.openshift.com/learn/courses/playground/">Openshift 4 playground</a>🔴</li>
+<li>💻<a href="https://github.com/aws-samples/aws-cdk-examples">AWS CDK Examples</a>💻</li>
+<li><a href="https://github.com/pulumi/examples">🦆</a><a href="https://github.com/pulumi/examples">Pulumi Examples🦆</a></li>
+</ul>
+</div>
+		</section></aside><!-- #secondary -->
+
+	</div><!-- #content -->
+        <div class="footer-widget-area"> 
+        <div class="baby-container widget-footer"> 
+                    </div>
+    </div>
+    	<footer id="colophon" class="site-footer footer-display">
+		<div class="baby-container site-info">
+			<p class="footer-copyright">&copy;
+				2023				<a href="https://kubesandclouds.com/?lang=es_es">Kubes&amp;Clouds</a>
+				<span class="sep"> | </span>
+					<a href="https://www.linkedin.com/in/miguel-fontanilla-14114710b">Miguel Fontanilla</a>
+				
+		</div><!-- .site-info -->
+	</footer><!-- #colophon -->
+</div><!-- #page -->
+
+<template id="tp-language" data-tp-language="es_ES"></template><!--googleoff: all--><div id="cookie-law-info-bar" data-nosnippet="true"><h5 class="cli_messagebar_head">Want some cookies? 🍪</h5><span><div class="cli-bar-container cli-style-v2"><div class="cli-bar-message">We use cookies on our website to give you the most relevant experience by remembering your preferences and repeat visits. By clicking “Accept”, you consent to the use of ALL the cookies.</div><div class="cli-bar-btn_container"><a role='button' class="cli_settings_button" style="margin:0px 10px 0px 5px">Cookie settings</a><a role='button' data-cli_action="accept" id="cookie_action_close_header" class="medium cli-plugin-button cli-plugin-main-button cookie_action_close_header cli_action_button wt-cli-accept-btn" data-no-translation="" data-trp-gettext="">ACCEPT</a></div></div></span></div><div id="cookie-law-info-again" data-nosnippet="true"><span id="cookie_hdr_showagain">Privacy &amp; Cookies Policy</span></div><div class="cli-modal" data-nosnippet="true" id="cliSettingsPopup" tabindex="-1" role="dialog" aria-labelledby="cliSettingsPopup" aria-hidden="true">
+  <div class="cli-modal-dialog" role="document">
+	<div class="cli-modal-content cli-bar-popup">
+		  <button type="button" class="cli-modal-close" id="cliModalClose">
+			<svg class="" viewbox="0 0 24 24"><path d="M19 6.41l-1.41-1.41-5.59 5.59-5.59-5.59-1.41 1.41 5.59 5.59-5.59 5.59 1.41 1.41 5.59-5.59 5.59 5.59 1.41-1.41-5.59-5.59z"></path><path d="M0 0h24v24h-24z" fill="none"></path></svg>
+			<span class="wt-cli-sr-only" data-no-translation="" data-trp-gettext="">Cerrar</span>
+		  </button>
+		  <div class="cli-modal-body">
+			<div class="cli-container-fluid cli-tab-container">
+	<div class="cli-row">
+		<div class="cli-col-12 cli-align-items-stretch cli-px-0">
+			<div class="cli-privacy-overview">
+				<h4>Privacy Overview</h4>				<div class="cli-privacy-content">
+					<div class="cli-privacy-content-text">This website uses cookies to improve your experience while you navigate through the website. Out of these cookies, the cookies that are categorized as necessary are stored on your browser as they are essential for the working of basic functionalities of the website. We also use third-party cookies that help us analyze and understand how you use this website. These cookies will be stored in your browser only with your consent. You also have the option to opt-out of these cookies. But opting out of some of these cookies may have an effect on your browsing experience.</div>
+				</div>
+				<a class="cli-privacy-readmore" aria-label="Mostrar más" role="button" data-readmore-text="Mostrar más" data-readless-text="Mostrar menos" data-no-translation-aria-label="" data-no-translation-data-readmore-text="" data-no-translation-data-readless-text=""></a>			</div>
+		</div>
+		<div class="cli-col-12 cli-align-items-stretch cli-px-0 cli-tab-section-container">
+												<div class="cli-tab-section">
+						<div class="cli-tab-header">
+							<a role="button" tabindex="0" class="cli-nav-link cli-settings-mobile" data-target="necessary" data-toggle="cli-toggle-tab">
+								Necessary							</a>
+															<div class="wt-cli-necessary-checkbox">
+									<input type="checkbox" class="cli-user-preference-checkbox"  id="wt-cli-checkbox-necessary" data-id="checkbox-necessary" checked="checked"  />
+									<label class="form-check-label" for="wt-cli-checkbox-necessary">Necessary</label>
+								</div>
+								<span class="cli-necessary-caption" data-no-translation="" data-trp-gettext="">Siempre activado</span>
+													</div>
+						<div class="cli-tab-content">
+							<div class="cli-tab-pane cli-fade" data-id="necessary">
+								<div class="wt-cli-cookie-description">
+									Necessary cookies are absolutely essential for the website to function properly. This category only includes cookies that ensures basic functionalities and security features of the website. These cookies do not store any personal information.								</div>
+							</div>
+						</div>
+					</div>
+																	<div class="cli-tab-section">
+						<div class="cli-tab-header">
+							<a role="button" tabindex="0" class="cli-nav-link cli-settings-mobile" data-target="non-necessary" data-toggle="cli-toggle-tab">
+								Non-necessary							</a>
+															<div class="cli-switch">
+									<input type="checkbox" id="wt-cli-checkbox-non-necessary" class="cli-user-preference-checkbox"  data-id="checkbox-non-necessary" checked='checked' />
+									<label for="wt-cli-checkbox-non-necessary" class="cli-slider" data-cli-enable="Activado" data-cli-disable="Desactivado" data-no-translation-data-cli-enable="" data-no-translation-data-cli-disable=""><span class="wt-cli-sr-only">Non-necessary</span></label>
+								</div>
+													</div>
+						<div class="cli-tab-content">
+							<div class="cli-tab-pane cli-fade" data-id="non-necessary">
+								<div class="wt-cli-cookie-description">
+									Any cookies that may not be particularly necessary for the website to function and is used specifically to collect user personal data via analytics, ads, other embedded contents are termed as non-necessary cookies. It is mandatory to procure user consent prior to running these cookies on your website.								</div>
+							</div>
+						</div>
+					</div>
+										</div>
+	</div>
+</div>
+		  </div>
+		  <div class="cli-modal-footer">
+			<div class="wt-cli-element cli-container-fluid cli-tab-container">
+				<div class="cli-row">
+					<div class="cli-col-12 cli-align-items-stretch cli-px-0">
+						<div class="cli-tab-footer wt-cli-privacy-overview-actions">
+						
+															<a id="wt-cli-privacy-save-btn" role="button" tabindex="0" data-cli-action="accept" class="wt-cli-privacy-btn cli_setting_save_button wt-cli-privacy-accept-btn cli-btn" data-no-translation="" data-trp-gettext="">GUARDAR Y ACEPTAR</a>
+													</div>
+						
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+  </div>
+</div>
+<div class="cli-modal-backdrop cli-fade cli-settings-overlay"></div>
+<div class="cli-modal-backdrop cli-fade cli-popupbar-overlay"></div>
+<!--googleon: all-->		 <div class="preloader-plus"> 			<div class="prog-bar-wrapper">
+				<div class="prog-bar-bg"></div>
+				<div class="prog-bar"></div>
+			</div> 			 <div class="preloader-content">   	 					<img class="preloader-custom-img" src="https://kubesandclouds.com/wp-content/uploads/2020/09/inverted-e1600211415828.png" /> 
+			 </div>
+		 </div> <div class="mobmenu-overlay"></div><div class="mob-menu-header-holder mobmenu"  data-menu-display="mob-menu-slideout-over" data-open-icon="down-open" data-close-icon="up-open"><div  class="mobmenul-container"><a href="#" class="mobmenu-left-bt mobmenu-trigger-action" data-panel-target="mobmenu-left-panel" aria-label="Left Menu Button" data-no-translation-aria-label=""><i class="mob-icon-menu mob-menu-icon"></i><i class="mob-icon-cancel-1 mob-cancel-button"></i></a></div><div class="mob-menu-logo-holder"><a href="https://kubesandclouds.com?lang=es_es" class="headertext"><span>Kubes&amp;Clouds</span></a></div><div class="mobmenur-container"></div></div>
+		<div class="mobmenu-left-alignment mobmenu-panel mobmenu-left-panel">
+		<a href="#" class="mobmenu-left-bt" aria-label="Left Menu Button" data-no-translation-aria-label=""><i class="mob-icon-cancel-1 mob-cancel-button"></i></a>
+
+		<div class="mobmenu-content">
+		<div class="menu-top-menu-container"><ul id="mobmenuleft" class="wp-mobile-menu" role="menubar" aria-label="Main navigation for mobile devices" data-no-translation-aria-label=""><li role="none"  class="menu-item menu-item-type-custom menu-item-object-custom menu-item-40"><a href="https://kubesandclouds.com?lang=es_es" role="menuitem" class="">Home</a></li><li role="none"  class="menu-item menu-item-type-post_type menu-item-object-page menu-item-41"><a href="https://kubesandclouds.com/index.php/about/?lang=es_es" role="menuitem" class="">Sobre mí</a></li><li role="none"  class="menu-item menu-item-type-post_type menu-item-object-page current_page_parent menu-item-42"><a href="https://kubesandclouds.com/index.php/blog/?lang=es_es" role="menuitem" class="">Posts</a></li><li role="none"  class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2425"><a href="https://kubesandclouds.com/index.php/contact/?lang=es_es" role="menuitem" class="">Talks &#038; Webinars</a></li><li role="none"  class="trp-language-switcher-container menu-item menu-item-type-post_type menu-item-object-language_switcher current-language-menu-item menu-item-2426"><a href="https://kubesandclouds.com/index.php/2020/07/28/pulumi-mp-ml-iac/?lang=es_es" role="menuitem" class=""><span data-no-translation><img class="trp-flag-image" src="https://kubesandclouds.com/wp-content/plugins/translatepress-multilingual/assets/images/flags/en_GB.png" width="18" height="12" alt="en_GB" title="English (UK)"></span></a></li><li role="none"  class="trp-language-switcher-container menu-item menu-item-type-post_type menu-item-object-language_switcher current-language-menu-item menu-item-2427"><a href="https://kubesandclouds.com/index.php/2020/07/28/pulumi-mp-ml-iac/?lang=es_es" role="menuitem" class=""><span data-no-translation><img class="trp-flag-image" src="https://kubesandclouds.com/wp-content/plugins/translatepress-multilingual/assets/images/flags/es_ES.png" width="18" height="12" alt="es_ES" title="Español"></span></a></li></ul></div>
+		</div><div class="mob-menu-left-bg-holder"></div></div>
+
+		<script type='text/javascript' src='https://kubesandclouds.com/wp-includes/js/imagesloaded.min.js?ver=4.1.4' id='imagesloaded-js'></script>
+<script type='text/javascript' src='https://kubesandclouds.com/wp-includes/js/masonry.min.js?ver=4.2.2' id='masonry-js'></script>
+<script type='text/javascript' src='https://kubesandclouds.com/wp-content/plugins/magical-posts-display/assets/js/venobox.min.js?ver=1.0.0' id='venobox-js-js'></script>
+<script type='text/javascript' src='https://kubesandclouds.com/wp-content/plugins/magical-posts-display/assets/js/main.js?ver=1.2.16' id='mpd-main-js'></script>
+<script type='text/javascript' src='https://kubesandclouds.com/wp-content/plugins/prismatic/lib/prism/js/prism-core.js?ver=3.2.2' id='prismatic-prism-js'></script>
+<script type='text/javascript' src='https://kubesandclouds.com/wp-content/plugins/prismatic/lib/prism/js/plugin-toolbar.js?ver=3.2.2' id='prismatic-prism-toolbar-js'></script>
+<script type='text/javascript' src='https://kubesandclouds.com/wp-content/plugins/prismatic/lib/prism/js/plugin-line-highlight.js?ver=3.2.2' id='prismatic-prism-line-highlight-js'></script>
+<script type='text/javascript' src='https://kubesandclouds.com/wp-content/plugins/prismatic/lib/prism/js/plugin-copy-clipboard.js?ver=3.2.2' id='prismatic-copy-clipboard-js'></script>
+<script type='text/javascript' src='https://kubesandclouds.com/wp-content/plugins/prismatic/lib/prism/js/lang-bash.js?ver=3.2.2' id='prismatic-prism-bash-js'></script>
+<script type='text/javascript' src='https://kubesandclouds.com/wp-content/plugins/prismatic/lib/prism/js/lang-python.js?ver=3.2.2' id='prismatic-prism-python-js'></script>
+<script type='text/javascript' src='https://kubesandclouds.com/wp-content/plugins/prismatic/lib/prism/js/lang-yaml.js?ver=3.2.2' id='prismatic-prism-yaml-js'></script>
+<script type='text/javascript' src='https://kubesandclouds.com/wp-content/themes/x-blog/assets/js/skip-link-focus-fix.js?ver=1.3.11' id='xblog-skip-link-focus-fix-js'></script>
+<script type='text/javascript' src='https://kubesandclouds.com/wp-content/themes/x-blog/assets/js/jquery.slicknav.js?ver=20151215' id='slicknav-js'></script>
+<script type='text/javascript' src='https://kubesandclouds.com/wp-content/themes/x-blog/assets/js/main.js?ver=1.3.11' id='xblog-main-js'></script>
+<script type='text/javascript' src='https://kubesandclouds.com/wp-includes/js/comment-reply.min.js?ver=6.1.1' id='comment-reply-js'></script>
+
+</body>
+</html>
