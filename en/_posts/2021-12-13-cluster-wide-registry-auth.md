@@ -26,14 +26,14 @@ The authentication process for image registries is pretty straightforward when u
 
 When we want to deploy images from private container registries in Kubernetes, first we need to provide the credentials so that the container runtime running in the node can actually authenticate before pulling them. The credentials are normally stored as a Kubernetes secret of type _docker-registry_, which stores the json-formatted authentication parameters in a base64 string.
 
-```bash
+{% highlight bash %}
 kubectl create secret docker-registry mysecret \
   -n <your-namespace> \
   --docker-server=<your-registry-server> \
   --docker-username=<your-name> \
   --docker-password=<your-password> \
   --docker-email=<your-email>
-```
+{% endhighlight %}
 
 These credentials can be then used in two ways:
 
