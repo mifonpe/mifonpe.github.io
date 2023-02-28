@@ -6,7 +6,7 @@ tags: [kubernetes, cloud, autoscaler]
 #gh-repo: daattali/beautiful-jekyll
 #gh-badge: [star, fork, follow]
 comments: true
-lang: en
+lang: es
 lang-ref: karpenter
 ---
 

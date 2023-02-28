@@ -4,7 +4,7 @@ title: Cluster-wide registry authentication 🌐🔐
 subtitle: 
 tags: [kubernetes, docker, authorization]
 comments: true
-lang: en
+lang: es
 lang-ref: cluster-auth
 ---
 
