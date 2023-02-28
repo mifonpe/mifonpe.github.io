@@ -7,19 +7,18 @@ categories:
 tags: 
   - "devops"
   - "kubernetes"
-lang: en
+lang: es
 lang-ref: k8s-5m
 ---
 
-### English
+### Inglés
 
 https://www.youtube.com/watch?v=N8LDO9pHY8I
 
 * * *
 
-### Spanish
+### Español
 
 https://www.youtube.com/watch?v=TC6VkqQ835U
 
 * * *
-
