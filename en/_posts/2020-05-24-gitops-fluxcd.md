@@ -4,6 +4,8 @@ date: "2020-05-24"
 tags: 
   - "gitops"
   - "kubernetes"
+lang: en
+lang-ref: fluxcd
 ---
 
 ![](images/flux-horizontal-color.png)

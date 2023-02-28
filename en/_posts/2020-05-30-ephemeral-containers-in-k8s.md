@@ -7,6 +7,8 @@ categories:
 tags: 
   - "devops"
   - "kubernetes"
+lang: en
+lang-ref: ephemeral
 ---
 
 ![](images/excelentes-utilidades-para-los-containers.jpg)

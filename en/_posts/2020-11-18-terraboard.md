@@ -8,6 +8,8 @@ tags:
   - "aws"
   - "iac"
   - "terraform"
+lang: en
+lang-ref: terraboard
 ---
 
 Dealing with multiple terraform remote states can become a rather complex task. Besides, querying resources with terraform CLI isn't very visual 😅. In this post we will present [Terraboard](https://camptocamp.github.io/terraboard/), an open source tool developed by [Camptocamp](https://www.camptocamp.com/en) that solves these issues.

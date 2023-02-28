@@ -9,6 +9,8 @@ tags:
   - "aws"
   - "devops"
   - "kubernetes"
+lang: en
+lang-ref: eksctl
 ---
 
 Let's be honest, managing Kubernetes clusters is not an easy task, even when it comes to managed Kubernetes services. Controlling the overall infrastructure, performing cluster upgrades and tracking the configuration of each cluster can really become a challenge. Infrastructure as Code (IaC) comes in handy here, with declarative languages such as [Terraform](https://www.terraform.io/) and [CloudFormation](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/Welcome.html). However, the learning curve of this kind of languages may be steep for those with no previous experience in IaC. Thus, it would be nice to manage clusters in the same way that Kubernetes resources are managed: with manifests and a CLI.

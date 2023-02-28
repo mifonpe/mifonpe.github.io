@@ -14,6 +14,8 @@ tags:
   - "gcp"
   - "iac"
   - "kubernetes"
+lang: en
+lang-ref: pulumi
 ---
 
 This is the second article on Infrastructure as Code using well-known programming languages. [The first one](https://kubesandclouds.com/index.php/2020/07/13/aws-cdk-dev-like-iac/) was focused on the AWS CDK. In this post, we will introduce Pulumi, a similar tool which offers multi-cloud support.

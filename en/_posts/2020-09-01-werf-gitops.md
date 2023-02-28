@@ -8,6 +8,8 @@ tags:
   - "devops"
   - "gitops"
   - "kubernetes"
+lang: en
+lang-ref: werf
 ---
 
 This is the third post of a collection of GitOps tools articles. In this post, a continuous integration and continuous deployment tool for Kubernetes is reviewed: **Werf**. If you missed previous articles on GitOps tools, you could give them a read, as it will help you better understanding the general idea. [ArgoCD](https://kubesandclouds.com/index.php/2020/05/13/gitops/) and [FluxCD](https://kubesandclouds.com/index.php/2020/05/24/gitops-fluxcd/), were the previously reviewed tools.

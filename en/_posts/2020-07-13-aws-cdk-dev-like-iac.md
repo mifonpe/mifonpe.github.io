@@ -9,6 +9,8 @@ tags:
   - "aws"
   - "devops"
   - "iac"
+lang: en
+lang-ref: cdk
 ---
 
 Infrastructure as Code (IaC) is one of the biggest revolutions in the cloud computing landscape, as it allows automating the deployment of infrastructure based on its definition in the source code. Using code as the source of truth for infrastructure has several benefits:
