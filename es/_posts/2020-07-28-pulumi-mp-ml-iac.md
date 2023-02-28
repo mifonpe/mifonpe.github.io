@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Pulumi: Multi-Platform Multi-Language IaC 📚🏗️"
 date: "2020-07-28"
 categories: 

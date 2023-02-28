@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Kubernetes: Why, When and How."
 date: "2020-02-27"
 categories: 

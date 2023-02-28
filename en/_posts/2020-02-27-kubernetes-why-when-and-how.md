@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Kubernetes: Why, When and How."
 date: "2020-02-27"
 categories: 
@@ -8,7 +9,7 @@ tags:
   - "kubernetes"
   - "microservices"
 lang: en
-lang-ref: k8s-why
+lang-ref: k8s-why-en
 ---
 
 Kubernetes, is undoubtedly one the most disruptive tools/technologies that we have seen during the last years within the IT world. Alongside containers and the underlying runtimes, it is redefining the way in which software is built, tested and deployed into production. Although it is more complex to set up and to operate than some other container orchestration tools, it is still the most used solution for container orchestration.

@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "eksctl: the EKS CLI ☸️ 🎮"
 date: "2020-10-06"
 categories: 

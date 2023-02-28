@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Debugging with ephemeral containers in K8s 🔲🔳"
 date: "2020-05-30"
 categories: 
@@ -8,7 +9,7 @@ tags:
   - "devops"
   - "kubernetes"
 lang: en
-lang-ref: ephemeral
+lang-ref: ephemeral-en
 ---
 
 ![](/assets/img/imported/excelentes-utilidades-para-los-containers.jpg)

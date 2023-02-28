@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "GitOps Strikes Back: FluxCD 📟☸️"
 date: "2020-05-24"
 tags: 

@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Debugging with ephemeral containers in K8s 🔲🔳"
 date: "2020-05-30"
 categories: 

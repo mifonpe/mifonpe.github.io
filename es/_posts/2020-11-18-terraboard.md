@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Terraboard: Graphic Terraform state manager🌍🖥"
 date: "2020-11-18"
 categories: 

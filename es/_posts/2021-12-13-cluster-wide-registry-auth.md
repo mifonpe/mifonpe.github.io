@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Cluster-wide registry authentication 🌐🔐"
 date: "2021-12-13"
 categories: 

@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Werf: Fully customizable GitOps 🛥️⚙️"
 date: "2020-09-01"
 categories: 

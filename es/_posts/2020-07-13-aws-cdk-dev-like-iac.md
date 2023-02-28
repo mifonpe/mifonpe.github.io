@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "AWS CDK: Dev-like IaC 🖥️🏗️"
 date: "2020-07-13"
 categories: 

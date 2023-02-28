@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Building AMIs: Packer and Image Builder⚙️📦"
 date: "2020-04-24"
 categories: 

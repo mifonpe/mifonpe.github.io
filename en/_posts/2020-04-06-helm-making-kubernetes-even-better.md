@@ -1,11 +1,12 @@
 ---
+layout: post
 title: "Helm: Making Kubernetes even better☸️📦"
 date: "2020-04-06"
 categories: 
   - "kubernetes"
 coverImage: "helm.png"
 lang: en
-lang-ref: helm
+lang-ref: helm-en
 ---
 
 In a [previous post](https://kubesandclouds.com/index.php/2020/03/18/k8s-basic-objects/), we discussed how to deploy a simple application in Kubernetes, and yet being 'simple' we could notice how many different pieces were needed to make a deployment run successfully. Every one of these single pieces can be placed on a separate configuration file to make it easier handling and maintaining the code. Thus, for the deployment we worked on on that post, and whose architecture is shown in the image below, seven different manifests (yaml files) were needed.
