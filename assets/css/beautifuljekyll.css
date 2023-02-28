@@ -864,10 +864,10 @@ table tr td :last-child {
 
 /* --- Code blocks --- */
 
-/* code {
+code {
   padding: 0.125rem 0.25rem;
-  color: #c7254e;
-  background-color: #f9f2f4;
+  color: #f9f7f8;
+  background-color: #1a1818;
   border-radius: 0.25rem;
 }
 
@@ -875,7 +875,7 @@ pre code {
   padding: 0;
   background-color: transparent;
   border-radius: 0;
-} */
+}
 
 pre {
   font-size: 0.875rem;
