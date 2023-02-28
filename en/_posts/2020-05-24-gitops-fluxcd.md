@@ -6,7 +6,7 @@ tags:
   - "gitops"
   - "kubernetes"
 lang: en
-lang-ref: fluxcd-en
+lang-ref: fluxcd
 ---
 
 ![](/assets/img/imported/flux-horizontal-color.png)

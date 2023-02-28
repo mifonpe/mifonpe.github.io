@@ -9,7 +9,7 @@ tags:
   - "devops"
   - "kubernetes"
 lang: en
-lang-ref: ephemeral-en
+lang-ref: ephemeral
 ---
 
 ![](/assets/img/imported/excelentes-utilidades-para-los-containers.jpg)

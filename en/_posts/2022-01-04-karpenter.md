@@ -7,7 +7,7 @@ tags: [kubernetes, cloud, autoscaler]
 #gh-badge: [star, fork, follow]
 comments: true
 lang: en
-lang-ref: karpenter-en
+lang-ref: karpenter
 ---
 
 <p style='text-align: justify;'>Getting the size of a Kubernetes cluster right is not an easy task, if the number of nodes provisioned is too high, resources might be underutilized and if it&#8217;s too low, new workloads won&#8217;t be able to be scheduled in the cluster.</p>

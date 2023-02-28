@@ -12,7 +12,7 @@ tags:
   - "k8s"
   - "kubernetes"
 lang: en
-lang-ref: registry-auth-en
+lang-ref: registry-auth
 ---
 
 Using private container image registries is a common practice in the industry, as it ensures applications packaged within the images are just accessible for users which hold the right set of credentials. Besides, in some cases, using credentials for some registries helps overcoming pull rate limitations, for example when using [paid subscriptions for DockerHub](https://www.docker.com/pricing).

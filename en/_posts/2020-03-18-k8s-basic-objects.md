@@ -9,7 +9,7 @@ tags:
   - "k8s"
   - "kubernetes"
 lang: en
-lang-ref: k8s-en
+lang-ref: k8s
 ---
 
 If you have already deployed complex applications in Kubernetes, you may have noticed how many different resources you need to deploy and interconnect just to make them work (and thus, this post is going to be just too easy for you). If you're new to Kubernetes, this post will help you to have a quick overview on how an application is deployed into a Kubernetes cluster, and how every single component works and interacts with each other. However, this post is not focused on Kubernetes architecture and its underlying infrastructure. We will take that 'for granted' and just assume virtual pools of computing, networking and storage resources that can be used by our application.

@@ -9,7 +9,7 @@ tags:
   - "devops"
   - "kubernetes"
 lang: en
-lang-ref: k8s-5m-en
+lang-ref: k8s-5m
 ---
 
 ### English

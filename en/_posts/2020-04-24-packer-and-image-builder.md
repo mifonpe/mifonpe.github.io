@@ -6,7 +6,7 @@ categories:
   - "aws"
   - "devops"
 lang: en
-lang-ref: packer-ib-en
+lang-ref: packer-ib
 ---
 
 Cloud environments call for dynamic and flexible computing, meaning that fleets of virtual machines can be scaled up and down depending on the load. These machines need a consistent, repeatable and standardized way of setting the startup images and its configuration for the applications that run on them. Pre-built virtual machine images, containing the configuration and software needed are a perfect fit to solve these needs and they are known as **Golden images**. Golden images save time and help easing deployments and enforcing security and compliance policies. Furthermore, they help reducing errors, as manual configuration is reduced, and in some cases not even needed.
