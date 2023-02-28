@@ -883,11 +883,11 @@ pre {
   border-radius: 0.25rem;
   padding: 0.59375rem;
 }
-.highlight pre {
+/* .highlight pre {
   border: none;
   background: none;
   margin: 0;
-}
+} */
 .highlight > pre {
   /* background-image: linear-gradient(
     rgba(0,0,0,0.03), rgba(0,0,0,0.03) 1.5em, rgba(0,0,0,0.02) 1.5em, rgba(0,0,0,0.02) 3em); */
