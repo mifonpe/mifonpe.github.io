@@ -184,6 +184,4 @@ data:
 
 * * *
 
-* * *
 
-## Other Articles

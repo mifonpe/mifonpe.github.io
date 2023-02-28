@@ -14,7 +14,7 @@ lang-ref: terraboard
 
 Dealing with multiple terraform remote states can become a rather complex task. Besides, querying resources with terraform CLI isn't very visual 😅. In this post we will present [Terraboard](https://camptocamp.github.io/terraboard/), an open source tool developed by [Camptocamp](https://www.camptocamp.com/en) that solves these issues.
 
-![](images/Icogram-2020-11-20-19_37-1-1-1024x512.png)
+![](/assets/img/imported/Icogram-2020-11-20-19_37-1-1-1024x512.png)
 
 Terraboard provides a web interface which also adds a diff tool to compare different resource versions. It currently supports terraform states in both AWS S3 and Terraform Cloud backends.
 
@@ -83,23 +83,23 @@ Start Terraboard and wait for the script to complete.
 terraboard up
 ```
 
-![](images/Screen-Shot-2020-11-19-at-8.48.13-PM.png)
+![](/assets/img/imported/Screen-Shot-2020-11-19-at-8.48.13-PM.png)
 
 If everything went well and you hit localhost on port 8080 you will be able to access Terraboard's UI. In this case it's showing the different terraform state files present in the bucket. Feel free to play around with the interface, and give a look to the search utility, which allows filtering resources by different criteria such as Terraform version or resource type.
 
-![](images/Screen-Shot-2020-11-20-at-6.02.42-PM-1024x461.png)
+![](/assets/img/imported/Screen-Shot-2020-11-20-at-6.02.42-PM-1024x461.png)
 
 If you examine a specific state, you can go through its resources and modules, getting detailed information and parameters.
 
-![](images/Screen-Shot-2020-11-20-at-2.23.22-AM-1-1024x538.png)
+![](/assets/img/imported/Screen-Shot-2020-11-20-at-2.23.22-AM-1-1024x538.png)
 
 As commented before, Terraboard allows comparing different state versions, which can come in handy to detect the root cause of incidents within the infrastructure.
 
-![](images/Screen-Shot-2020-11-20-at-2.23.40-AM-1-1024x541.png)
+![](/assets/img/imported/Screen-Shot-2020-11-20-at-2.23.40-AM-1-1024x541.png)
 
 As you can see in the image below, Terraboard provides a _git-like_ diff for the state files.
 
-![](images/Screen-Shot-2020-11-20-at-2.24.27-AM-1024x424.png)
+![](/assets/img/imported/Screen-Shot-2020-11-20-at-2.24.27-AM-1024x424.png)
 
 Once you're done playing around with Terraboard, you can remove the containers running in your local machine and the associated resources by issuing the following command.
 
@@ -129,7 +129,3 @@ helm install ingress bitnami/nginx-ingress-controller
 ```
 
 * * *
-
-* * *
-
-## Other Articles

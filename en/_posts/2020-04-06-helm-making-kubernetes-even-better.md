@@ -10,7 +10,7 @@ lang-ref: helm
 
 In a [previous post](https://kubesandclouds.com/index.php/2020/03/18/k8s-basic-objects/), we discussed how to deploy a simple application in Kubernetes, and yet being 'simple' we could notice how many different pieces were needed to make a deployment run successfully. Every one of these single pieces can be placed on a separate configuration file to make it easier handling and maintaining the code. Thus, for the deployment we worked on on that post, and whose architecture is shown in the image below, seven different manifests (yaml files) were needed.
 
-![](images/dep.png)
+![](/assets/img/imported/dep.png)
 
 Kubernetes deployment
 
@@ -238,7 +238,7 @@ helm repo add istio.io https://storage.googleapis.com/istio-release/releases/1.5
 helm repo update
 ```
 
-![](images/Screen-Shot-2020-04-06-at-5.07.08-PM-1024x271.png)
+![](/assets/img/imported/Screen-Shot-2020-04-06-at-5.07.08-PM-1024x271.png)
 
 Once a Helm repo has ben added, packages can be be searched by its name, and fetched to your local computer.
 
@@ -247,11 +247,11 @@ helm search repo istio
 helm fetch --untar istio.io/istio
 ```
 
-![](images/Screen-Shot-2020-04-06-at-5.08.37-PM-1024x157.png)
+![](/assets/img/imported/Screen-Shot-2020-04-06-at-5.08.37-PM-1024x157.png)
 
 As it can be seen in the image below, the full chart has been successfully fetched and decompressed (--untar flag).
 
-![](images/Screen-Shot-2020-04-06-at-5.08.05-PM-1024x420.png)
+![](/assets/img/imported/Screen-Shot-2020-04-06-at-5.08.05-PM-1024x420.png)
 
 Did you notice the .helmignore file? It is used to tell Helm what files not to include in the Helm package. Its format is pretty simple, and files or entire paths can be specified. It supports [unix glob matching](http://man7.org/linux/man-pages/man7/glob.7.html).
 
@@ -277,13 +277,13 @@ helm chart push server/myrepo/mychart:version
 
 In oder to interact with the cluster and deploy Helm charts, the Helm client (running in your computer) communicates with a remote piece of software running in the cluster, the tiller server. Tiller is a Kubernetes deployment containing one pod with one container, and it communicates directly with the API server (the Kubernetes control plane front-end) in order to deploy charts.
 
-![](images/1*1lHh6xk05cs9AO3w-vh7iA.jpeg)
+![](/assets/img/imported/1*1lHh6xk05cs9AO3w-vh7iA.jpeg)
 
 Tiller architecture by [Medium](https://medium.com/kubernetes-tutorials/simplifying-app-deployment-in-kubernetes-with-helm-charts-b824a8e8c79b)
 
 Tiller receives orders from the Helm client over a gRPC connection and creates, upgrades, deletes and keeps track of what is known as Helm releases. Every time a new release is created or an existing one is upgraded, Helm stores its associated data, as well as the status of the release, being able to show the entire history of a release. In the image below, you can see the release **microservice-prod**, wich was first installed, and upgraded afterwards.
 
-![](images/Screen-Shot-2020-04-06-at-6.44.13-PM-1024x118.png)
+![](/assets/img/imported/Screen-Shot-2020-04-06-at-6.44.13-PM-1024x118.png)
 
 Although it is a powerful tool, tiller can be also a very dangerous element within your cluster, as everyone (or everything) that is able to communicate with tiller, can deploy resources in the cluster if the tiller deployment is not properly secured. Thus, tiller is removed in the newest Helm version, [Helm v3](https://helm.sh/blog/helm-3-released/).
 
@@ -336,15 +336,15 @@ Now we are ready to install the Helm release in our cluster! The name of the rel
 helm install apache-test .
 ```
 
-![](images/Screen-Shot-2020-04-06-at-9.29.24-PM-1024x260.png)
+![](/assets/img/imported/Screen-Shot-2020-04-06-at-9.29.24-PM-1024x260.png)
 
 As you can see, the deployment is successful, and all the resources have been deployed.
 
-![](images/Screen-Shot-2020-04-06-at-9.29.50-PM-1024x346.png)
+![](/assets/img/imported/Screen-Shot-2020-04-06-at-9.29.50-PM-1024x346.png)
 
 You can access the service using the following url http://localhost:31228, as the service is exposed using a nodePort in that same port number.
 
-![](images/Screen-Shot-2020-04-06-at-9.30.34-PM-1024x665.png)
+![](/assets/img/imported/Screen-Shot-2020-04-06-at-9.30.34-PM-1024x665.png)
 
 Let's modify the values a little bit and upgrade our release. Rather than changing the values directly in the file. You can use the --set flag for this purpose, specifying key value pairs, separated by commas.
 
@@ -352,13 +352,13 @@ Let's modify the values a little bit and upgrade our release. Rather than changi
 helm upgrade apache-test . --set appname=apache-upgraded,replicaCount=2,service.nodeport=31229
 ```
 
-![](images/Screen-Shot-2020-04-06-at-9.42.26-PM-1024x254.png)
+![](/assets/img/imported/Screen-Shot-2020-04-06-at-9.42.26-PM-1024x254.png)
 
 Now the deployment will be exposed in the port 31229 of the physical host, and the number of replicas has been reduced to 2.
 
-![](images/Screen-Shot-2020-04-06-at-9.55.44-PM-1024x344.png)
+![](/assets/img/imported/Screen-Shot-2020-04-06-at-9.55.44-PM-1024x344.png)
 
-- ![](images/Screen-Shot-2020-04-06-at-9.53.50-PM-1024x421.png)
+- ![](/assets/img/imported/Screen-Shot-2020-04-06-at-9.53.50-PM-1024x421.png)
     
 
 You got it! The deployment was scaled down by one replica, and the resources were renamed with the new appname.
@@ -376,7 +376,3 @@ Helm full potential can be achieved when integrated with more complex and advanc
 Mastering Helm and using it in production environments require a lot of practice and learning, as well as a deep Kubernetes knowledge, so now it's your turn to keep learning!
 
 * * *
-
-* * *
-
-## Other articles

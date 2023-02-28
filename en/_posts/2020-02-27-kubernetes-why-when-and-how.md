@@ -13,7 +13,7 @@ lang-ref: k8s-why
 
 Kubernetes, is undoubtedly one the most disruptive tools/technologies that we have seen during the last years within the IT world. Alongside containers and the underlying runtimes, it is redefining the way in which software is built, tested and deployed into production. Although it is more complex to set up and to operate than some other container orchestration tools, it is still the most used solution for container orchestration.
 
-![](images/57m-Yacht-FLEURTJE-7929-82-300x200.jpg)
+![](/assets/img/imported/57m-Yacht-FLEURTJE-7929-82-300x200.jpg)
 
 ## Why kubernetes?
 
@@ -47,7 +47,7 @@ There are two main ways of running Kubernetes clusters: the old hard way, either
 
 Installing Kubernetes from scratch is not an easy task, even though it has become easier as new versions were released 😅.
 
-![](images/EQZaQh1XUAEdDBP.jpeg)
+![](/assets/img/imported/EQZaQh1XUAEdDBP.jpeg)
 
 Thus, there are several tools that can be pretty useful in order to deploy and manage a self hosted Kubernetes cluster:
 
@@ -61,7 +61,3 @@ If you don't really need to tune the cluster performance, and your main focus is
 Besides, there are hybrid solutions, such as [Rancher](https://rancher.com/products/rancher/), which can be used to deploy clusters in bare-metal, self hosted environments and using managed services. However, this tool is intended for organizations which need to manage a high number of clusters in a platform agnostic way.
 
 * * *
-
-* * *
-
-## Other articles

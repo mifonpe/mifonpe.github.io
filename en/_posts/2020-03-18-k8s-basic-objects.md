@@ -13,7 +13,7 @@ lang-ref: k8s
 
 If you have already deployed complex applications in Kubernetes, you may have noticed how many different resources you need to deploy and interconnect just to make them work (and thus, this post is going to be just too easy for you). If you're new to Kubernetes, this post will help you to have a quick overview on how an application is deployed into a Kubernetes cluster, and how every single component works and interacts with each other. However, this post is not focused on Kubernetes architecture and its underlying infrastructure. We will take that 'for granted' and just assume virtual pools of computing, networking and storage resources that can be used by our application.
 
-![](images/Screen-Shot-2020-03-11-at-12.50.59-AM-1024x821.png)
+![](/assets/img/imported/Screen-Shot-2020-03-11-at-12.50.59-AM-1024x821.png)
 
 Kubernetes icons by [community](https://github.com/kubernetes/community/tree/master/icons)
 
@@ -21,7 +21,7 @@ In the image below you can find a simplified deployment in Kubernetes: a simple 
 
 **NOTE:**_The manifests (Kubernetes yaml files) developed to set up this application are reviewed in the post, and they are available to be downloaded in case you want to deploy the same environment. It's a good way to better understand the resources we will discuss here_ 😁.
 
-![](images/dep.png)
+![](/assets/img/imported/dep.png)
 
 Simple k8s Deployment
 
@@ -29,7 +29,7 @@ Simple k8s Deployment
 
 First of all, we find containers, which are run either using the 'traditional' docker daemon or some other container runtime. Container runtimes are the intermediate layer between containers and the underlying operating system, which in turn, provides access to the shared physical resources. Containers can be used, for example, to encapsulate a microservice or an entire application, as in this case, a web server.
 
-![](images/windows_server-virtual_machines_vs_containers-1024x635.png)
+![](/assets/img/imported/windows_server-virtual_machines_vs_containers-1024x635.png)
 
 Containers vs VMs by [TechTarget](https://searchitoperations.techtarget.com/definition/application-containerization-app-containerization)
 
@@ -266,12 +266,12 @@ kubectl apply -f .
 
 After applying the Kubernetes manifests, resources will be created on the cluster. The image below shows some of the main resources defined. Three pods were created, each one containing a single container. Notice how the ReplicaSet keeps track of the desired number of pods and the number of pods that are currently running and ready.
 
-- ![](images/Screen-Shot-2020-03-17-at-9.28.21-PM-1024x444.png)
+- ![](/assets/img/imported/Screen-Shot-2020-03-17-at-9.28.21-PM-1024x444.png)
     
 
 Secrets and configMaps are present in the cluster too:
 
-![](images/Screen-Shot-2020-03-17-at-9.35.45-PM-1024x245.png)
+![](/assets/img/imported/Screen-Shot-2020-03-17-at-9.35.45-PM-1024x245.png)
 
 **NOTE:** For this example to run and in order to make it accessible from your own web browser, there is a slight modification regarding the service. In this case, we will be using the service type known as **NodePort**, which attaches a port of the underlying host where the pod is run to the service. Thereby, by using your own IP (or localhost) and this port, the application can be tested.
 
@@ -296,7 +296,7 @@ spec:
 
 _Voilà!_ As explained before, thanks to the NodePort, we can access the web server app via localhost. Notice how each single container (the pod name is directly shown on the webpage) read exactly the same data, both from the ConfigMap and the secret, and wrote it to the common PV, so that all three containers serve the same content.
 
-- ![](images/Screen-Shot-2020-03-17-at-9.29.51-PM-1024x667.png)
+- ![](/assets/img/imported/Screen-Shot-2020-03-17-at-9.29.51-PM-1024x667.png)
     
 
 ## Extra: What about persistent applications?
@@ -305,7 +305,7 @@ There are some situations in which Deployments are not a suitable solution. All 
 
 Furthermore, a StatefulSet ensure data persistence even when it is deleted or scaled down, as the storage volumes associated to pods will remain unless they are explicitly deleted. There is an important difference between StatefulSets and Deployments in terms of persistent volumes: as pods get unique identifiers when created form a StatefulSet, some of their associated resources such as PVs and PVCs also do. Thus when using a StatefulSet with N pods, N different volumes will be mounted. Conversely to what we saw in our example, pods will not share the same volume, as you can see in the image below.
 
-![](images/sts.png)
+![](/assets/img/imported/sts.png)
 
 Simple k8s StatefulSet
 
@@ -313,6 +313,3 @@ We'll discuss StatefulSets in upcoming articles, but for the moment, just keep i
 
 * * *
 
-* * *
-
-## Other articles

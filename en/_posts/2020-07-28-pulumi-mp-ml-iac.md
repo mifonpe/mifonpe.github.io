@@ -31,7 +31,7 @@ IaC can be implemented by means of several tools, being Terraform, AWS CloudForm
 
 Thus, it makes sense to deploy infrastructure using high-level languages, which are more natural to developers. This approach can increase productivity based on the fact that common development patterns can be easily reused. This way of working, enables developers to provision infrastructure easily, without needing to be an infrastructure expert. Besides, developers can provision a complete stack, applications and the underlying infrastructure, by using high-level languages in their IDE of choice. This is particularly useful in medium size and small companies and projects, where just one team is in charge of the management and operation of both the Dev and Ops parts.
 
-![](images/graph4.png)
+![](/assets/img/imported/graph4.png)
 
 Pulumi overview by [Pulumi](https://www.pulumi.com/)
 
@@ -51,11 +51,11 @@ curl -fsSL https://get.pulumi.com | sh
 
 In order to use Pulumi in your command line, you will need to sign up into [the Pulumi console](https://app.pulumi.com/signin), so that your stack's state can be persisted. Don't worry, as it's free for personal use, and you can use either your GitLab, GitHub or Atlassian accounts as well as your email address to sign up.
 
-![](images/Screen-Shot-2020-07-20-at-1.59.26-PM-1024x513.png)
+![](/assets/img/imported/Screen-Shot-2020-07-20-at-1.59.26-PM-1024x513.png)
 
 Once you are registered, it is time to generate an access token, as the CLI will ask for one in order to have access to your account and store the stack information.
 
-![](images/Screen-Shot-2020-07-20-at-2.00.37-PM-1024x377.png)
+![](/assets/img/imported/Screen-Shot-2020-07-20-at-2.00.37-PM-1024x377.png)
 
 Finally, issue the following command and paste the access token you have just generated in the step before. If everything went well, you should see a similar output to the one shown in the image below.
 
@@ -63,7 +63,7 @@ Finally, issue the following command and paste the access token you have just ge
 pulumi login
 ```
 
-![](images/Screen-Shot-2020-07-20-at-2.00.58-PM.png)
+![](/assets/img/imported/Screen-Shot-2020-07-20-at-2.00.58-PM.png)
 
 * * *
 
@@ -79,11 +79,11 @@ pulumi new <provider>-<language>
 
 The Pulumi CLI would guide you through a simple setup process, where several parameters can be specified, such as the project name, its description, the stack name and the AWS region where it is to be deployed. **However, keep in mind that for the examples in this article, pre-configured projects are used, thus, you don't really have to follow this setup procedure, it's just an indication in case you want to develop you own project from scratch.**
 
-![](images/Screen-Shot-2020-07-22-at-12.20.21-AM.png)
+![](/assets/img/imported/Screen-Shot-2020-07-22-at-12.20.21-AM.png)
 
 After setting up the project (a Python one in this case), the files present in the directory are the ones shown in the image below. **Pulumi.yaml** and **Pulumi.dev.yaml** are the project and stack configuration files respectively, whereas **\_\_main\_\_.py** is the Python program which defines the stack. The file **requirements.txt** contains the dependencies needed for the stack to work, and the **venv** directory is a [Python virtual environment](https://docs.python.org/3/tutorial/venv.html), which contains all the executables and libraries needed to use the Packages imported in the Python project.
 
-![](images/Screen-Shot-2020-07-22-at-12.26.39-AM.png)
+![](/assets/img/imported/Screen-Shot-2020-07-22-at-12.26.39-AM.png)
 
 The following snippet shows the contents of a **Pulumi.yaml** file. In order to make Pulumi work, at least name and runtime need to be defined. Under _template.config_, required values for the stack to work can be defined.
 
@@ -121,7 +121,7 @@ aws configure
 
 Keep in mind that the user which uses those credentials should have permissions to create the infrastructure specified in the code. For this example you can use the **AdministratorAccess** managed policy. Store well your credentials, and once this user is no longer needed, remove it, to avoid unnecessary risks.
 
-![](images/Screen-Shot-2020-07-07-at-3.06.05-PM-1024x393-1.png)
+![](/assets/img/imported/Screen-Shot-2020-07-07-at-3.06.05-PM-1024x393-1.png)
 
 For AWS we will be using the [EKS python example](https://github.com/pulumi/examples/tree/master/aws-py-eks). This example contains three main files: **\_\_main\_\_.py**, **iam.py** and **vpc.py**, which define respectively the EKS cluster, its associated IAM roles and policies and the VPC and networking resources needed to launch the instances on. The snippet below shows the contents of **\_\_main\_\_.py** , which defines a two-worker EKS cluster. Take your time to give a read to the different files which make up the entire example, so that you can have a general idea of the entire stack.
 
@@ -183,7 +183,7 @@ Once the python stuff is ready, initialize the stack. By accessing your Pulumi a
 pulumi stack init python-eks-testing
 ```
 
-![](images/Screen-Shot-2020-07-28-at-9.19.10-AM-1024x605.png)
+![](/assets/img/imported/Screen-Shot-2020-07-28-at-9.19.10-AM-1024x605.png)
 
 Set the AWS region where the stack is to be deployed.
 
@@ -197,7 +197,7 @@ Issue the following command so that pulumi generates the deployment plan. If eve
 pulumi up
 ```
 
-![](images/Screen-Shot-2020-07-27-at-8.24.29-PM-1024x706.png)
+![](/assets/img/imported/Screen-Shot-2020-07-27-at-8.24.29-PM-1024x706.png)
 
 Update your local kubeconfig so that you can access the new cluster.
 
@@ -207,7 +207,7 @@ aws eks --region <aws-region> update-kubeconfig --name $(pulumi stack output clu
 
 And voilà, the cluster was created successfully!
 
-![](images/Screen-Shot-2020-07-27-at-10.07.22-PM-1024x146.png)
+![](/assets/img/imported/Screen-Shot-2020-07-27-at-10.07.22-PM-1024x146.png)
 
 Once you're done playing with the cluster, destroy the infrastructure and the stack. Check wether the resources to be destroyed match the previously created ones. By issuing _deactivate_, your Python virtual environment will be deactivated.
 
@@ -345,7 +345,7 @@ Once the required variables are set, you can generate the deployment plan and ac
 
 If you login to your Pulumi account after creating the infrastructure, you will be able to check the different resources that were created, as well as the outputs generated and variables defined for the stack.
 
-![](images/Screen-Shot-2020-07-28-at-2.31.55-PM-1024x298.png)
+![](/assets/img/imported/Screen-Shot-2020-07-28-at-2.31.55-PM-1024x298.png)
 
 The kubeconfig created in the code is accesible as a Pulumi output. However it is stored as a ciphered output in the stack, so you will need the _\--show-secrets_ flag to decode it🔐.
 
@@ -355,7 +355,7 @@ pulumi stack output kubeconfig --show-secrets > kubeconfig.yaml
 
 Using this Kubeconfig, you will be able to access the cluster using _kubectl_, and check that the canary deployment is present.
 
-![](images/Screen-Shot-2020-07-28-at-3.00.38-PM.png)
+![](/assets/img/imported/Screen-Shot-2020-07-28-at-3.00.38-PM.png)
 
 As before, once you finish testing the cluster, destroy the resources, the Pulumi stack and deactivate the Python virtual environment.
 
@@ -415,11 +415,11 @@ pulumi stack init python-k8s-testing
 pulumi up
 ```
 
-![](images/Screen-Shot-2020-07-28-at-4.23.19-PM.png)
+![](/assets/img/imported/Screen-Shot-2020-07-28-at-4.23.19-PM.png)
 
 If you inspect the pods and deployments in your cluster, you will see that the resources were created as expected by Pulumi.
 
-![](images/Screen-Shot-2020-07-28-at-4.24.09-PM.png)
+![](/assets/img/imported/Screen-Shot-2020-07-28-at-4.24.09-PM.png)
 
 Clean everything up once you're done!
 
@@ -446,7 +446,3 @@ Some of the most interesting examples are:
 Become 'IaC Polyglot', trust me, it is worth it😎!
 
 * * *
-
-* * *
-
-## Other Articles

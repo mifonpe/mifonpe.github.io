@@ -20,7 +20,7 @@ Infrastructure as Code (IaC) is one of the biggest revolutions in the cloud comp
 - Costs are reduced, as resources can be easily resized to adapt them to the load fluctuations and environments can be switched off when they are not needed.
 - Deployment processes are sped up significantly, making the software development lifecycle more efficient, as environments can be deployed when needed.
 
-![](images/Infrastructure-as-Code-AWS-1.png)
+![](/assets/img/imported/Infrastructure-as-Code-AWS-1.png)
 
 IaC by [SourceFuse](https://www.sourcefuse.com/)
 
@@ -75,7 +75,7 @@ After initializing or cloning the project, your folder will contain several dire
 - **node\_modules** contain the dependencies needed by the stack
 - **cdk.json** and **tsconfig.json** are the CDK toolkit and Typescript configuration files respectively
 
-![](images/Screen-Shot-2020-07-07-at-12.59.41-PM-1024x903.png)
+![](/assets/img/imported/Screen-Shot-2020-07-07-at-12.59.41-PM-1024x903.png)
 
 * * *
 
@@ -163,7 +163,7 @@ aws configure
 
 Keep in mind that the user which uses those credentials should have permissions to create the infrastructure specified in the code. For this example you can use the **AdministratorAccess** managed policy. Store well your credentials, and once this user is no longer needed, remove it, to avoid unnecessary risks.
 
-![](images/Screen-Shot-2020-07-07-at-3.06.05-PM-1024x393.png)
+![](/assets/img/imported/Screen-Shot-2020-07-07-at-3.06.05-PM-1024x393.png)
 
 AWS CDK CLI can be used to generate a CloudFormation stack from the high-level language you are using to define your stack. To do so, issue the following command.
 
@@ -258,19 +258,19 @@ Once the bootstrap procedure is over, everything will be ready to deploy the sta
 cdk deploy
 ```
 
-![](images/Screen-Shot-2020-07-07-at-12.47.12-AM-1024x391.png)
+![](/assets/img/imported/Screen-Shot-2020-07-07-at-12.47.12-AM-1024x391.png)
 
 If you inspect the CloudFormation stacks in your account once the deployment has succeeded, you will see the different resources created by AWS CDK.
 
-![](images/Screen-Shot-2020-07-07-at-2.12.47-PM-1024x449.png)
+![](/assets/img/imported/Screen-Shot-2020-07-07-at-2.12.47-PM-1024x449.png)
 
 Furthermore, you will notice an additional stack, the CDK toolkit stack that was created during the bootstrap phase by the CDK CLI. This stack creates an S3 bucket where the resource definitions and states are stored.
 
-![](images/Screen-Shot-2020-07-07-at-2.20.49-PM-1024x348.png)
+![](/assets/img/imported/Screen-Shot-2020-07-07-at-2.20.49-PM-1024x348.png)
 
 If you access the public IP of the instance that has just been created using your web browser, you will see that it worked as expected!
 
-![](images/Screen-Shot-2020-07-07-at-12.52.28-AM-1024x397.png)
+![](/assets/img/imported/Screen-Shot-2020-07-07-at-12.52.28-AM-1024x397.png)
 
 Once you are done with the web server, destroy the stack and its resources by issuing the following command.
 
@@ -349,9 +349,9 @@ terraform apply
 
 Like in the previous example, by accessing the public IP of the instance, you can check that the deployed web server is working correctly.
 
-![](images/Screen-Shot-2020-07-07-at-6.02.12-PM-1024x339.png)
+![](/assets/img/imported/Screen-Shot-2020-07-07-at-6.02.12-PM-1024x339.png)
 
-![](images/Screen-Shot-2020-07-07-at-6.02.28-PM-1024x356.png)
+![](/assets/img/imported/Screen-Shot-2020-07-07-at-6.02.28-PM-1024x356.png)
 
 Once you have finished testing the Terraform deployment, destroy the previously created resources.
 
@@ -423,11 +423,11 @@ cdk deploy
 
 After some minutes, the EKS cluster will be up and running.
 
-![](images/Screen-Shot-2020-07-08-at-1.28.02-AM-1-1024x541.png)
+![](/assets/img/imported/Screen-Shot-2020-07-08-at-1.28.02-AM-1-1024x541.png)
 
 Once the cluster has been created, the CDK CLI will prompt the command needed to generate a kubeconfig to access the cluster.
 
-![](images/Screen-Shot-2020-07-07-at-7.05.42-PM-1-1024x120.png)
+![](/assets/img/imported/Screen-Shot-2020-07-07-at-7.05.42-PM-1-1024x120.png)
 
 Issue the following command to generate the kubeconfig. You can copy it directly from the CDK CLI output.
 
@@ -437,13 +437,13 @@ aws eks update-kubeconfig --name <cluster-name> --region <region>
 
 If everything worked out as it should, you will be able to access your new cluster!
 
-![](images/Screen-Shot-2020-07-08-at-1.27.21-AM-1024x220.png)
+![](/assets/img/imported/Screen-Shot-2020-07-08-at-1.27.21-AM-1024x220.png)
 
 ### Important
 
 If you get a **_You must be logged in to the server (Unauthorized)_** error when accessing the EKS cluster with the generated kubeconfig, you will need to give the AWS CDK user permissions to assume the EKS Cluster creation role. This is a direct consequence of how IAM roles are mapped to the Kubernetes RBAC. When a cluster is created, only the user/role that created the cluster can access it. To solve this problem quickly, just grant the IAM user that was used with the AWS CDK permission to assume the _<clustername>-ClusterCreationRole_ role.
 
-![](images/Screen-Shot-2020-07-08-at-1.29.01-AM-1024x534.png)
+![](/assets/img/imported/Screen-Shot-2020-07-08-at-1.29.01-AM-1024x534.png)
 
 Finally, destroy the EKS cluster and the associated resources so that you don't have any surprises with your AWS bill!
 
@@ -455,6 +455,3 @@ If you want to learn more about the AWS CDK you can go through the different exa
 
 * * *
 
-* * *
-
-## Other Articles

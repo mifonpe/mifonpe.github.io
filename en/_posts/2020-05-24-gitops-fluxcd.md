@@ -8,7 +8,7 @@ lang: en
 lang-ref: fluxcd
 ---
 
-![](images/flux-horizontal-color.png)
+![](/assets/img/imported/flux-horizontal-color.png)
 
 This is the second post of a collection of GitOps tools articles. In this post, a continuous deployment tool for Kubernetes is reviewed: **FluxCD**. [The previous post](https://kubesandclouds.com/index.php/2020/05/13/gitops/) focused on **ArgoCD**.
 
@@ -32,7 +32,7 @@ FluxCD is a declarative deployment automation tool which is controlled by means 
 
 For this example, FluxCD will be used alongside its [Helm v3 operator](https://github.com/fluxcd/helm-operator). So although the flow gets a little bit trickier, the added complexity is worth it. The diagram below shows the different pieces that interact to get our helm charts automatically deployed.
 
-![](images/flux-helm-operator-registry.png)
+![](/assets/img/imported/flux-helm-operator-registry.png)
 
 FluxCD+Helm Operator architecture by [Flux project](https://github.com/fluxcd)
 
@@ -87,7 +87,7 @@ fluxctl identity --k8s-fwd-ns fluxcd
 
 If you use GitLab or GitHub, you will have to paste this public key in the access control settings of the repository. In GitHub, go to _Settings>Deploy Keys_ and paste the public key provided by fluxctl command. Allow write access to the repository.
 
-![](images/Screen-Shot-2020-05-20-at-3.38.22-PM-1024x501.png)
+![](/assets/img/imported/Screen-Shot-2020-05-20-at-3.38.22-PM-1024x501.png)
 
 The next step is to install a Kubernetes custom resource, known as **HelmRelease**. This object represents a Helm release for a specific chart, and contains some important parameters, such as the namespace to deploy the chart in, the release name that will be used by helm as well as the git repository, path and branch where the chart can be found. Notice the **fluxcd.io/automated** annotation. When set to true, any changes in the repository within the specific path and branch, will automatically trigger the synchronization carried out by FluxCD. The snippet below shows the Helm release that will be deployed into the development namespace. The HelmRelease allows overriding default values provided in the values.yaml file of the chart.
 
@@ -135,13 +135,13 @@ helm upgrade -i helm-operator fluxcd/helm-operator --wait \
 
 After setting up the different components, if you wait some minutes and after that you inspect the cluster, you will notice that the defined resources in the repository have been deployed.
 
-![](images/Screen-Shot-2020-05-21-at-1.33.50-AM-1024x533.png)
+![](/assets/img/imported/Screen-Shot-2020-05-21-at-1.33.50-AM-1024x533.png)
 
-![](images/Screen-Shot-2020-05-21-at-1.36.36-AM-1024x112.png)
+![](/assets/img/imported/Screen-Shot-2020-05-21-at-1.36.36-AM-1024x112.png)
 
 FluxCD uses a default polling interval of 5 minutes, meaning that it queries the git repository each 5 minutes to determine whether there are any changes to deploy. However, if you don't want to wait that long, or the automatic synchronization feature is not being used, you can synchronize your repository manually by issuing the command below. Fluxctl needs to know the exact namespace where FluxCD was deployed. It can be specified using the _\--k8s-fwd-ns flag_. Notice the SHA of the last commit.
 
-![](images/Screen-Shot-2020-05-21-at-1.33.20-AM.png)
+![](/assets/img/imported/Screen-Shot-2020-05-21-at-1.33.20-AM.png)
 
 To inspect the HelmRelease objects deployed by FluxCD's synchronization, you can use the following command.
 
@@ -149,7 +149,7 @@ To inspect the HelmRelease objects deployed by FluxCD's synchronization, you can
 kubectl get hr -A
 ```
 
-![](images/Screen-Shot-2020-05-21-at-8.06.41-PM-1024x87.png)
+![](/assets/img/imported/Screen-Shot-2020-05-21-at-8.06.41-PM-1024x87.png)
 
 Remember that for this laboratory I used Docker Desktop, meaning that the entire cluster is running inside our machine, including the load balancers that the nginx ingress controller uses to route the HTTP/HTTPS traffic to the services in the cluster. Thus, to access the services using their DNS names use the command below. It will tell your computer to route the traffic targeting _mywebserver.dev.kubesandclouds.com_, _mywebserver.staging.kubesandclouds.com_ and _mywebserver.pro.kubesandclouds.com_ to your that 'internal load balancer' running in your host.
 
@@ -159,11 +159,11 @@ sudo sh -c 'echo "127.0.0.1 mywebserver.dev.kubesandclouds.com mywebserver.pro.k
 
 Now, by using the DNS names, you can reach the applications, each one deployed in a different namespace and using different configurations, as you can see in the images below. Each pod in the deployment generates an entry in the index page of the web server. Since each environment has a different number of replicas, in each environment the index page will have a different number of entries.
 
-![](images/Screen-Shot-2020-05-20-at-6.29.48-PM-1024x244.png)
+![](/assets/img/imported/Screen-Shot-2020-05-20-at-6.29.48-PM-1024x244.png)
 
-![](images/Screen-Shot-2020-05-20-at-6.29.33-PM-1024x423.png)
+![](/assets/img/imported/Screen-Shot-2020-05-20-at-6.29.33-PM-1024x423.png)
 
-![](images/Screen-Shot-2020-05-20-at-6.30.15-PM-1024x599.png)
+![](/assets/img/imported/Screen-Shot-2020-05-20-at-6.30.15-PM-1024x599.png)
 
 * * *
 
@@ -171,19 +171,19 @@ Now, by using the DNS names, you can reach the applications, each one deployed i
 
 Let's add some changes in the develop branch of the chart. For example, modify the values of the secret passed to the web server.
 
-![](images/Screen-Shot-2020-05-21-at-8.16.20-PM-1024x301.png)
+![](/assets/img/imported/Screen-Shot-2020-05-21-at-8.16.20-PM-1024x301.png)
 
 You can also add an initContainer to emulate web server's initial bootup process.
 
-![](images/Screen-Shot-2020-05-21-at-11.20.29-PM-1024x321.png)
+![](/assets/img/imported/Screen-Shot-2020-05-21-at-11.20.29-PM-1024x321.png)
 
 Wait for FluxCD to synchronize the modified elements into the development namespace. If you don't want to wait, just force the synchronization process using the CLI. Check the newly deployed web server and you will notice three different entries, even though the deployment in the development namespace uses just one pod.
 
-![](images/Screen-Shot-2020-05-21-at-11.27.30-PM-1024x491.png)
+![](/assets/img/imported/Screen-Shot-2020-05-21-at-11.27.30-PM-1024x491.png)
 
 How is this possible? It is a direct consequence of using a persisting volume to store the index page of the web server. Every time the pod is restarted, it writes a new entry into the file. In this case, since we added changes in two different commits FluxCD synchronized the repo two times, redeploying the pod in turn two times.
 
-![](images/Screen-Shot-2020-05-21-at-11.21.32-PM-1024x192.png)
+![](/assets/img/imported/Screen-Shot-2020-05-21-at-11.21.32-PM-1024x192.png)
 
 * * *
 
@@ -226,7 +226,7 @@ docker push your-dockerhub-user/your-reponame:v0.0.1
 
 After pushing the new image, it will be available in Dockerhub, so now you can modify your chart so that it uses this new image instead of the original Bitnami's image.
 
-![](images/Screen-Shot-2020-05-24-at-1.10.25-PM-1024x221.png)
+![](/assets/img/imported/Screen-Shot-2020-05-24-at-1.10.25-PM-1024x221.png)
 
 However, before modifying the code and triggering FluxCD's synchronization, you have to ensure that your cluster has access to your private repository. How to do so? You just need to create a _docker-registry_ Kubernetes secret with your credentials in the develop namespace and add them to the default service account in that namespace. The Docker daemon powering the nodes in the cluster will use this credentials to log into the Docker registry and pull the images.
 
@@ -243,7 +243,7 @@ helm upgrade -i flux fluxcd/flux --wait --namespace fluxcd --set git.url=git@git
 
 Now you can modify the image to use in the HelmRelease file of the development environment in the master branch.
 
-![](images/Screen-Shot-2020-05-24-at-2.33.52-PM-1024x230.png)
+![](/assets/img/imported/Screen-Shot-2020-05-24-at-2.33.52-PM-1024x230.png)
 
 Thus, the final version of your HelmRelease for the develop environment should be something similar to the snippet below.
 
@@ -274,7 +274,7 @@ spec:
 
 As before, wait some minutes until FluxCD detects the changes and redeploys the pod in the development environment. As you can see, the deployment is using the new image now.
 
-![](images/Screen-Shot-2020-05-24-at-1.52.37-PM.png)
+![](/assets/img/imported/Screen-Shot-2020-05-24-at-1.52.37-PM.png)
 
 **TIP:** By using the [jsonpath](https://kubernetes.io/docs/reference/kubectl/jsonpath/) Kubernetes ouput you can retrieve the parameters you want in the specific format and order that you may need. It is a little bit trickier than using the classic _kubectl get pods_, but it is a really powerful and flexible option.
 
@@ -296,15 +296,15 @@ docker build . -t your-dockerhub-user/your-reponame:v0.0.2
 docker push your-dockerhub-user/your-reponame:v0.0.2
 ```
 
-![](images/Screen-Shot-2020-05-24-at-2.02.07-PM-1024x365.png)
+![](/assets/img/imported/Screen-Shot-2020-05-24-at-2.02.07-PM-1024x365.png)
 
 Wait some minutes until the FluxCD operator detects the new image, and you will see how the deployment was updated with the v0.0.2 image.
 
-![](images/Screen-Shot-2020-05-24-at-5.42.30-PM.png)
+![](/assets/img/imported/Screen-Shot-2020-05-24-at-5.42.30-PM.png)
 
 Besides, FluxCD automatically modified the image tag in the development HelmRelease and committed the changes indicating that it was an 'auto-release'.
 
-![](images/Screen-Shot-2020-05-24-at-5.43.01-PM-1024x468.png)
+![](/assets/img/imported/Screen-Shot-2020-05-24-at-5.43.01-PM-1024x468.png)
 
 * * *
 
@@ -342,7 +342,3 @@ Keep in mind that FluxCD uses a single git repository to handle all the releases
 FluxCD offers a lot of extra interesting features to fine tune synchronization and image releases. If you want to know more about it, read [the docs](https://docs.fluxcd.io/en/1.17.0/index.html).
 
 * * *
-
-* * *
-
-## Other articles

@@ -16,7 +16,7 @@ This is the third post of a collection of GitOps tools articles. In this post, a
 
 As for the previous tools, an example repository has been developed so that you can test Werf with some existing configurations. You can find the repository [here](https://github.com/mifonpe/werf-kubesandclouds).
 
-![](images/Shipyard-1024x717.png)
+![](/assets/img/imported/Shipyard-1024x717.png)
 
 Shipyard by [vecteezy](https://www.vecteezy.com/)
 
@@ -28,7 +28,7 @@ GitOps allows faster delivery rates, as once the code is pushed to the productio
 
 [Werf](https://werf.io/) is an open source GitOps tool which aims to speed up application delivery by automating and simplifying the complete application lifecycle. To do so, Werf builds and publishes images, deploys applications to Kubernetes clusters, and removes unused images based on policies and rules defined in the Git repository.
 
-![](images/werf-schema.png)
+![](/assets/img/imported/werf-schema.png)
 
 Werf flow by [werf.io](https://werf.io/)
 
@@ -68,7 +68,7 @@ In case you don't want to use multiwerf features, you can just follow the 'old g
 
 Werf expects files to be organized following a specific structure within the code repository. The image below shows the structure of the example repository that we will be using for this post, which contains a simple webpage (in **/web**) that is packaged in a nginx Docker image, and deployed to a Kubernetes cluster using Helm.
 
-![](images/Screen-Shot-2020-08-31-at-9.47.02-AM.png)
+![](/assets/img/imported/Screen-Shot-2020-08-31-at-9.47.02-AM.png)
 
 On the top level of the repository you can find **werf.yaml**, a YAML configuration file for Werf which defines how to build the images, and contains some metadata and directives that allow customizing the behavior of Werf. This file contains metadata information, images build information and artifacts build information each part separated by three hyphens. Werf also supports Go templates for the **werf.yaml** file, as you can notice in the last line of the following example, making configurations really powerful. Besides, by including different templates, **werf.yaml** can be split into different files, to better handle complex configuration scenarios.
 
@@ -182,7 +182,7 @@ werf build --stages-storage :local
 
 During the build process, the different stages are executed and their outputs are shown in the terminal.
 
-![](images/Screen-Shot-2020-09-01-at-10.43.21-AM-1024x488.png)
+![](/assets/img/imported/Screen-Shot-2020-09-01-at-10.43.21-AM-1024x488.png)
 
 Once the image is built successfully, you can push it to an images repository. For this example I used a [Dockerhub](https://hub.docker.com/) public repo for simplicity. If you don't have an account yet, just sign up and create a public repository. Once it's ready, generate an access token so that Werf can push the built images to the repository. To push the image, issue the following command.
 
@@ -190,7 +190,7 @@ Once the image is built successfully, you can push it to an images repository. F
 werf publish --stages-storage :local --images-repo <your-repo>  --tag-custom v0.0.1  --images-repo-docker-hub-token  <your-token>
 ```
 
-![](images/Screen-Shot-2020-08-31-at-3.56.49-PM.png)
+![](/assets/img/imported/Screen-Shot-2020-08-31-at-3.56.49-PM.png)
 
 **TIP:** If you prefer using a local Docker repository, rather than using Dockerhub, you can just run the following command, and specify _\--images-repo localhost:5000/your-repo-name_ when issuing the _werf publish_ command.
 
@@ -232,7 +232,7 @@ server:
 
 If you try to read the content of the **.helm/secret-values.yaml** you will notice that the values have been encrypted, so now you're safe to store this secret values in your repository.
 
-![](images/Screen-Shot-2020-08-30-at-1.15.54-AM-1024x122.png)
+![](/assets/img/imported/Screen-Shot-2020-08-30-at-1.15.54-AM-1024x122.png)
 
 The secret values can be referenced as any other Helm value within the templates. For this example, they are injected in the container as environment variables.
 
@@ -313,15 +313,15 @@ Once the dependencies have been fetched, deploy the application to your cluster.
 werf deploy  --images-repo <your-repo>  --stages-storage :local --tag-custom v0.0.1 --images-repo-docker-hub-token  <your-token>
 ```
 
-![](images/Screen-Shot-2020-08-31-at-3.59.07-PM.png)
+![](/assets/img/imported/Screen-Shot-2020-08-31-at-3.59.07-PM.png)
 
 While Werf is performing the application deployment by means of Helm, the status progress is shown for all the components that are being deployed.
 
-![](images/Screen-Shot-2020-08-31-at-3.59.32-PM-1024x240.png)
+![](/assets/img/imported/Screen-Shot-2020-08-31-at-3.59.32-PM-1024x240.png)
 
 Once the deployment has been completed, a summary is displayed.
 
-![](images/Screen-Shot-2020-08-31-at-4.00.17-PM.png)
+![](/assets/img/imported/Screen-Shot-2020-08-31-at-4.00.17-PM.png)
 
 If you deployed your application in your local cluster using Minikube or Docker desktop, execute the following command so that you can access your application through the ingress.
 
@@ -331,11 +331,11 @@ sudo -- sh -c 'echo "127.0.0.1 werfapp.local" >> /etc/hosts
 
 If everything worked out, you should be able to see the example webpage displaying a pretty cool logo 😏 .
 
-![](images/Screen-Shot-2020-09-01-at-1.33.10-PM-1024x389.png)
+![](/assets/img/imported/Screen-Shot-2020-09-01-at-1.33.10-PM-1024x389.png)
 
 By the way, remember those super secret values we injected as environment variables? If you check the environment variables of the container within one of the pods, you can see how the values worked as expected.
 
-![](images/Screen-Shot-2020-08-30-at-11.40.14-PM-1024x139.png)
+![](/assets/img/imported/Screen-Shot-2020-08-30-at-11.40.14-PM-1024x139.png)
 
 **TIP 3:** The converge command combines _werf build_, _werf publish_ and _werf deploy_ commands. Notice that the _\--custom-tag_ flag is not used in this command, as the image tag is generated by Werf.
 
@@ -343,7 +343,7 @@ By the way, remember those super secret values we injected as environment variab
 werf converge  --images-repo <your-repo>  --stages-storage :local  --images-repo-docker-hub-token <your-token>
 ```
 
-![](images/Screen-Shot-2020-08-31-at-4.10.43-PM.png)
+![](/assets/img/imported/Screen-Shot-2020-08-31-at-4.10.43-PM.png)
 
 * * *
 
@@ -415,7 +415,7 @@ jobs:
 
 If you want to try this integration, you can fork the project and switch to the deploy branch which is already configured to be used with GitHub actions. In this case, if no Docker registry is specified, Werf will use GitHub packages as an image repository to store both the intermediate stages and the images.
 
-![](images/Screen-Shot-2020-09-01-at-11.56.45-PM-1024x193.png)
+![](/assets/img/imported/Screen-Shot-2020-09-01-at-11.56.45-PM-1024x193.png)
 
 In order to allow your Kubernetes cluster to pull images from this registry, you will need to create a Docker credentials secret specifying your username and a valid GitHub [Personal Access Token](https://docs.github.com/en/github/authenticating-to-github/creating-a-personal-access-token), and then add the service account to use (the default in this case).
 
@@ -426,9 +426,9 @@ kubectl patch serviceaccount default -p '{"imagePullSecrets": [{"name": "regcred
 
 If everything goes well, by the end of the job, Werf would have deployed the entire application in the cluster.
 
-![](images/Screen-Shot-2020-09-02-at-12.15.28-AM-1024x738.png)
+![](/assets/img/imported/Screen-Shot-2020-09-02-at-12.15.28-AM-1024x738.png)
 
-![](images/Screen-Shot-2020-09-02-at-12.18.55-AM-1024x194.png)
+![](/assets/img/imported/Screen-Shot-2020-09-02-at-12.18.55-AM-1024x194.png)
 
 **TIP 5:** To obtain your kubeconfig in base64 you can use the following command (assuming your local kubeconfig points to the remote cluster to use).
 
@@ -449,7 +449,3 @@ Besides, this documentation introduces advanced used cases that are really inter
 - [Image optimization using Werf artifacts](https://werf.io/documentation/guides/advanced_build/artifacts.html)
 
 * * *
-
-* * *
-
-## Other Articles

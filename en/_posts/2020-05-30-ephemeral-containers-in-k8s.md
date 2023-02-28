@@ -11,7 +11,7 @@ lang: en
 lang-ref: ephemeral
 ---
 
-![](images/excelentes-utilidades-para-los-containers.jpg)
+![](/assets/img/imported/excelentes-utilidades-para-los-containers.jpg)
 
 Have you ever faced a situation when working with a Kubernetes cluster in which a container within a pod is not working as expected and you need to do some debugging? I'm sure you have. The first step to follow in this troubleshooting scenario would be to try to figure out what's going on inside the container by checking the logs. But as you may have experienced, not all applications do provide useful logs, or any logs at all!
 
@@ -33,11 +33,11 @@ Thus, by attaching the ephemeral container to the namespace, you can inspect the
 
 For this example, the main container running in the pod is an nginx container. In the image below, you can check how the ephemeral container is attached to the pod and how this new container shares the process namespace of the nginx container.
 
-![](images/Screen-Shot-2020-05-30-at-2.22.39-AM-1024x376.png)
+![](/assets/img/imported/Screen-Shot-2020-05-30-at-2.22.39-AM-1024x376.png)
 
 If you inspect the pod by issuing _kubectl describe pod_, you will notice that the new ephemeral container appears in the pod specifications. In this case, it is showing an error since the debugging session was closed after inspecting the container.
 
-![](images/Screen-Shot-2020-05-30-at-2.26.26-AM-1024x321.png)
+![](/assets/img/imported/Screen-Shot-2020-05-30-at-2.26.26-AM-1024x321.png)
 
 * * *
 
@@ -61,15 +61,15 @@ spec:
     - --feature-gates=EphemeralContainers=true
 ```
 
-![](images/Screen-Shot-2020-05-29-at-9.26.21-AM-1.png)
+![](/assets/img/imported/Screen-Shot-2020-05-29-at-9.26.21-AM-1.png)
 
 For the Kubelet, things are a little bit trickier, because it is the only component that cannot be containerized, since it is the element which runs the containers in each node. Kubelet is managed by means of systemd, so check the service configuration file _/etc/systemd/system/kubelet.service.d/10-kubeadm.conf_ in both the **worker** and **master** nodes. In the file, find the _EnvironmentFile_ variable, which tells you where the additional variables for the Kubelet are defined. In this case, it is _/var/lib/kubelet/kubeadm-flags.env_.
 
-![](images/Screen-Shot-2020-05-30-at-2.13.54-AM-1024x164.png)
+![](/assets/img/imported/Screen-Shot-2020-05-30-at-2.13.54-AM-1024x164.png)
 
 Add the feature gates flag into the file _/var/lib/kubelet/kubeadm-flags.env_.
 
-![](images/Screen-Shot-2020-05-30-at-2.16.48-AM-1024x38.png)
+![](/assets/img/imported/Screen-Shot-2020-05-30-at-2.16.48-AM-1024x38.png)
 
 Finally, restart the Kubelet service.
 
@@ -79,14 +79,10 @@ sudo service  kubelet restart
 
 Now that everything has been set, you can check the flags by inspecting the processes running in the master and worker nodes.
 
-![](images/Screen-Shot-2020-05-29-at-9.27.38-AM-1024x95.png)
+![](/assets/img/imported/Screen-Shot-2020-05-29-at-9.27.38-AM-1024x95.png)
 
 ### **IMPORTANT**⚠️
 
 In case your cluster was installed without kubeadm (a.k.a The Hard Way), the API Sever, Controller Manager and Scheduler are managed by means of systemd too. Thus, you will need to check the service configuration files in order to add the ephemeral containers flag.
 
 * * *
-
-* * *
-
-## Other articles
