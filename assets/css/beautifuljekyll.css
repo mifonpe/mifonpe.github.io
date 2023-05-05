@@ -867,7 +867,7 @@ table tr td :last-child {
 code {
   padding: 0.125rem 0.25rem;
   color: #f9f7f8;
-  background-color: #1a1818;
+  background-color: #f7f1f1;
   border-radius: 0.25rem;
 }
 
@@ -908,7 +908,7 @@ pre {
   margin: 0;
 }
 .highlight pre.lineno {
-  color: rgba(0,0,0,0.3);
+  color: rgba(255, 253, 253, 0.936);
   border-radius: 0;
   border-right: 2px solid #444;
 }
