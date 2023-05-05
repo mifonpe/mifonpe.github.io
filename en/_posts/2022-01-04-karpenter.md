@@ -198,7 +198,7 @@ resource "aws_iam_role_policy" "karpenter_contoller" {
 
 <p style='text-align: justify;'>Now you can use Helm to deploy Karpenter to the cluster. While installing the chart, we will override some of the default values with the cluster specific values, so that Karpenter can work properly in our cluster. In this case, an in-line call to the AWS CLI is used to retrieve the cluster endpoint.</p>
 
-```console
+```shell
 >~ helm repo add karpenter https://charts.karpenter.sh
 ~ helm repo update
 ~ helm upgrade --install karpenter karpenter/karpenter --namespace karpenter \
