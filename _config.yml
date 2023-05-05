@@ -239,13 +239,12 @@ date_format: "%B %-d, %Y"
 timezone: "America/Toronto"
 markdown: kramdown
 
-highlighter: rouge
 permalink: /:year-:month-:day-:title/
 paginate: 5
 
 kramdown:
   input: GFM
-  syntax_highlighter: coderay
+  syntax_highlighter: rouge
 
 # Default YAML values (more information on Jekyll's site)
 defaults:
