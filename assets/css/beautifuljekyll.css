@@ -3,7 +3,7 @@ layout: null
 ---
 
 /*@import url("pygment_highlights.css");*/
-@import monokai.css;
+@import url("monokai.css");
 /* --- General --- */
 
 html {
