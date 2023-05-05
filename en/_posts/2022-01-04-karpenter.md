@@ -102,7 +102,7 @@ lang-ref: karpenter
 
 <p style='text-align: justify;'><span class="has-inline-color has-very-dark-gray-color">We are assuming that the <strong>underlying VPC and network resources are already created along with the EKS cluster as well as the Cluster Autoscaler</strong>, and we will add Karpenter resources on top of that.</span> In case you haven&#8217;t created them, you can check <a href="https://github.com/mifonpe/argocd-gitops-demo/tree/main/iac" class="rank-math-link" target="_blank" rel="noopener">this Terraform code</a>, from a <a href="https://www.youtube.com/watch?v=maepNvKkO7o" class="rank-math-link" target="_blank" rel="noopener">webinar</a> in which I participated. For the Cluster Autoscaler, you can find its installation guide for EKS <a href="https://docs.aws.amazon.com/eks/latest/userguide/autoscaling.html#cluster-autoscaler" class="rank-math-link" target="_blank" rel="noopener">here</a>.</p>
 
-<p style='text-align: justify;'><strong>NOTE</strong>: Please note that Karpenter expects the subnets to be tagged with <em><strong>&#8220;kubernetes.io/cluster/&lt;cluster-name&gt;&#8221; = &#8220;owned</strong></em>&#8220;.</p>
+<p style='text-align: justify;'><strong>NOTE</strong>: Please note that Karpenter expects the subnets to be tagged with <em><strong>&#8220;kubernetes.io/cluster/<cluster-name&gt;&#8221; = &#8220;owned</strong></em>&#8220;.</p>
 
 <p style='text-align: justify;'>If you are using Terraform then it&#8217;s as simple as adding this one line in your <a href="https://registry.terraform.io/modules/terraform-aws-modules/vpc/aws/latest" class="rank-math-link" target="_blank" rel="noopener">VPC module</a>.</p>
 
@@ -112,7 +112,7 @@ module "vpc" {
   source = "terraform-aws-modules/vpc/aws"
   ...
   private_subnet_tags = {
-    "kubernetes.io/cluster/&lt;your-cluster-name-here>" = "owned"
+    "kubernetes.io/cluster/<your-cluster-name-here>" = "owned"
   }
   ...
 }
@@ -134,7 +134,7 @@ resource "aws_iam_role_policy_attachment" "karpenter_ssm_policy" {
 }
 
 resource "aws_iam_instance_profile" "karpenter" {
-  name = "KarpenterNodeInstanceProfile-&lt;your-cluster-name>"
+  name = "KarpenterNodeInstanceProfile-<your-cluster-name>"
   role = module.eks.worker_iam_role_name
 }
 ```
@@ -155,13 +155,13 @@ module "iam_assumable_role_karpenter" {
   source                        = "terraform-aws-modules/iam/aws//modules/iam-assumable-role-with-oidc"
   version                       = "4.7.0"
   create_role                   = true
-  role_name                     = "karpenter-controller-&lt;your-cluster-name>"
+  role_name                     = "karpenter-controller-<your-cluster-name>"
   provider_url                  = module.eks.cluster_oidc_issuer_url
   oidc_fully_qualified_subjects = ["system:serviceaccount:karpenter:karpenter"]
 }
 
 resource "aws_iam_role_policy" "karpenter_contoller" {
-  name = "karpenter-policy-&lt;your-cluster-name>"
+  name = "karpenter-policy-<your-cluster-name>"
   role = module.iam_assumable_role_karpenter.iam_role_name
 
   policy = jsonencode({
@@ -217,8 +217,8 @@ pod/karpenter-controller-64754574df-gqn86   1/1     Running   0          29s
 pod/karpenter-webhook-7b88b965bc-jcvhg      1/1     Running   0          29s
 
 NAME                        TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)    AGE
-service/karpenter-metrics   ClusterIP   10.x.x.x   &lt;none>        8080/TCP   29s
-service/karpenter-webhook   ClusterIP   10.x.x.x    &lt;none>        443/TCP    29s
+service/karpenter-metrics   ClusterIP   10.x.x.x           none       8080/TCP   29s
+service/karpenter-webhook   ClusterIP   10.x.x.x           none        443/TCP    29s
 
 NAME                                   READY   UP-TO-DATE   AVAILABLE   AGE
 deployment.apps/karpenter-controller   1/1     1            1           30s
@@ -231,18 +231,18 @@ replicaset.apps/karpenter-webhook-7b88b965bc      1         1         1       30
 
 <p style='text-align: justify;'>Also, it should create a Service Account.</p>
 
-```bash
+```shell
 ~ kubectl describe sa karpenter -n karpenter
 Name:                karpenter
 Namespace:           karpenter
 Labels:              app.kubernetes.io/managed-by=Helm
-Annotations:         eks.amazonaws.com/role-arn: &lt;Obfuscated_IAM_Role_ARN>
+Annotations:         eks.amazonaws.com/role-arn: <Obfuscated_IAM_Role_ARN>
                      meta.helm.sh/release-name: karpenter
                      meta.helm.sh/release-namespace: karpenter
 Image pull secrets:  image-pull-secret
 Mountable secrets:   karpenter-token-dwwrs
 Tokens:              karpenter-token-dwwrs
-Events:              &lt;none>
+Events:              <none>
 ```
 <hr/>
 
@@ -252,8 +252,8 @@ Events:              &lt;none>
 
 <p style='text-align: justify;'>Create a default provisioner using the command below. This provisioner configures instances to connect to your cluster&#8217;s endpoint and discovers resources like subnets and security groups using the cluster&#8217;s name.</p>
 
-```bash
-cat &lt;&lt;EOF | kubectl apply -f -
+```shell
+cat <<EOF | kubectl apply -f -
 apiVersion: karpenter.sh/v1alpha5
 kind: Provisioner
 metadata:
@@ -284,14 +284,14 @@ EOF
 
 <p style='text-align: justify;'><span class="has-inline-color has-very-dark-gray-color">Now, all what is left to do is to deploy a sample app and see how it scales via Cluster Autoscaler and Karpenter respectively.</span> To do so, you can execute the following command.</p>
 
-```bash
+```shell
 kubectl create deployment inflate --image=public.ecr.aws/eks-distro/kubernetes/pause:3.2
 ```
 
 <p style='text-align: justify;'>Also, let&#8217;s set some resource requests for this vanilla<em> inflate</em> deployment:</p>
 
 
-```bash
+```shell
 kubectl set resources deployment inflate --requests=cpu=100m,memory=256Mi
 ```
 <hr/>
@@ -303,14 +303,14 @@ kubectl set resources deployment inflate --requests=cpu=100m,memory=256Mi
 
 
 
-```bash
+```shell
 kubectl scale deployment karpenter-controller -n karpenter --replicas=0
 ```
 
 <p style='text-align: justify;'>Now, let&#8217;s scale the inflate deployment up to 100 replicas. <span class="has-inline-color has-vivid-red-color"><strong>Please note this may incur costs to your AWS cloud bill, so be careful. </strong></span></p>
 
 
-```bash
+```shell
 kubectl scale deployment inflate --replicas 100
 ```
 
@@ -337,7 +337,7 @@ kubectl scale deployment inflate --replicas 100
 
 <p style='text-align: justify;'>Finally, let&#8217;s scale down the inflate deployment back to one replica. </p>
 
-```bash
+```shell
 kubectl scale deployment inflate --replicas 1</code></pre>
 ```
 
@@ -353,20 +353,20 @@ kubectl scale deployment inflate --replicas 1</code></pre>
 <p style='text-align: justify;'>Let&#8217;s repeat the experiment now, but using Karpenter this time. To do so, <strong>scale down your Cluster Autoscaler and scale up the Karpenter Controller.</strong></p>
 
 
-```bash
+```shell
 kubectl scale deployment cluster-autoscaler -n autoscaler --replicas=0
 kubectl scale deployment karpenter-controller -n karpenter --replicas=1
 ```
 
 <p style='text-align: justify;'>Now that Karpenter is taking care of the autoscaling of the cluster, scale the inflate deployment to 100 replicas again and monitor the logs of the Karpenter controller.</p>
 
-```bash
+```shell
 kubectl scale deployment inflate --replicas 100
 ```
 
 <p style='text-align: justify;'>The following snippet contains part of the karpenter-controller logs after the deployment was scaled up. It&#8217;s using the default provisioner that was defined in the previous version, and it has a wide ranges of instances to select from, as we did not specify any specific instance type in the provisioner.</p>
 
-```bash
+```shell
 2021-12-28T14:23:58.816Z INFO controller.provisioning Batched 89 pods in 4.587455594s {"commit": "5047f3c", "provisioner": "default"}
 
 2021-12-28T14:23:58.916Z INFO controller.provisioning Computed packing of 1 node(s) for 89 pod(s) with instance type option(s) [m5zn.3xlarge c3.4xlarge c4.4xlarge c5ad.4xlarge c5a.4xlarge c5.4xlarge c5d.4xlarge c5n.4xlarge m5ad.4xlarge m5n.4xlarge m5.4xlarge m5a.4xlarge m6i.4xlarge m5d.4xlarge m5dn.4xlarge m4.4xlarge r3.4xlarge r4.4xlarge r5b.4xlarge r5d.4xlarge] {"commit": "5047f3c", "provisioner": "default"}
@@ -395,13 +395,13 @@ kubectl scale deployment inflate --replicas 100
 
 <p style='text-align: justify;'>Finally, let&#8217;s wrap it up by scaling down the deployment to 0 replicas.</p>
 
-```bash
+```shell
 kubectl scale deployment inflate --replicas 0
 ```
 
 <p style='text-align: justify;'>If you check the logs, you will see how Karpenter deprovisions the instance right away.</p>
 
-```bash
+```shell
 2021-12-28T14:31:12.364Z INFO controller.node Added TTL to empty node {"commit": "5047f3c", "node": "ip-10-x-x-x.eu-x-1.compute.internal"}
 
 2021-12-28T14:31:42.391Z INFO controller.node Triggering termination after 30s for empty node {"commit": "5047f3c", "node": "ip-10-x-x-x.eu-x-1.compute.internal"}
