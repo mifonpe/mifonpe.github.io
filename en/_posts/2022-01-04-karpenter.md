@@ -209,7 +209,7 @@ resource "aws_iam_role_policy" "karpenter_contoller" {
 {% endhighlight %}
 <p style='text-align: justify;'>This should create the following resources in the <em>karpenter</em> namespace.</p>
 
-```console
+```yaml
 ~ kubectl get all
 NAME                                        READY   STATUS    RESTARTS   AGE
 pod/karpenter-controller-64754574df-gqn86   1/1     Running   0          29s
