@@ -47,7 +47,6 @@ layout: base
         {% if posts.size > 1 %}
           <div class="before-content">
             {% for post in posts %}
-              <a href="{{ site.base-url }}{{ post.url }}" class="{{ post.lang }}" title="View in {{post.lang}}">{{ site.data.languages[post.lang].icon }}</a>
             {% endfor %}
           </div>
         {% endif %}
