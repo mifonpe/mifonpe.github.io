@@ -8,7 +8,9 @@ lang-ref: talks
 
 <h2 align="center">Autoscaling in Kubernetes with Karpenter</h2>
 
+<p align="center">
 <iframe width="560" height="315" src="https://www.youtube.com/embed/FqscrNUB1jw?si=HzrLDjCG3N7glyVc&amp;start=860" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+</p>
 
 <h2 align="center">GitOps & Progressive Delivery</h2>
 
