@@ -812,7 +812,7 @@ nav.top-nav-short-permanent ~ header > .intro-header.big-img {
   padding: 0.625rem 0.3125rem;
   background-color: #FFF;
   border-radius: 0;
-  color: {{ site.text-col | default: "#404040" }};
+  color: #FCB021;
 }
 @media (min-width: 768px) {
   .pagination .page-item .page-link {

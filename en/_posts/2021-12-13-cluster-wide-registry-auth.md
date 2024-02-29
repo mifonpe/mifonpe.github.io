@@ -17,7 +17,9 @@ lang-ref: registry-auth
 
 Using private container image registries is a common practice in the industry, as it ensures applications packaged within the images are just accessible for users which hold the right set of credentials. Besides, in some cases, using credentials for some registries helps overcoming pull rate limitations, for example when using [paid subscriptions for DockerHub](https://www.docker.com/pricing).
 
+<p align="center">
 ![](/assets/img/imported/461f0ea0da8f612dbea489d1bffe9d7d-1024x640.jpg)
+</p>
 
 Container ship by [Sketchfab](https://sketchfab.com)
 
@@ -111,8 +113,9 @@ You can check all of the resources accessing [this file](https://github.com/mifo
 
 Once the deployment is up, it's time to check if it worked. If you check the resources in the _imagepullsecret-patcher_ namespace, you should see something like this.
 
+<p align="center">
 ![](/assets/img/imported/Screenshot-2021-12-11-at-10.39.44-1024x250.png)
-
+</p>
 * * *
 
 ## Using it ⚙️☸️
@@ -120,13 +123,13 @@ Once the deployment is up, it's time to check if it worked. If you check the res
 Once the installation has succeeded, you can check the default namespace secrets. You should be able to see the secret created by the patcher.
 
 **NOTE:** _k_ is an alias for _kubetcl_
-
+<p align="center">
 ![](/assets/img/imported/Screenshot-2021-12-11-at-10.40.08-1024x137.png)
-
+</p>
 Finally, if you check the default service account on the default namespace, it should have been patched in order to use the new secret.
-
+<p align="center">
 ![](/assets/img/imported/Screenshot-2021-12-11-at-10.40.47.png)
-
+</p>
 Let's create a new namespace to check how it works. Execute the following command to create a new, empty namespace.
 
 ```
@@ -134,19 +137,19 @@ kubectl create namespace test-patcher
 ```
 
 Now let's execute the same commands that were executed in the default namespace. You will see how the secret was created by the image patcher and that the default service account was patched.
-
+<p align="center">
 - ![](/assets/img/imported/Screenshot-2021-12-11-at-10.47.54-1024x452.png)
-    
+</p>    
 
 If you check the logs of the patcher container, you can see how it detected the newly created namespace and reacted to this event.
-
+<p align="center">
 - ![](/assets/img/imported/Screenshot-2021-12-11-at-13.29.36-1024x88.png)
-    
+</p>   
 
 Finally, let's pull a private image. For this example I will be pulling a private image from Dockerhub that was constructed for [another post of the blog](https://kubesandclouds.com/index.php/2021/11/04/kaniko/).
-
+<p align="center">
 ![](/assets/img/imported/Screenshot-2021-12-11-at-13.22.54-1024x596.png)
-
+</p>
 In order to create a deployment which instantiates a pod using your private image, you can use the following command.
 
 ```
@@ -154,14 +157,14 @@ kubectl run test --image <your-private-image>:<your-tag>
 ```
 
 Check if the pod is running.
-
+<p align="center">
 - ![](/assets/img/imported/Screenshot-2021-12-11-at-13.40.50-1024x91.png)
-    
+</p>
 
 If you describe the pod, you should be able to see how the private image was pulled by the cluster!
-
+<p align="center">
 ![](/assets/img/imported/Screenshot-2021-12-11-at-13.38.32-1024x154.png)
-
+</p>
 * * *
 
 ## How to make it better? ➕🤖
