@@ -13,7 +13,9 @@ Cloud environments call for dynamic and flexible computing, meaning that fleets 
 
 ![](/assets/img/imported/cisco-servidor-datos.png)
 
+<p align="center">
 Data center by [Cisco](https://www.cisco.com/c/es_mx/solutions/smb/data-center-virtualization/infographic-basic-concepts.html)
+</p>
 
 In this post, two tools which are used to build golden images are reviewed using practical examples: AWS Image Builder and Packer. You can find the code used for these examples in this [repository](https://github.com/mifonpe/ami-basics/tree/master).
 

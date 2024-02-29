@@ -34,7 +34,9 @@ Thus, it makes sense to deploy infrastructure using high-level languages, which 
 
 ![](/assets/img/imported/graph4.png)
 
+<p align="center">
 Pulumi overview by [Pulumi](https://www.pulumi.com/)
+</p>
 
 In this post, Pulumi will be introduced and reviewed. Pulumi is an open source development framework which helps creating and managing cloud infrastructure and applications by using well-known programming languages such as Typescript, Javascript, Python, Go and C#.
 

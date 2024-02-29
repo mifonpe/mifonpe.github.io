@@ -14,7 +14,9 @@ lang-ref: k8s-why
 
 Kubernetes, is undoubtedly one the most disruptive tools/technologies that we have seen during the last years within the IT world. Alongside containers and the underlying runtimes, it is redefining the way in which software is built, tested and deployed into production. Although it is more complex to set up and to operate than some other container orchestration tools, it is still the most used solution for container orchestration.
 
+<p align="center">
 ![](/assets/img/imported/57m-Yacht-FLEURTJE-7929-82-300x200.jpg)
+</p>
 
 ## Why kubernetes?
 

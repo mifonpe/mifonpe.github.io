@@ -11,9 +11,13 @@ lang-ref: helm
 
 In a [previous post](https://kubesandclouds.com/index.php/2020/03/18/k8s-basic-objects/), we discussed how to deploy a simple application in Kubernetes, and yet being 'simple' we could notice how many different pieces were needed to make a deployment run successfully. Every one of these single pieces can be placed on a separate configuration file to make it easier handling and maintaining the code. Thus, for the deployment we worked on on that post, and whose architecture is shown in the image below, seven different manifests (yaml files) were needed.
 
+<p align="center">
 ![](/assets/img/imported/dep.png)
+</p>
 
+<p align="center">
 Kubernetes deployment
+</p>
 
 Kubernetes does not offer a native templating way for these yaml files, so if we wanted to modify common parameters such as labels, we would have to alter them in each single file. Furthermore, if this application was to be deployed in different environments, manifests should be modified accordingly to each environment's requirements.
 
@@ -278,9 +282,13 @@ helm chart push server/myrepo/mychart:version
 
 In oder to interact with the cluster and deploy Helm charts, the Helm client (running in your computer) communicates with a remote piece of software running in the cluster, the tiller server. Tiller is a Kubernetes deployment containing one pod with one container, and it communicates directly with the API server (the Kubernetes control plane front-end) in order to deploy charts.
 
+<p align="center">
 ![](/assets/img/imported/1*1lHh6xk05cs9AO3w-vh7iA.jpeg)
+</p>
 
+<p align="center">
 Tiller architecture by [Medium](https://medium.com/kubernetes-tutorials/simplifying-app-deployment-in-kubernetes-with-helm-charts-b824a8e8c79b)
+</p>
 
 Tiller receives orders from the Helm client over a gRPC connection and creates, upgrades, deletes and keeps track of what is known as Helm releases. Every time a new release is created or an existing one is upgraded, Helm stores its associated data, as well as the status of the release, being able to show the entire history of a release. In the image below, you can see the release **microservice-prod**, wich was first installed, and upgraded afterwards.
 

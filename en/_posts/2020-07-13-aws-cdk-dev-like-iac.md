@@ -23,7 +23,9 @@ Infrastructure as Code (IaC) is one of the biggest revolutions in the cloud comp
 
 ![](/assets/img/imported/Infrastructure-as-Code-AWS-1.png)
 
+<p align="center">
 IaC by [SourceFuse](https://www.sourcefuse.com/)
+</p>
 
 IaC can be implemented by means of several tools, being Terraform, AWS CloudFormation, Ansible, Chef or Puppet some of the most widely used ones. These tools normally rely on declarative languages (or dialects) using mostly YAML, JSON and JSON-like formatting for the infrastructure definition. Getting to work with these languages and tools can be challenging sometimes, specially for those with a more 'Developer-like' background.
 

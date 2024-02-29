@@ -18,7 +18,9 @@ Let's be honest, managing Kubernetes clusters is not an easy task, even when it 
 
 ![](/assets/img/imported/hero_jp_eks.5d0d1d5884897dda3abf7aa12cc753052246bf16.png)
 
+<p align="center">
 EKS by [AWS](https://aws.amazon.com/)
+</p>
 
 In this post, eksctl will be introduced and reviewed. eksctl is is a CLI tool for creating clusters on AWS EKS developed by [Weaveworks](https://www.weave.works/). It is written in Go, follows a 'kubectl-like' syntax, and relies on CloudFormation for infrastructure deployment and management. Furtermore, cluster configurations can be specified as yaml files, enabling infrastructure versioning thanks to SCM systems.
 

@@ -19,7 +19,10 @@ As for the previous tools, an example repository has been developed so that you 
 
 ![](/assets/img/imported/Shipyard-1024x717.png)
 
+<p align="center">
 Shipyard by [vecteezy](https://www.vecteezy.com/)
+</p>
+
 
 ## GitOps & Werf ⛵
 

@@ -16,15 +16,21 @@ If you have already deployed complex applications in Kubernetes, you may have no
 
 ![](/assets/img/imported/Screen-Shot-2020-03-11-at-12.50.59-AM-1024x821.png)
 
+<p align="center">
 Kubernetes icons by [community](https://github.com/kubernetes/community/tree/master/icons)
+</p>
 
 In the image below you can find a simplified deployment in Kubernetes: a simple web server, an Apache web server specifically. As it can be seen, it is made up of a lot of different pieces, being each one of them a Kubernetes object. Let's break down their functionality.
 
 **NOTE:**_The manifests (Kubernetes yaml files) developed to set up this application are reviewed in the post, and they are available to be downloaded in case you want to deploy the same environment. It's a good way to better understand the resources we will discuss here_ 😁.
 
+<p align="center">
 ![](/assets/img/imported/dep.png)
+</p>
 
+<p align="center">
 Simple k8s Deployment
+</p>
 
 ## Pods, ReplicaSets and Deployments
 
@@ -32,7 +38,9 @@ First of all, we find containers, which are run either using the 'traditional' d
 
 ![](/assets/img/imported/windows_server-virtual_machines_vs_containers-1024x635.png)
 
+<p align="center">
 Containers vs VMs by [TechTarget](https://searchitoperations.techtarget.com/definition/application-containerization-app-containerization)
+</p>
 
 Containers are placed within **pods**, which are Kubernetes objects that allow them to share storage and network resources. Pods are the minimum schedulable units in Kubernetes. Alongside pods, **ReplicaSets** can be used. ReplicaSets are Kubernetes objects which are in charge of keeping a desired number of identical pods running.
 
@@ -306,9 +314,13 @@ There are some situations in which Deployments are not a suitable solution. All 
 
 Furthermore, a StatefulSet ensure data persistence even when it is deleted or scaled down, as the storage volumes associated to pods will remain unless they are explicitly deleted. There is an important difference between StatefulSets and Deployments in terms of persistent volumes: as pods get unique identifiers when created form a StatefulSet, some of their associated resources such as PVs and PVCs also do. Thus when using a StatefulSet with N pods, N different volumes will be mounted. Conversely to what we saw in our example, pods will not share the same volume, as you can see in the image below.
 
+<p align="center">
 ![](/assets/img/imported/sts.png)
+</p>
 
+<p align="center">
 Simple k8s StatefulSet
+</p>
 
 We'll discuss StatefulSets in upcoming articles, but for the moment, just keep in mind the main differences with Deployments.
 

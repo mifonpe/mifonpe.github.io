@@ -21,10 +21,6 @@ GitOps is defined as a way of managing Kubernetes infrastructure and application
 
 GitOps allows faster delivery rates, as once the code is pushed to the production branch, it will be present in the cluster in a matter of seconds, increasing productivity. This Model increases reliability, as rollbacks and recovery procedures are eased by the fact that the entire set of applications is control versioned by Git. Furthermore, stability and consistency are also improved.
 
-![](https://hackernoon.com/photos/2yGtI4geW3PncPogINYdKCMtdWJ2-1l3033u9)
-
-GitOps tools by [hackernoon](https://hackernoon.com/why-gitops-is-so-exciting-ca2a3a0y)
-
 * * *
 
 ## FluxCD
