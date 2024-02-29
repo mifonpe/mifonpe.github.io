@@ -18,11 +18,9 @@ lang-ref: registry-auth
 Using private container image registries is a common practice in the industry, as it ensures applications packaged within the images are just accessible for users which hold the right set of credentials. Besides, in some cases, using credentials for some registries helps overcoming pull rate limitations, for example when using [paid subscriptions for DockerHub](https://www.docker.com/pricing).
 
 <p align="center">
-![](/assets/img/imported/461f0ea0da8f612dbea489d1bffe9d7d-1024x640.jpg)
-</p>
-
-<p align="center">
-Container ship by [Sketchfab](https://sketchfab.com)
+  <img alt="img-name" src="/assets/img/imported/461f0ea0da8f612dbea489d1bffe9d7d-1024x640.jpg">
+  <br>
+    <em>Container ship by [Sketchfab](https://sketchfab.com)</em>
 </p>
 
 The authentication process for image registries is pretty straightforward when using a container runtime locally, like Docker. In the end, all you need to do is setting your local configuration to use the right credentials. In the case of Docker, it can be done [running the login command](https://docs.docker.com/engine/reference/commandline/login/). However, when it comes to a Kubernetes cluster, in which each node runs its own container runtime, this process can become way more complex.
