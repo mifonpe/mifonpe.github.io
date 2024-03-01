@@ -85,10 +85,10 @@ pluto detect-files -d <your-directory>
 
 Some other interesting tools offer similar capabilities. Feel free to look at these repositories.
 
-- [Kubedd](https://github.com/devtron-labs/silver-surfer?tab=readme-ov-file) which follows a similar approach to Pluto
-- [Kubeconform](https://github.com/yannh/kubeconform)
-- [Kubent](https://github.com/doitintl/kube-no-trouble)
-- [Kubepug](https://github.com/kubepug/kubepug)
+- [Kubedd](https://github.com/devtron-labs/silver-surfer?tab=readme-ov-file) --> follows a similar approach to Pluto
+- [Kubeconform](https://github.com/yannh/kubeconform) --> a manifest validation tool
+- [Kubent](https://github.com/doitintl/kube-no-trouble) --> similar to Pluto as well
+- [Kubepug](https://github.com/kubepug/kubepug) --> kubectl plugin
 
 ## Extra: Patch deprecated Helm releases ☸️
 
