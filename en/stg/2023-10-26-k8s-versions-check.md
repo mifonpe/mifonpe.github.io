@@ -96,7 +96,9 @@ As commented, when you apply a deprecated API, k8s automatically translates the 
 
 When this happens, you can see errors like this one:
 
-*Error: UPGRADE FAILED: current release manifest contains removed kubernetes api(s) for this kubernetes version and it is therefore unable to build the kubernetes objects for performing the diff. error from kubernetes: unable to recognize “”: no matches for kind “Ingress” in version “networking.k8s.io/v1beta1”*
+```
+Error: UPGRADE FAILED: current release manifest contains removed kubernetes api(s) for this kubernetes version and it is therefore unable to build the kubernetes objects for performing the diff. error from kubernetes: unable to recognize “”: no matches for kind “Ingress” in version “networking.k8s.io/v1beta1”
+```
 
 In this case, you can follow [this documentation](https://helm.sh/docs/topics/kubernetes_apis/#updating-api-versions-of-a-release-manifest) from Helm to patch the broken release. All it does is decode and decompress the release data stored as a secret, patch the content, compress it and encode it again.
 
