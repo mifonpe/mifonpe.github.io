@@ -23,7 +23,7 @@ Curiosity is what keeps me moving forward, trying new technologies, architecture
 </p>
 
 <p style='text-align: justify;'> 
-Currently, I am a member of the Platform team at Sennder, a German freight-forwarder startup whose main focus is logistics optimization, and which has grown exponentially during the last year. The platform team provides the CI/CD infrastructure for the developers as well guidance for them to bootstrap their own cloud-native infrastructure.
+Currently, I am The Technical and Engineering Lead of the Platform team at <a href="https://www.sennder.com/" target="_blank" rel="noopener">Sennder</a>, a German freight-forwarder startup whose main focus is logistics optimization, and which has grown exponentially during the last year. The platform team provides the CI/CD infrastructure for the developers as well guidance for them to bootstrap their own cloud-native infrastructure.
 </p>
 
 <p style='text-align: justify;'> 
@@ -35,7 +35,7 @@ Before that, I was part of the PaaS team in a joint venture between Santander Gl
 </p>
 
 <p style='text-align: justify;'> 
-Prior to that, I was a member of the 5G Mobile Laboratory of the CTU in Prague, where I worked while I was developing my Master Thesis. During this time I focused myself on mobile network virtualization by using edge computing, virtual machines and container based solutions. By breaking down network functions into smaller units and offloading computational load, we end up with an operational flying 4G antenna (a drone).
+Prior to that, I was a member of the <a href="https://6gmobile.fel.cvut.cz/" target="_blank" rel="noopener">5G Mobile Laboratory of the CTU</a> in Prague, where I worked while I was developing my Master Thesis. During this time I focused myself on mobile network virtualization by using edge computing, virtual machines and container based solutions. By breaking down network functions into smaller units and offloading computational load, we end up with an operational flying 4G antenna (a drone).
 </p>
 
 <p style='text-align: justify;'> 
