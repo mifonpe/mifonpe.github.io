@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "How to check API changes in K8s cluster update ✅"
+title: "Detect API changes in k8s cluster upgrades ✅"
 date: "2024-03-01"
 tags: [kubernetes, EKS, containers]
 lang: en
