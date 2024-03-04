@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Detect API changes before k8s cluster upgrades ✅"
-date: "2024-03-01"
+date: "2024-03-04"
 tags: [kubernetes, EKS, containers]
 lang: en
 lang-ref: eksupgrade
