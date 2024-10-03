@@ -6,7 +6,7 @@ lang: en
 lang-ref: talks
 ---
 
-<h2 align="center">Our Platform Engineering journey at sennder 🇬🇧</h2>
+<h2 align="center">Our Platform Engineering journey 🇬🇧</h2>
 
 <p align="center">
 <iframe style="aspect-ratio: 16 / 9; width: 100%;" src="https://www.youtube.com/embed/yHVDNMr9klE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
