@@ -35,7 +35,7 @@ Before that, I was part of the PaaS team in a joint venture between Santander Gl
 </p>
 
 <p style='text-align: justify;'> 
-Prior to that, I was a member of the <a href="https://6gmobile.fel.cvut.cz/" target="_blank" rel="noopener">5G Mobile Laboratory of the CTU</a> in Prague, where I worked while I was developing my Master Thesis. During this time I focused myself on mobile network virtualization by using edge computing, virtual machines and container based solutions. By breaking down network functions into smaller units and offloading computational load, we end up with an operational flying 4G antenna (a drone).
+Prior to that, I was a member of the <a href="https://6gmobile.fel.cvut.cz/" target="_blank" rel="noopener">5G Mobile Laboratory of the CTU</a> in Prague, where I worked while I was developing my Master Thesis. During this time I focused myself on mobile network virtualization by using edge computing, virtual machines and container based solutions. By breaking down network functions into smaller units and offloading computational load, we end up with an <a href="https://6gmobile.fel.cvut.cz/portfolio/communication-in-self-optimizing-mobile-networks-with-drones/" target="_blank" rel="noopener">operational flying 4G antenna</a> (a drone). 
 </p>
 
 <p style='text-align: justify;'> 
