@@ -9,7 +9,7 @@ lang-ref: talks
 <h2 align="center">Event driven autoscaling in EKS 🇪🇸</h2>
 
 <p align="center">
-<iframe style="aspect-ratio: 16 / 9; width: 100%;" src="https://www.youtube.com/watch?v=R2eiTwUMiRI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+<iframe style="aspect-ratio: 16 / 9; width: 100%;" src="https://www.youtube.com/embed/R2eiTwUMiRI?si=0MNHqOmaQnh0BY1_" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 </p>
 
 <h2 align="center">Autoscaling in Kubernetes with Karpenter 🇪🇸</h2>
