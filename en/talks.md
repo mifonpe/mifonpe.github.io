@@ -8,7 +8,7 @@ lang-ref: talks
 <h2 align="center">Accelerating Platform Engineering Adoption with CNOE 🇪🇸</h2>
 
 <p align="center">
-<iframe style="aspect-ratio: 16 / 9; width: 100%;" src="https://www.youtube.com/embed/LwDGKOKD6rs?si=pe3YRRFqusf2EOBd" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+<iframe style="aspect-ratio: 16 / 9; width: 100%;" src="https://www.youtube.com/embed/LwDGKOKD6rs?si=pe3YRRFqusf2EOBd" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin"  allowfullscreen></iframe>
 </p>
 
 <h2 align="center">Event driven autoscaling in EKS 🇪🇸</h2>
