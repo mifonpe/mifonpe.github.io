@@ -8,7 +8,7 @@ lang-ref: talks
 <h2 align="center">PlatformCon 2025: CNOE Workshop 🇬🇧</h2>
 
 <p align="center">
-  <iframe width="560" height="315" src="https://www.youtube.com/embed/IQL9C-RV5IQ?si=1ZrUew4MvRldSBPz" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+  <iframe style="aspect-ratio: 16 / 9; width: 100%;" src="https://www.youtube.com/embed/IQL9C-RV5IQ?si=1ZrUew4MvRldSBPz" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 </p>
 
 <h2 align="center">Platform Engineering with CNOE 🇪🇸</h2>
