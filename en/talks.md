@@ -5,6 +5,12 @@ subtitle: Information about talks & webinars I have participated on
 lang: en
 lang-ref: talks
 ---
+<h2 align="center">OSS Summit 2025: Open-source tools for powering ethical and robust AI systems 🇬🇧</h2>
+
+<p align="center">
+  <iframe style="aspect-ratio: 16 / 9; width: 100%;" src="https://www.youtube.com/embed/1W2GsporyZI?si=Y4jqZKpaleaxeR_-" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+</p>
+
 <h2 align="center">PlatformCon 2025: CNOE Workshop 🇬🇧</h2>
 
 <p align="center">
