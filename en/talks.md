@@ -23,6 +23,12 @@ lang-ref: talks
 <iframe style="aspect-ratio: 16 / 9; width: 100%;" src="https://www.youtube.com/embed/K_-gifX2a0U?si=a387EtN7lNt825hF" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin"  allowfullscreen></iframe>
 </p>
 
+<h2 align="center">SpainClouds Summit 2025: Autoescalado eficiente en Kubernetes 🇪🇸</h2>
+
+<p align="center">
+<iframe style="aspect-ratio: 16 / 9; width: 100%;" src="https://www.youtube.com/embed/9LBEQjXTDSQ?si=7srHMTbWY_pVsJE5" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin"  allowfullscreen></iframe>
+</p>
+
 <h2 align="center">Accelerating Platform Engineering Adoption with CNOE 🇪🇸</h2>
 
 <p align="center">
