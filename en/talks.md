@@ -5,6 +5,12 @@ subtitle: Information about talks & webinars I have participated on
 lang: en
 lang-ref: talks
 ---
+<h2 align="center">AWS Summit 2026: Construyendo Agentes para Ingeniería de Plataforma 🇪🇸</h2>
+
+<p align="center">
+  <iframe style="aspect-ratio: 16 / 9; width: 100%;" src="https://www.youtube.com/embed/Pq-6MS8wWKM?si=JSLxPXbiPvHdoGxK" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+</p>
+
 <h2 align="center">SpainClouds Summit 2026: Construyendo Agentes Inteligentes con Strands y Bedrock 🇪🇸</h2>
 
 <p align="center">
@@ -69,12 +75,6 @@ lang-ref: talks
 
 <p align="center">
 <iframe style="aspect-ratio: 16 / 9; width: 100%;"  src="https://www.youtube.com/embed/iQUUrOnhl44" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-</p>
-
-<h2 align="center">GitOps & K8s 🇪🇸</h2>
-
-<p align="center">
-<iframe style="aspect-ratio: 16 / 9; width: 100%;"  src="https://www.youtube.com/embed/U6eijJ_FhFI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 </p>
 
 <h2 align="center">What is Kubernetes? 🇬🇧</h2>
