@@ -1,5 +1,6 @@
 ---
 layout: post
+published: false
 title: "Building production-grade agents with Strands & Bedrock AgentCore 🤖☁️"
 subtitle: A hands-on walkthrough of a RAG agent with memory, tools, guardrails and a chat UI — all deployed on AWS
 tags: [aws, bedrock, agentcore, strands, agents, ai, terraform]
