@@ -5,6 +5,12 @@ subtitle: Information about talks & webinars I have participated on
 lang: en
 lang-ref: talks
 ---
+<h2 align="center">Dissecting the Agentic AI Stack: MAESTRO threat modeling framework 🇬🇧</h2>
+
+<p align="center">
+  <iframe style="aspect-ratio: 16 / 9; width: 100%;" src="https://www.youtube.com/embed/8HMG5cY959M?si=zAPNcSv1vmaKsaON" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+</p>
+
 <h2 align="center">AWS Summit 2026: Construyendo Agentes para Ingeniería de Plataforma 🇪🇸</h2>
 
 <p align="center">
