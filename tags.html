@@ -5,7 +5,7 @@ title: 'Tag Index'
 
 {% assign date_format = site.date_format | default: "%B %-d, %Y" %}
 
-{%- comment -%} collect tags from EN posts + talks (skip duplicates from other languages) {%- endcomment -%}
+{%- comment -%} collect tags from EN posts + talks (skip duplicates from other languages). lang-en/lang-es injected virtually from talk.lang {%- endcomment -%}
 {%- assign en_posts = site.posts | where: "lang", "en" -%}
 {%- capture site_tags -%}
     {%- for post in en_posts -%}
@@ -17,49 +17,72 @@ title: 'Tag Index'
         {%- for tag in talk.tags -%}
             {{- tag -}},
         {%- endfor -%}
+        {%- if talk.lang == "es" -%}lang-es,{%- else -%}lang-en,{%- endif -%}
     {%- endfor -%}
 {%- endcapture -%}
 {%- assign tags_list = site_tags | split:',' | uniq | sort -%}
 
 {%- for tag in tags_list -%}
     {%- if tag == "" -%}{%- continue -%}{%- endif -%}
+    {%- assign is_lang_tag = false -%}
+    {%- assign tag_label = tag -%}
+    {%- if tag == "lang-en" -%}{%- assign is_lang_tag = true -%}{%- assign tag_label = "🇬🇧" -%}{%- endif -%}
+    {%- if tag == "lang-es" -%}{%- assign is_lang_tag = true -%}{%- assign tag_label = "🇪🇸" -%}{%- endif -%}
     {%- assign tagged_posts = en_posts | where_exp: "p", "p.tags contains tag" -%}
     {%- assign post_count = tagged_posts.size -%}
     {%- assign talk_count = 0 -%}
     {%- for talk in site.talks -%}
-        {%- if talk.tags contains tag -%}{%- assign talk_count = talk_count | plus: 1 -%}{%- endif -%}
+        {%- if is_lang_tag -%}
+            {%- if tag == "lang-es" and talk.lang == "es" -%}{%- assign talk_count = talk_count | plus: 1 -%}{%- endif -%}
+            {%- if tag == "lang-en" and talk.lang != "es" -%}{%- assign talk_count = talk_count | plus: 1 -%}{%- endif -%}
+        {%- else -%}
+            {%- if talk.tags contains tag -%}{%- assign talk_count = talk_count | plus: 1 -%}{%- endif -%}
+        {%- endif -%}
     {%- endfor -%}
     {%- assign total = post_count | plus: talk_count -%}
-    <a href="#{{- tag -}}" class="btn btn-primary tag-btn"><i class="fas fa-tag" aria-hidden="true"></i>&nbsp;{{- tag -}}&nbsp;({{ total }})</a>
+    <a href="#{{- tag -}}" class="btn btn-primary tag-btn" title="{{- tag -}}"><i class="fas fa-tag" aria-hidden="true"></i>&nbsp;{{ tag_label }}&nbsp;({{ total }})</a>
 {%- endfor -%}
 
 <div id="full-tags-list">
 {%- for tag in tags_list -%}
     {%- if tag == "" -%}{%- continue -%}{%- endif -%}
+    {%- assign is_lang_tag = false -%}
+    {%- assign tag_label = tag -%}
+    {%- if tag == "lang-en" -%}{%- assign is_lang_tag = true -%}{%- assign tag_label = "🇬🇧" -%}{%- endif -%}
+    {%- if tag == "lang-es" -%}{%- assign is_lang_tag = true -%}{%- assign tag_label = "🇪🇸" -%}{%- endif -%}
     {%- assign tagged_posts = en_posts | where_exp: "p", "p.tags contains tag" -%}
     {%- assign post_count = tagged_posts.size -%}
     {%- assign talk_count = 0 -%}
     {%- for talk in site.talks -%}
-        {%- if talk.tags contains tag -%}{%- assign talk_count = talk_count | plus: 1 -%}{%- endif -%}
+        {%- if is_lang_tag -%}
+            {%- if tag == "lang-es" and talk.lang == "es" -%}{%- assign talk_count = talk_count | plus: 1 -%}{%- endif -%}
+            {%- if tag == "lang-en" and talk.lang != "es" -%}{%- assign talk_count = talk_count | plus: 1 -%}{%- endif -%}
+        {%- else -%}
+            {%- if talk.tags contains tag -%}{%- assign talk_count = talk_count | plus: 1 -%}{%- endif -%}
+        {%- endif -%}
     {%- endfor -%}
     {%- assign total = post_count | plus: talk_count -%}
     <h2 id="{{- tag -}}" class="linked-section">
         <i class="fas fa-tag" aria-hidden="true"></i>
-        &nbsp;{{- tag -}}&nbsp;({{ total }})
+        &nbsp;{{ tag_label }}&nbsp;({{ total }})
     </h2>
     <div class="post-list">
         {%- for post in tagged_posts -%}
             <div class="tag-entry">
                 <a href="{{ post.url | relative_url }}">{{- post.title | strip_html -}}</a>
-                <div class="entry-date">
-                    <time datetime="{{- post.date | date_to_xmlschema -}}">{{- post.date | date: date_format -}}</time>
-                </div>
             </div>
         {%- endfor -%}
         {%- for talk in site.talks -%}
-            {%- if talk.tags contains tag -%}
+            {%- assign match = false -%}
+            {%- if is_lang_tag -%}
+                {%- if tag == "lang-es" and talk.lang == "es" -%}{%- assign match = true -%}{%- endif -%}
+                {%- if tag == "lang-en" and talk.lang != "es" -%}{%- assign match = true -%}{%- endif -%}
+            {%- else -%}
+                {%- if talk.tags contains tag -%}{%- assign match = true -%}{%- endif -%}
+            {%- endif -%}
+            {%- if match -%}
                 <div class="tag-entry">
-                    <a href="{{ '/en/talks/' | relative_url }}">🎥 {{- talk.title | strip_html -}}</a>
+                    <a href="{{ '/en/talks/' | relative_url }}">🎥 {{ talk.title | strip_html }}</a>
                     <div class="entry-date">talk</div>
                 </div>
             {%- endif -%}

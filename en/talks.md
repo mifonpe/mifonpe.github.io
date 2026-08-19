@@ -7,9 +7,11 @@ lang-ref: talks
 ---
 {% assign talks = site.talks | sort: "order" %}
 {% for talk in talks %}
-<h2>{{ talk.title }} {% if talk.lang == "es" %}🇪🇸{% else %}🇬🇧{% endif %}</h2>
+<h2>{{ talk.title }}</h2>
+{% assign lang_tag = "lang-en" %}{% assign lang_emoji = "🇬🇧" %}{% if talk.lang == "es" %}{% assign lang_tag = "lang-es" %}{% assign lang_emoji = "🇪🇸" %}{% endif %}
 <div class="blog-tags">
   <span>Tags:</span>
+  <a href="{{ '/tags' | relative_url }}#{{ lang_tag }}" title="{{ lang_tag }}">{{ lang_emoji }}</a>
   {% for tag in talk.tags %}
     <a href="{{ '/tags' | relative_url }}#{{ tag }}">{{ tag }}</a>
   {% endfor %}
