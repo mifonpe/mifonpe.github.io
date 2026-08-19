@@ -5,31 +5,64 @@ title: 'Tag Index'
 
 {% assign date_format = site.date_format | default: "%B %-d, %Y" %}
 
+{%- comment -%} collect tags from EN posts + talks (skip duplicates from other languages) {%- endcomment -%}
+{%- assign en_posts = site.posts | where: "lang", "en" -%}
 {%- capture site_tags -%}
-    {%- for tag in site.tags -%}
-        {{- tag | first -}}{%- unless forloop.last -%},{%- endunless -%}
+    {%- for post in en_posts -%}
+        {%- for tag in post.tags -%}
+            {{- tag -}},
+        {%- endfor -%}
+    {%- endfor -%}
+    {%- for talk in site.talks -%}
+        {%- for tag in talk.tags -%}
+            {{- tag -}},
+        {%- endfor -%}
     {%- endfor -%}
 {%- endcapture -%}
-{%- assign tags_list = site_tags | split:',' | sort -%}
+{%- assign tags_list = site_tags | split:',' | uniq | sort -%}
 
 {%- for tag in tags_list -%}
-    <a href="#{{- tag -}}" class="btn btn-primary tag-btn"><i class="fas fa-tag" aria-hidden="true"></i>&nbsp;{{- tag -}}&nbsp;({{site.tags[tag].size}})</a>
+    {%- if tag == "" -%}{%- continue -%}{%- endif -%}
+    {%- assign tagged_posts = en_posts | where_exp: "p", "p.tags contains tag" -%}
+    {%- assign post_count = tagged_posts.size -%}
+    {%- assign talk_count = 0 -%}
+    {%- for talk in site.talks -%}
+        {%- if talk.tags contains tag -%}{%- assign talk_count = talk_count | plus: 1 -%}{%- endif -%}
+    {%- endfor -%}
+    {%- assign total = post_count | plus: talk_count -%}
+    <a href="#{{- tag -}}" class="btn btn-primary tag-btn"><i class="fas fa-tag" aria-hidden="true"></i>&nbsp;{{- tag -}}&nbsp;({{ total }})</a>
 {%- endfor -%}
 
 <div id="full-tags-list">
 {%- for tag in tags_list -%}
+    {%- if tag == "" -%}{%- continue -%}{%- endif -%}
+    {%- assign tagged_posts = en_posts | where_exp: "p", "p.tags contains tag" -%}
+    {%- assign post_count = tagged_posts.size -%}
+    {%- assign talk_count = 0 -%}
+    {%- for talk in site.talks -%}
+        {%- if talk.tags contains tag -%}{%- assign talk_count = talk_count | plus: 1 -%}{%- endif -%}
+    {%- endfor -%}
+    {%- assign total = post_count | plus: talk_count -%}
     <h2 id="{{- tag -}}" class="linked-section">
         <i class="fas fa-tag" aria-hidden="true"></i>
-        &nbsp;{{- tag -}}&nbsp;({{site.tags[tag].size}})
+        &nbsp;{{- tag -}}&nbsp;({{ total }})
     </h2>
     <div class="post-list">
-        {%- for post in site.tags[tag] -%}
+        {%- for post in tagged_posts -%}
             <div class="tag-entry">
                 <a href="{{ post.url | relative_url }}">{{- post.title | strip_html -}}</a>
                 <div class="entry-date">
                     <time datetime="{{- post.date | date_to_xmlschema -}}">{{- post.date | date: date_format -}}</time>
                 </div>
             </div>
+        {%- endfor -%}
+        {%- for talk in site.talks -%}
+            {%- if talk.tags contains tag -%}
+                <div class="tag-entry">
+                    <a href="{{ '/en/talks/' | relative_url }}">🎥 {{- talk.title | strip_html -}}</a>
+                    <div class="entry-date">talk</div>
+                </div>
+            {%- endif -%}
         {%- endfor -%}
     </div>
 {%- endfor -%}

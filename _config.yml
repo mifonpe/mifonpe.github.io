@@ -243,6 +243,10 @@ markdown: kramdown
 permalink: /:year-:month-:day-:title/
 paginate: 5
 
+collections:
+  talks:
+    output: false
+
 kramdown:
   input: GFM
   syntax_highlighter: rouge
