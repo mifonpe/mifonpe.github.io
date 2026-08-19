@@ -12,7 +12,11 @@
       {% endif %}
       <p class="copyright text-muted">
       {% if site.author %}
-        {{ site.author }}
+        {% if site.social-network-links.linkedin %}
+          <a href="https://www.linkedin.com/in/{{ site.social-network-links.linkedin }}" target="_blank" rel="noopener">{{ site.author }}</a>
+        {% else %}
+          {{ site.author }}
+        {% endif %}
         &nbsp;&bull;&nbsp;
       {% endif %}
       {{ site.time | date: '%Y' }}
