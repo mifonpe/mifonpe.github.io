@@ -1,0 +1,57 @@
+# Deploys the built Jekyll site from the `terminal-style` branch straight to
+# `main` (which GitHub Pages serves at kubesandclouds.com).
+#
+# Rollback: revert or reset on `terminal-style`, then push. The next run
+# rebuilds and force-pushes over prod. `main` is treated as a publish target
+# only — do not edit it directly; each deploy overwrites it.
+#
+# Skip a deploy by including `[skip deploy]` in the commit message.
+name: Deploy terminal-style to prod
+
+on:
+  push:
+    branches:
+      - terminal-style
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    if: "!contains(github.event.head_commit.message, '[skip deploy]')"
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout terminal-style
+        uses: actions/checkout@v4
+        with:
+          ref: terminal-style
+          fetch-depth: 0
+
+      - name: Build Jekyll
+        run: |
+          export JEKYLL_VERSION=4.0
+          docker run \
+            -v ${{ github.workspace }}:/srv/jekyll \
+            -v ${{ github.workspace }}/_site:/srv/jekyll/_site \
+            jekyll/builder:$JEKYLL_VERSION \
+            /bin/bash -c "chmod 777 /srv/jekyll && jekyll build --future"
+
+      - name: Preserve CNAME
+        run: |
+          if [ -f CNAME ]; then cp CNAME _site/CNAME; fi
+          touch _site/.nojekyll
+
+      - name: Publish _site/ to main
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -euo pipefail
+          SRC_SHA=$(git rev-parse HEAD)
+          cd _site
+          git init -q -b main
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -q -m "deploy: build from terminal-style @ ${SRC_SHA:0:7}"
+          git remote add origin "https://x-access-token:${GH_TOKEN}@github.com/${{ github.repository }}.git"
+          git push -f origin main
