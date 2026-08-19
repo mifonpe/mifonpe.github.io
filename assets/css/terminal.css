@@ -333,10 +333,11 @@ input:focus, textarea:focus { border-color: var(--term-green) !important; outlin
   border-bottom: 1px solid var(--term-green) !important;
 }
 
-/* mobile: hide chrome bar bg text on narrow screens to avoid clipping */
+/* mobile: hide chrome bar bg text + hide brand text so avatar has room */
 @media (max-width: 640px) {
   body::before {
     content: "\25CF  \25CF  \25CF";
     letter-spacing: 4px;
   }
+  .navbar-custom .navbar-brand { display: none !important; }
 }
